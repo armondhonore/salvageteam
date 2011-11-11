@@ -1,22 +1,17 @@
 package com.monkygames.st.test;
 
-import com.bulletphysics.collision.broadphase.Dbvt.Node;
 //import com.bulletphysics.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.ChaseCamera;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
+import com.jme3.light.DirectionalLight;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Box;
 import com.monkygames.st.gui.NiftyHUD;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.objects.Ship;
@@ -78,6 +73,9 @@ public class TestHUD extends SimpleApplication {
 
 
 	// GO GO GO
+        DirectionalLight light = new DirectionalLight();
+        light.setDirection(new Vector3f(0, 0, -1));
+        rootNode.addLight(light);
     }
 
     @Override
