@@ -1,0 +1,29 @@
+<nifty>
+    <screen id="hud">
+        <layer id="background" childLayout="center">
+<!--            <image filename="Interface/tutorial/step2/start-background.png"></image>-->
+            <panel id="panel_bottom_left" height="100%" width="10%" valign="center" childLayout="absolute" 
+                 backgroundColor="#44fd">  
+                <text font="aurulent-sans-16.fnt" text="Michael Speth"
+                  align="center" valign="center" color="#FFFF" 
+                  x="0" y="0" />
+                <text font="aurulent-sans-16.fnt" text="Tim-H. Heuer"
+                  align="left" valign="top" 
+                  x="0" y="30" />
+                </panel>
+        </layer>
+    </screen>
+  <screen id="start" controller="jme3test.niftygui.TestNiftyGui">
+    <layer id="layer" backgroundColor="#0000" childLayout="center">
+      <panel id="panel" height="25%" width="35%" align="center" valign="center" backgroundColor="#f60f" childLayout="center" visibleToMouse="true">
+        <interact onClick="quit()"/>
+        <effect>
+          <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+          <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+          <onHover name="pulsate" scaleFactor="0.008" startColor="#f600" endColor="#ffff" post="true"/>
+        </effect>
+        <text id="text" font="aurulent-sans-16.fnt" color="#000f" text="Hello from jME3" align="center" valign="center" />
+      </panel>
+    </layer>
+  </screen>
+</nifty>

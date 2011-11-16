@@ -1,2 +1,4 @@
 SalvageTeam/build/*
 SalvageTeam/nbproject/*
+SalvageTeam/dist/
+SalvageTeam/*.so
