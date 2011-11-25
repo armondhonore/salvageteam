@@ -50,13 +50,6 @@ private ParticleEmitter exhaust;
     }
 // ============= Public Methods ============== //
     /**
-     * Sets the starting location of the ship.
-     **/
-    public void setStartingPosition(float x, float y, float z){
-	physicsControl.setPhysicsLocation( new Vector3f(x,y,z) );
-    }
-
-    /**
      * Rotates the object clockwise.
      **/
     public void rotateRight(){
