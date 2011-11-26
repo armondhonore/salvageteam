@@ -29,7 +29,7 @@ private ParticleEmitter exhaust;
     public Trash(AppStateManager stateManager){
 	super(stateManager);
 	loadNode("Models/trash/TrashBin.j3o");
-	physicsControl.setMass(0);
+	setCollisionShapeSphere(0.298f/2f,0);
 	//setCollisionShapeSphere(0.95f,1.0f);
 	//physicsControl.setFriction(0f);
 	//physicsControl.setKinematic(false);
