@@ -17,12 +17,13 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+// === Monkygames imports === //
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.objects.Ship;
+import com.monkygames.st.objects.Trash;
 
 /**
  * test
- * @author normenhansen
  */
 public class TestModelLoad extends SimpleApplication {
 
@@ -68,7 +69,11 @@ public class TestModelLoad extends SimpleApplication {
         mat2.setColor("m_Color", ColorRGBA.Red);
         myBox.setMaterial(mat2);
 	rootNode.attachChild(myBox);
-
+    
+	// create Trash
+	Trash trash = new Trash(stateManager);
+	trash.setStartingPosition(4,-4,0);
+	rootNode.attachChild(trash.getNode());
 
 	// create ship
 	Ship ship = new Ship(stateManager);
