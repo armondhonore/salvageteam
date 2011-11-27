@@ -1,0 +1,52 @@
+<scene exported_by="geekdenz" formatVersion="1.0.1" previous_export_time="0" export_time="1321995860.49191" >
+	<nodes >
+		<node name="Cube" uuid="741f0042c0bbdc9e656fce2af8eac73e" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="0.707108" qx="-0.000000" qz="0.707105" qw="0.000000" />
+			<scale y="1.000000" x="1.000000" z="1.000000" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.02539999969303608" damping_rot="0.18000000715255737" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cube.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cube" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+		<node name="Camera" uuid="4e9a6190d22fafbcbd7064a188be0c3d" >
+			<position y="5.069784" x="8.589715" z="7.098502" />
+			<rotation qy="0.358222" qx="0.489668" qz="-0.230576" qw="0.760747" />
+			<scale y="1.000000" x="1.000000" z="1.000000" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<camera projectionType="perspective" fov="37.84928883210247" name="Camera" >
+				<clipping nearPlaneDist="0.10000000149011612" farPlaneDist="100.0" />
+			</camera>
+		</node>
+		<node name="Lamp" uuid="fd70e1461e0b009c04a476f9c2d2132e" >
+			<position y="5.903862" x="4.076245" z="-1.005454" />
+			<rotation qy="0.755880" qx="0.169076" qz="-0.272171" qw="0.570947" />
+			<scale y="1.000000" x="1.000000" z="1.000000" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<light shadow="true" type="point" name="Lamp" powerScale="1.0" >
+				<position y="5.903862" x="4.076245" z="-1.005454" />
+				<lightAttenuation range="5000" quadratic="0.0" constant="1.0" linear="0.03333335240683057" />
+				<colourDiffuse r="1.0" b="1.0" g="1.0" />
+				<colourSpecular r="1.0" b="1.0" g="1.0" />
+				<colourShadow r="1.0" b="1.0" g="1.0" />
+			</light>
+		</node>
+	</nodes>
+	<externals >
+		<item type="material" >
+			<file name="/home/geekdenz/jMonkeyProjects/salvageteam-code/SalvageTeam/assets/Models/ships/1/spaceship.material" />
+		</item>
+	</externals>
+	<environment >
+		<colourBackground r="0.05656290054321289" b="0.4000000059604645" g="0.22081542015075684" />
+		<colourAmbient r="0.0" b="0.0" g="0.0" />
+		<colourDiffuse r="0.05656290054321289" b="0.4000000059604645" g="0.22081542015075684" />
+	</environment>
+</scene>

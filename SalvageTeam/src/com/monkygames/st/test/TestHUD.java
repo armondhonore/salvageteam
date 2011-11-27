@@ -88,7 +88,8 @@ public class TestHUD extends SimpleApplication implements ScreenController {
 
 	// GO GO GO
         DirectionalLight light = new DirectionalLight();
-        light.setDirection(new Vector3f(0, 0, -1));
+        //light.setDirection(new Vector3f(-0.25f, -0.25f, -1f));
+        light.setDirection(new Vector3f(0f, 0f, -1f));
         rootNode.addLight(light);
     }
 

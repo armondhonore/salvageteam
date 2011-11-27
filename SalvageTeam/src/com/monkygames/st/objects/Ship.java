@@ -8,12 +8,8 @@ import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Mesh;
-import com.jme3.scene.Spatial;
 import com.monkygames.st.control.ShipControl;
-import com.monkygames.st.utils.Physics;
 
 /**
  * A ship model.
@@ -29,7 +25,7 @@ public ShipControl shipControl;
 /**
  * Used for calculating the speed/thrust of the ship.
  **/
-private Physics physics;
+//private Physics physics;
 /**
  * Controls the exhaust.
  **/
@@ -37,14 +33,17 @@ private ParticleEmitter exhaust;
 // ============= Constructors ============== //
     public Ship(AppStateManager stateManager){
 	super(stateManager);
-	loadNode("Models/ships/default.j3o");
+	//loadNode("Models/ships/default.j3o");
+        loadNode("Models/ships/3/spaceship.j3o");
+        //node.rotate(0, -FastMath.PI/2f, 0f);
+        //geometry.rotate(FastMath.PI/2f, FastMath.PI/2f, 0f);
 	setCollisionShapeSphere(0.95f,1.0f);
 	physicsControl.setFriction(0f);
 	physicsControl.setKinematic(false);
 	
 	shipControl = new ShipControl(this);
 	node.addControl(shipControl);
-	physics = new Physics();
+	//physics = new Physics();
 
 	setupEffects();
     }

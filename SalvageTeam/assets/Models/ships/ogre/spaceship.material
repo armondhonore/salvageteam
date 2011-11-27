@@ -1,0 +1,96 @@
+
+material _missing_material_ 
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+material Material 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+			diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+		}
+	}
+}
+material Material.001 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.0 0.0 0.0 1.0
+			diffuse 0.0 0.0 0.0 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+		}
+	}
+}
+material Material.002 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.5202316641807556 0.5202316641807556 0.5202316641807556 1.0
+			diffuse 0.4161853375462492 0.4161853375462492 0.4161853375462492 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+		}
+	}
+}
+material Material.003 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.0 1.0 0.24576783180236816 1.0
+			diffuse 0.0 0.800000011920929 0.1966142683716754 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.44063669443130493 0.10829432500294445 1.0
+			scene_blend one zero
+		}
+	}
+}
+material Material.004 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.2285553216934204 0.2285553216934204 0.2285553216934204 1.0
+			diffuse 0.18284426007932808 0.18284426007932808 0.18284426007932808 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+		}
+	}
+}
