@@ -59,10 +59,16 @@ public class Model{
 	return node;
     }
     /**
-     * Sets the starting location of the ship.
+     * Sets the starting location of the model.
      **/
     public void setStartingPosition(float x, float y, float z){
 	physicsControl.setPhysicsLocation( new Vector3f(x,y,z) );
+    }
+    /**
+     * Sets the starting location of the model with non physics.
+     **/
+    public void setStartingPositionNonPhysics(float x, float y, float z){
+	node.setLocalTranslation(x,y,z);
     }
 // ============= Protected Methods ============== //
    /**

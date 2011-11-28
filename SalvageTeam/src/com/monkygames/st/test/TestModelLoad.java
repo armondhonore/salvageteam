@@ -19,8 +19,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 // === Monkygames imports === //
 import com.monkygames.st.input.KeyBinder;
-import com.monkygames.st.objects.Ship;
-import com.monkygames.st.objects.Trash;
+import com.monkygames.st.objects.*;
 
 /**
  * test
@@ -74,6 +73,11 @@ public class TestModelLoad extends SimpleApplication {
 	Trash trash = new Trash(stateManager);
 	trash.setStartingPosition(4,-4,0);
 	rootNode.attachChild(trash.getNode());
+
+	// create warp point
+	Warp warp = new Warp(stateManager);
+	warp.setStartingPositionNonPhysics(0,0,-1);
+	rootNode.attachChild(warp.getNode());
 
 	// create ship
 	Ship ship = new Ship(stateManager);

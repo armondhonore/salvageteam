@@ -1,0 +1,64 @@
+
+material _missing_material_ 
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+material sign outline 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.0352153442800045 0.0 0.0025491577107459307 1.0
+			diffuse 0.02817227584380322 0.0 0.0020393261989850725 1.0
+			specular 0.0 0.0 0.0 1.0 1.25
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+		}
+	}
+}
+material ring color 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.24564114212989807 0.2458108514547348 0.800000011920929 1.0
+			diffuse 0.19651291663218906 0.19664868409408154 0.6400000190734865 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+		}
+	}
+}
+material vray_Material__1 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.006369272246956825 0.006114501506090164 0.006114501506090164 0.8999999761581421
+			diffuse 0.005095417873493102 0.004891601277762669 0.004891601277762669 0.8999999761581421
+			specular 0.10000000149011612 0.10000000149011612 0.10000000149011612 0.8999999761581421 1.25
+			emissive 0.0 0.0 0.0 0.8999999761581421
+			scene_blend one zero
+		}
+	}
+}

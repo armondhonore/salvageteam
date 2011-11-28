@@ -1,0 +1,83 @@
+<scene exported_by="mspeth" formatVersion="1.0.1" previous_export_time="1322465553.62175" export_time="1322465651.687328" >
+	<nodes >
+		<node name="Circle.001" uuid="18219ac1255d757595f8d023a5b0839b" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="-0.750118" qx="0.008375" qz="-0.661154" qw="0.011316" />
+			<scale y="1.679116" x="1.679116" z="1.679116" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Circle.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Circle" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+		<node name="Circle" uuid="22130770586ed67d58c0362ce9dbb45a" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="-0.750118" qx="0.008373" qz="-0.661154" qw="0.011316" />
+			<scale y="2.885432" x="2.885432" z="2.885432" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Circle.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Circle" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+		<node name="Ring" uuid="e9ef74b325fd6caf3ff8190d0aa543b5" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="-0.707107" qx="-0.000000" qz="-0.707107" qw="0.000000" />
+			<scale y="2.281987" x="2.281987" z="2.281987" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Torus.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Torus" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+		<node name="Text" uuid="24312b53be3e680eebb55748e2b84289" >
+			<position y="-0.122587" x="0.000000" z="0.103015" />
+			<rotation qy="0.000000" qx="0.707107" qz="-0.000000" qw="0.707107" />
+			<scale y="0.112766" x="0.112766" z="0.112766" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+		</node>
+		<node name="Sign Background" uuid="68366bea95607bc39c669a0ae2b00d2e" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="0.000000" qx="0.707107" qz="-0.000000" qw="0.707107" />
+			<scale y="0.112766" x="0.112766" z="0.112766" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Rectangle0.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Rectangle0" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+		<node name="Sign Outline" uuid="3bb05393a9ef0b4b730833c0fbdcc381" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="0.000000" qx="0.707107" qz="-0.000000" qw="0.707107" />
+			<scale y="0.112766" x="0.112766" z="0.112766" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Rectangle1.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Rectangle1" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+		<node name="Sign inline" uuid="21ca6c0175c835ce98e9deee4c30d031" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="0.000000" qx="0.707107" qz="-0.000000" qw="0.707107" />
+			<scale y="0.112766" x="0.112766" z="0.112766" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Rectangle2.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Rectangle2" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+	</nodes>
+	<externals >
+		<item type="material" >
+			<file name="/home/mspeth/Projects/games/salvageteam-code/SalvageTeam/assets/Models/warp/Billboard05.material" />
+		</item>
+	</externals>
+	<environment >
+		<colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+		<colourAmbient r="0.0" b="0.0" g="0.0" />
+		<colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+	</environment>
+</scene>
