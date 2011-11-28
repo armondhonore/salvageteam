@@ -11,6 +11,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Mesh;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 /**
@@ -18,7 +19,7 @@ import com.jme3.scene.Spatial;
  * TODO dust effect.
  * @version 1.0
  */
-public class Trash extends Model{
+public class Trash extends Model implements Collectable{
 
 // ============= Class variables ============== //
 /**
@@ -26,11 +27,12 @@ public class Trash extends Model{
  **/
 private ParticleEmitter exhaust;
 // ============= Constructors ============== //
-    public Trash(AppStateManager stateManager){
+    public Trash(AppStateManager stateManager,Node node){
 	super(stateManager);
-	loadNode("Models/trash/TrashBin.j3o");
-	setCollisionShapeSphere(0.298f/2f,0);
-	//setCollisionShapeSphere(0.95f,1.0f);
+	setNode(node);
+	//loadNode("Models/trash/TrashBin.j3o");
+	setBoundingSphere(0.298f/2f);	
+	//setCollisionShapeSphere(0.298f/2f,0);
 	//physicsControl.setFriction(0f);
 	//physicsControl.setKinematic(false);
     }
@@ -39,6 +41,14 @@ private ParticleEmitter exhaust;
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //
+    /**
+     * Returns the value of this collectable.
+     * @return the value of this collectable.
+     **/
+    public int getValue(){
+	//TODO hard coded for now, but later change to dynamic.
+	return 10;
+    }
 // ============= Extended Methods ============== //
 // ============= Internal Classes ============== //
 // ============= Static Methods ============== //

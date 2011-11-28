@@ -1,6 +1,6 @@
 package com.monkygames.st.test;
 
-import com.bulletphysics.collision.broadphase.Dbvt.Node;
+//import com.bulletphysics.collision.broadphase.Dbvt.Node;
 //import com.bulletphysics.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.app.SimpleApplication;
@@ -17,8 +17,10 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+import com.jme3.scene.Node;
 // === Monkygames imports === //
 import com.monkygames.st.input.KeyBinder;
+import com.monkygames.st.map.MapObjectExtractor;
 import com.monkygames.st.objects.*;
 
 /**
@@ -70,9 +72,11 @@ public class TestModelLoad extends SimpleApplication {
 	rootNode.attachChild(myBox);
     
 	// create Trash
+	/*
 	Trash trash = new Trash(stateManager);
-	trash.setStartingPosition(4,-4,0);
+	trash.setStartingPositionNonPhysics(4,-4,0);
 	rootNode.attachChild(trash.getNode());
+	*/
 
 	// create warp point
 	Warp warp = new Warp(stateManager);
@@ -85,7 +89,11 @@ public class TestModelLoad extends SimpleApplication {
 	rootNode.attachChild(ship.getNode());
 
 	// add scene as map.
-	Spatial scene = assetManager.loadModel("Scenes/testMap.j3o");
+	Node scene = (Node)assetManager.loadModel("Scenes/testMap.j3o");
+	// parse map objects
+	MapObjectExtractor mapObjectExtractor = new MapObjectExtractor(scene,stateManager,bulletAppState,rootNode);
+
+	/*
 	// We set up collision detection for the scene by creating a
     	// compound collision shape and a static physics node with mass zero.
        	CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(scene);
@@ -93,6 +101,7 @@ public class TestModelLoad extends SimpleApplication {
     	scene.addControl(landscape);
     	bulletAppState.getPhysicsSpace().add(landscape);
 	rootNode.attachChild(scene);
+	*/
 
 	// setup shadows to off for now
        	rootNode.setShadowMode(ShadowMode.Off);

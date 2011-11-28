@@ -87,6 +87,9 @@ public class Model{
             node = null;
         }
     }
+    protected void setNode(Node node){
+	this.node = node;
+    }
     /**
      * Sets the collision shape to a sphere with the specified radius.
      * @param radius the radius of the sphere.
@@ -98,6 +101,10 @@ public class Model{
 	node.addControl(physicsControl);
 	// attach to physics state in order for physics to take effect.
 	stateManager.getState(BulletAppState.class).getPhysicsSpace().add(physicsControl);
+    }
+    protected void setBoundingSphere(float radius){
+	node.setModelBound(new BoundingSphere());
+	
     }
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //

@@ -3,36 +3,28 @@
  */
 package com.monkygames.st.objects;
 
-import com.jme3.app.state.AppStateManager;
-import com.jme3.effect.ParticleEmitter;
-import com.jme3.effect.ParticleMesh;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import com.jme3.scene.Mesh;
-import com.jme3.scene.Spatial;
+// === jme imports === //
+import com.jme3.scene.Node;
 
 /**
- * A warp point model.
- * TODO sparly effect.
+ * An interface for a model that can be collectable.
  * @version 1.0
  */
-public class Warp extends Model{
+public interface Collectable {
 
 // ============= Class variables ============== //
 // ============= Constructors ============== //
-    public Warp(AppStateManager stateManager){
-	super(stateManager);
-	loadNode("Models/warp/Billboard05.j3o");
-	setBoundingSphere(5.9f/2f);
-	//setCollisionShapeSphere(5.9f/2f,0);
-	//setCollisionShapeSphere(0.95f,1.0f);
-	//physicsControl.setFriction(0f);
-	//physicsControl.setKinematic(false);
-    }
 // ============= Public Methods ============== //
-
+    /**
+     * Returns the value of this collectable.
+     * @return the value of this collectable.
+     **/
+    public int getValue();
+    /**
+     * Returns the node associated with this collectable.
+     * @return the node that contains the 3d information of this collectable.
+     **/
+    public Node getNode();
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //
