@@ -78,20 +78,24 @@ public class TestModelLoad extends SimpleApplication {
 	rootNode.attachChild(trash.getNode());
 	*/
 
+	/*
 	// create warp point
 	Warp warp = new Warp(stateManager);
 	warp.setStartingPositionNonPhysics(0,0,-1);
 	rootNode.attachChild(warp.getNode());
+	*/
 
-	// create ship
-	Ship ship = new Ship(stateManager);
-	ship.setStartingPosition(0f,0f,0f);
-	rootNode.attachChild(ship.getNode());
 
 	// add scene as map.
 	Node scene = (Node)assetManager.loadModel("Scenes/testMap.j3o");
 	// parse map objects
 	MapObjectExtractor mapObjectExtractor = new MapObjectExtractor(scene,stateManager,bulletAppState,rootNode);
+
+	// create ship
+	Ship ship = new Ship(stateManager);
+	Vector3f loc = mapObjectExtractor.warp.getNode().getLocalTranslation();
+	ship.setStartingPosition(loc.x,loc.y,0f);
+	rootNode.attachChild(ship.getNode());
 
 	/*
 	// We set up collision detection for the scene by creating a

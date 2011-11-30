@@ -14,6 +14,7 @@ import java.util.Vector;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.monkygames.st.objects.Trash;
+import com.monkygames.st.objects.Warp;
 
 /**
  * Handles instantiating objects based on the model found in the scene.
@@ -31,6 +32,7 @@ public class MapObjectExtractor{
     private BulletAppState bulletAppState;
     private Node rootNode;
     public Vector<Trash> trashV;
+    public Warp warp;
 // ============= Constructors ============== //
     /**
      * Generates the necessary objects based on the user data.
@@ -59,7 +61,8 @@ public class MapObjectExtractor{
 		    createTrashObject((Node)s);
 		}else if(type.equals("Bounds")){
 		    createBoundsObject((Node)s);
-		}else if(type.equals("Start")){
+		}else if(type.equals("Warp")){
+		    createWarpObject((Node)s);
 		}
 	    }
 	}
@@ -74,6 +77,9 @@ public class MapObjectExtractor{
 	scene.addControl(landscape);
 	bulletAppState.getPhysicsSpace().add(landscape);
 	rootNode.attachChild(scene);
+    }
+    private void createWarpObject(Node node){
+	warp = new Warp(appStateManager,node);
     }
 // ============= Implemented Methods ============== //
 // ============= Extended Methods ============== //

@@ -11,6 +11,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Mesh;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 /**
@@ -22,9 +23,10 @@ public class Warp extends Model{
 
 // ============= Class variables ============== //
 // ============= Constructors ============== //
-    public Warp(AppStateManager stateManager){
+    public Warp(AppStateManager stateManager, Node node){
 	super(stateManager);
-	loadNode("Models/warp/Billboard05.j3o");
+	setNode(node);
+	//loadNode("Models/warp/Billboard05.j3o");
 	setBoundingSphere(5.9f/2f);
 	//setCollisionShapeSphere(5.9f/2f,0);
 	//setCollisionShapeSphere(0.95f,1.0f);
