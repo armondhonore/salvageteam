@@ -12,6 +12,7 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 // === st imports === //
 import com.jme3.collision.CollisionResults;
+import com.jme3.collision.UnsupportedCollisionException;
 import com.monkygames.st.objects.Collectable;
 import com.monkygames.st.objects.Ship;
 
@@ -33,8 +34,9 @@ public class CollectAppState extends AbstractAppState{
     private Ship ship;
 // ============= Constructors ============== //
 // ============= Public Methods ============== //
-    public void setCollectableObjects(Vector<Collectable> collectablesV){
-	this.collectablesV = collectablesV;
+    //public void setCollectableObjects(Vector<Collectable> collectablesV){
+    public void setCollectableObjects(Vector collectablesV){
+	this.collectablesV = (Vector<Collectable>)collectablesV;
     }
     public void setShip(Ship ship){
 	this.ship = ship;
@@ -54,12 +56,18 @@ public class CollectAppState extends AbstractAppState{
 	// check that the ship has run into a collectable.
 	CollisionResults results = new CollisionResults();
 	for(int i = 0; i < collectablesV.size(); i++){
-	    ship.getNode().collideWith(collectablesV.elementAt(i).getNode(),results);
-	    if(results.size() > 0){
-		//TODO update score
-		//TODO upate effects
-		//TODO remove 
-	    }
+	    try{
+		ship.getNode().collideWith(collectablesV.elementAt(i).getNode(),results);
+		if(results.size() > 0){
+		    Collectable collectable = collectablesV.elementAt(i);
+		    //TODO update score
+		    System.out.println("Score updated by "+collectable.getValue());
+		    //TODO upate effects
+		    //TODO remove 
+		    //collectables.
+		    break;
+		}
+	    }catch(UnsupportedCollisionException e){}
 	}
     }
 // ============= Internal Classes ============== //

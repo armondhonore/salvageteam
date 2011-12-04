@@ -57,13 +57,24 @@ public class MapObjectExtractor{
 		if(type == null){
 		    continue;
 		}
-		if(type.equals("TrashBin")){
-		    createTrashObject((Node)s);
+		//if(type.equals("TrashBin")){
+		    //createTrashObject((Node)s);
+		if(type.equals("Collectables")){
+		    createCollectableObjects((Node)s);
 		}else if(type.equals("Bounds")){
 		    createBoundsObject((Node)s);
 		}else if(type.equals("Warp")){
 		    createWarpObject((Node)s);
 		}
+	    }
+	}
+    }
+    private void createCollectableObjects(Node node){
+	for(int i = 0; i < node.getQuantity(); i++){
+	    Spatial s = node.getChild(i);
+	    if(s instanceof Node){
+		Trash trash = new Trash(appStateManager,(Node)s);
+		trashV.add(trash);
 	    }
 	}
     }
