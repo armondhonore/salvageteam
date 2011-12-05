@@ -7,6 +7,7 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.bounding.BoundingSphere;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -70,6 +71,12 @@ public class Model{
     public void setStartingPositionNonPhysics(float x, float y, float z){
 	node.setLocalTranslation(x,y,z);
     }
+    /**
+     * Detaches any controls of this collectable.
+     **/
+    public void detach(){
+	stateManager.getState(BulletAppState.class).getPhysicsSpace().remove(physicsControl);
+    }
 // ============= Protected Methods ============== //
    /**
      * Handles loading a single node from file and attaches to the root node of this model.
@@ -104,8 +111,12 @@ public class Model{
     }
     protected void setBoundingSphere(float radius){
 	node.setModelBound(new BoundingSphere());
-	
     }
+/*
+    public void setCollisionListener(PhysicsCollisionListener collisionListener){
+	stateManager.getState(BulletAppState.class).getPhysicsSpace().addCollisionListener(collisionListener);
+    }
+*/
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //
 // ============= Extended Methods ============== //

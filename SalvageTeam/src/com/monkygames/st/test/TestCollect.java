@@ -21,6 +21,7 @@ import com.jme3.scene.Node;
 // === Monkygames imports === //
 import com.monkygames.st.appstate.CollectAppState;
 import com.monkygames.st.input.KeyBinder;
+import com.monkygames.st.listener.CollectableListener;
 import com.monkygames.st.map.MapObjectExtractor;
 import com.monkygames.st.objects.*;
 import java.util.Vector;
@@ -47,8 +48,13 @@ public class TestCollect extends SimpleApplication {
 
 	// add scene as map.
 	Node scene = (Node)assetManager.loadModel("Scenes/testCollectMap.j3o");
-	// parse map objects
+	// parse map objects 
 	MapObjectExtractor mapObjectExtractor = new MapObjectExtractor(scene,stateManager,bulletAppState,rootNode);
+
+	// setup physics listener
+	CollectableListener collectableListener = new CollectableListener(mapObjectExtractor.trashV,mapObjectExtractor.collectablesNode);
+	bulletAppState.getPhysicsSpace().addCollisionListener(collectableListener);
+
 
 
 	// create ship
@@ -58,10 +64,12 @@ public class TestCollect extends SimpleApplication {
 	rootNode.attachChild(ship.getNode());
 
 	// setup collision detection app state
+/*
 	CollectAppState collectAppState = new CollectAppState();
 	collectAppState.setCollectableObjects(mapObjectExtractor.trashV);
 	collectAppState.setShip(ship);
 	stateManager.attach(collectAppState);	
+*/
 
 	// setup shadows to off for now
        	rootNode.setShadowMode(ShadowMode.Off);

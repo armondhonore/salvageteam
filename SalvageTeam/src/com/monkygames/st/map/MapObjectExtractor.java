@@ -32,6 +32,10 @@ public class MapObjectExtractor{
     private BulletAppState bulletAppState;
     private Node rootNode;
     public Vector<Trash> trashV;
+    /**
+     * The root of all the collectables.
+     **/
+    public Node collectablesNode;
     public Warp warp;
 // ============= Constructors ============== //
     /**
@@ -70,6 +74,7 @@ public class MapObjectExtractor{
 	}
     }
     private void createCollectableObjects(Node node){
+	collectablesNode = node;
 	for(int i = 0; i < node.getQuantity(); i++){
 	    Spatial s = node.getChild(i);
 	    if(s instanceof Node){

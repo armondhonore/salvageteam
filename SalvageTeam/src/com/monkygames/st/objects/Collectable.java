@@ -25,6 +25,10 @@ public interface Collectable {
      * @return the node that contains the 3d information of this collectable.
      **/
     public Node getNode();
+    /**
+     * Detaches any controls of this collectable.
+     **/
+    public void detach();
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //

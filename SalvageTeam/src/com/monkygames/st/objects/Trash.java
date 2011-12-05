@@ -13,6 +13,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.monkygames.st.control.CollectableControl;
 
 /**
  * A trash model.
@@ -30,9 +31,12 @@ private ParticleEmitter exhaust;
     public Trash(AppStateManager stateManager,Node node){
 	super(stateManager);
 	setNode(node);
-	//loadNode("Models/trash/TrashBin.j3o");
-	setBoundingSphere(0.298f/2f);	
+	// create control
 	//setCollisionShapeSphere(0.298f/2f,0);
+	setCollisionShapeSphere(0.298f,0);
+	//setCollisionShapeSphere(0.298f,0);
+	//loadNode("Models/trash/TrashBin.j3o");
+	//setBoundingSphere(0.298f/2f);	
 	//physicsControl.setFriction(0f);
 	//physicsControl.setKinematic(false);
     }

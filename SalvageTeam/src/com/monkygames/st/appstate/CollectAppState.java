@@ -57,7 +57,7 @@ public class CollectAppState extends AbstractAppState{
 	CollisionResults results = new CollisionResults();
 	for(int i = 0; i < collectablesV.size(); i++){
 	    try{
-		ship.getNode().collideWith(collectablesV.elementAt(i).getNode(),results);
+		ship.getNode().getWorldBound().collideWith(collectablesV.elementAt(i).getNode().getWorldBound(),results);
 		if(results.size() > 0){
 		    Collectable collectable = collectablesV.elementAt(i);
 		    //TODO update score
@@ -67,7 +67,9 @@ public class CollectAppState extends AbstractAppState{
 		    //collectables.
 		    break;
 		}
-	    }catch(UnsupportedCollisionException e){}
+	    }catch(UnsupportedCollisionException e){
+		e.printStackTrace();
+	    }
 	}
     }
 // ============= Internal Classes ============== //
