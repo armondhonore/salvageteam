@@ -33,7 +33,8 @@ private ParticleEmitter exhaust;
 	setNode(node);
 	// create control
 	//setCollisionShapeSphere(0.298f/2f,0);
-	setCollisionShapeSphere(0.298f,0);
+	//setCollisionShapeSphere(0.298f,0);
+	setCollectableShapeSphere(0.298f);
 	//setCollisionShapeSphere(0.298f,0);
 	//loadNode("Models/trash/TrashBin.j3o");
 	//setBoundingSphere(0.298f/2f);	

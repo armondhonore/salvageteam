@@ -4,6 +4,7 @@
 package com.monkygames.st.objects;
 
 import com.jme3.app.state.AppStateManager;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
@@ -22,10 +23,7 @@ public class Ship extends Model{
  * Controls the ship behaviour except for phys.
  **/
 public ShipControl shipControl;
-/**
- * Used for calculating the speed/thrust of the ship.
- **/
-//private Physics physics;
+private RigidBodyControl rigidBodyControl;
 /**
  * Controls the exhaust.
  **/
@@ -38,8 +36,10 @@ private ParticleEmitter exhaust;
         //node.rotate(0, -FastMath.PI/2f, 0f);
         //geometry.rotate(FastMath.PI/2f, FastMath.PI/2f, 0f);
 	setCollisionShapeSphere(0.95f,1.0f);
-	physicsControl.setFriction(0f);
-	physicsControl.setKinematic(false);
+	rigidBodyControl = (RigidBodyControl)physicsControl;
+	//setCollectableShapeSphere(0.96f);
+	rigidBodyControl.setFriction(0f);
+	rigidBodyControl.setKinematic(false);
 	
 	shipControl = new ShipControl(this);
 	node.addControl(shipControl);
@@ -52,21 +52,21 @@ private ParticleEmitter exhaust;
      * Rotates the object clockwise.
      **/
     public void rotateRight(){
-	physicsControl.setAngularVelocity( new Vector3f(0f,0f,-4f));
-	//physicsControl.setAngularVelocity( new Vector3f(-4f,-4f,0f));
+	rigidBodyControl.setAngularVelocity( new Vector3f(0f,0f,-4f));
+	//rigidBodyControl.setAngularVelocity( new Vector3f(-4f,-4f,0f));
     }
     /**
      * Rotates the object counter-clockwise.
      **/
     public void rotateLeft(){
-	physicsControl.setAngularVelocity( new Vector3f(0f,0f,4f));
-	//physicsControl.setAngularVelocity( new Vector3f(4f,4f,0f));
+	rigidBodyControl.setAngularVelocity( new Vector3f(0f,0f,4f));
+	//rigidBodyControl.setAngularVelocity( new Vector3f(4f,4f,0f));
     }
     /**
      * Stops rotating regardless the direction of rotation.
      **/
     public void rotateStop(){
-	physicsControl.setAngularVelocity( new Vector3f(0f,0f,0.0f));
+	rigidBodyControl.setAngularVelocity( new Vector3f(0f,0f,0.0f));
     }
     public void thrust(boolean isThrusting, float tpf){
 	Vector3f forwardDir = node.getLocalRotation().getRotationColumn(1);
@@ -76,11 +76,11 @@ private ParticleEmitter exhaust;
 	float force = 3f;
 	forwardDir.mult(force,forwardDir);
 	if(isThrusting){
-	    physicsControl.applyCentralForce(forwardDir);
+	    rigidBodyControl.applyCentralForce(forwardDir);
 	}
     }
     public void stopThrust(){
-	//physicsControl.clearForces();
+	//rigidBodyControl.clearForces();
     }
     /**
      * Starts the thrust effect.

@@ -10,6 +10,8 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
+import com.jme3.bullet.control.GhostControl;
+import com.jme3.bullet.control.PhysicsControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
@@ -31,7 +33,8 @@ public class Model{
     /**
      * Used for controlling the physics on this model.
      **/
-    protected RigidBodyControl physicsControl;
+    //protected RigidBodyControl physicsControl;
+    protected PhysicsControl physicsControl;
     /**
      * The main node for this model.
      **/
@@ -44,6 +47,10 @@ public class Model{
      * Contains the 3D information on this model.
      **/
     protected Spatial geometry;
+    /**
+     * Node used for detecting collisions of collectable objects.
+     **/
+    protected Node collectionNode;
 // ============= Constructors ============== //
     public Model(AppStateManager stateManager){
 	this.stateManager = stateManager;
@@ -63,7 +70,9 @@ public class Model{
      * Sets the starting location of the model.
      **/
     public void setStartingPosition(float x, float y, float z){
-	physicsControl.setPhysicsLocation( new Vector3f(x,y,z) );
+	if(physicsControl instanceof RigidBodyControl){
+	    ((RigidBodyControl)physicsControl).setPhysicsLocation( new Vector3f(x,y,z) );
+	}
     }
     /**
      * Sets the starting location of the model with non physics.
@@ -109,6 +118,18 @@ public class Model{
 	// attach to physics state in order for physics to take effect.
 	stateManager.getState(BulletAppState.class).getPhysicsSpace().add(physicsControl);
     }
+    /**
+     * Sets the node for detecting collisions between the model and collectables.
+     * @param radius the size of the collision sphere.
+     **/
+    protected void setCollectableShapeSphere(float radius){
+	SphereCollisionShape collectableShape = new SphereCollisionShape(radius);
+	physicsControl = new GhostControl(collectableShape);
+	//collectionNode = new Node();
+	node.addControl(physicsControl);
+	stateManager.getState(BulletAppState.class).getPhysicsSpace().add(physicsControl);
+    }
+
     protected void setBoundingSphere(float radius){
 	node.setModelBound(new BoundingSphere());
     }

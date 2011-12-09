@@ -55,8 +55,6 @@ public class TestCollect extends SimpleApplication {
 	CollectableListener collectableListener = new CollectableListener(mapObjectExtractor.trashV,mapObjectExtractor.collectablesNode);
 	bulletAppState.getPhysicsSpace().addCollisionListener(collectableListener);
 
-
-
 	// create ship
 	Ship ship = new Ship(stateManager);
 	Vector3f loc = mapObjectExtractor.warp.getNode().getLocalTranslation();
