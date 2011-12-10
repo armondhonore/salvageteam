@@ -14,6 +14,7 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Spatial;
 //import com.monkygames.st.gui.NiftyHUD;
+import com.monkygames.st.control.MenuControl;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.objects.Ship;
 import de.lessvoid.nifty.Nifty;
@@ -24,12 +25,13 @@ import de.lessvoid.nifty.screen.ScreenController;
  * test
  * @author normenhansen
  */
-public class TestHUD extends SimpleApplication implements ScreenController {
+public class TestGUI extends SimpleApplication implements ScreenController {
     
-    Nifty nifty;
+    private Nifty nifty;
+    private BulletAppState bulletAppState;
 
     public static void main(String[] args) {
-        TestHUD app = new TestHUD();
+        TestGUI app = new TestGUI();
         app.start();
     }
 
@@ -41,14 +43,9 @@ public class TestHUD extends SimpleApplication implements ScreenController {
                                                           inputManager,
                                                           audioRenderer,
                                                           guiViewPort);
-        nifty = niftyDisplay.getNifty();
-        //nifty.fromX
-        nifty.fromXml("Interface/NiftyHUD.xml", "hud", this);
-        nifty.setDebugOptionPanelColors(true);
-        guiViewPort.addProcessor(niftyDisplay);
 
 	// add physics 
-	BulletAppState bulletAppState = new BulletAppState();
+	bulletAppState = new BulletAppState();
 	stateManager.attach(bulletAppState);
 	
 	// setup physics state
@@ -73,6 +70,8 @@ public class TestHUD extends SimpleApplication implements ScreenController {
 
 	// setup shadows to off for now
        	rootNode.setShadowMode(ShadowMode.Off);
+        
+        
 
 
 	// create keybinder
@@ -86,12 +85,18 @@ public class TestHUD extends SimpleApplication implements ScreenController {
 	chaseCam.setInvertHorizontalAxis(true);
 	chaseCam.setInvertVerticalAxis(true);
 
-
-	// GO GO GO
         DirectionalLight light = new DirectionalLight();
-        //light.setDirection(new Vector3f(-0.25f, -0.25f, -1f));
         light.setDirection(new Vector3f(0f, 0f, -1f));
         rootNode.addLight(light);
+        nifty = niftyDisplay.getNifty();
+        nifty.fromXml("Interface/NiftyHUD.xml", "start", new MenuControl(bulletAppState));
+        nifty.setDebugOptionPanelColors(true);
+        guiViewPort.addProcessor(niftyDisplay);
+        bulletAppState.setSpeed(0);
+    }
+    
+    public BulletAppState getBulletAppState() {
+        return bulletAppState;
     }
 
     @Override
