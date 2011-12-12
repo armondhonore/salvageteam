@@ -59,5 +59,9 @@ public class MenuControl extends AbstractAppState implements ScreenController {
       nifty.removeScreen("start");
       nifty.gotoScreen("hud");
   }
+  
+  public void quit() {
+      app.stop();
+  }
 
 }
