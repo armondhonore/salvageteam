@@ -21,10 +21,8 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private Nifty nifty;
     private Screen screen;
     private SimpleApplication app;
-    private BulletAppState bulletAppState;
     
-    public MenuControl(BulletAppState bulletAppState) {
-        this.bulletAppState = bulletAppState;
+    public MenuControl() {
     }
 
     @Override
@@ -55,7 +53,8 @@ public class MenuControl extends AbstractAppState implements ScreenController {
   }
   
   public void unPause() {
-      bulletAppState.setSpeed(1.0f);
+      //bulletAppState.setSpeed(1.0f);
+      app.getStateManager().getState(BulletAppState.class).setSpeed(1.0f);
       nifty.removeScreen("start");
       nifty.gotoScreen("hud");
   }

@@ -89,7 +89,7 @@ public class TestGUI extends SimpleApplication implements ScreenController {
         light.setDirection(new Vector3f(0f, 0f, -1f));
         rootNode.addLight(light);
         nifty = niftyDisplay.getNifty();
-        MenuControl mc = new MenuControl(bulletAppState);
+        MenuControl mc = new MenuControl();
         mc.initialize(stateManager, this);
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);
