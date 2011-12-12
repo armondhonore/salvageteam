@@ -49,7 +49,7 @@ public class TestGUI extends SimpleApplication implements ScreenController {
 	stateManager.attach(bulletAppState);
 	
 	// setup physics state
-	bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0f,-0.5f,0f));
+	bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0f,-0.5f,-0.25f));
 	bulletAppState.getPhysicsSpace().setAccuracy(0.005f);
 
 
@@ -90,7 +90,7 @@ public class TestGUI extends SimpleApplication implements ScreenController {
         rootNode.addLight(light);
         nifty = niftyDisplay.getNifty();
         nifty.fromXml("Interface/NiftyHUD.xml", "start", new MenuControl(bulletAppState));
-        nifty.setDebugOptionPanelColors(true);
+        //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);
         bulletAppState.setSpeed(0);
     }
