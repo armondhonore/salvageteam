@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
-    <screen id="hud">
-        <layer id="background" childLayout="center">
-            <panel id="panel_bottom_left" height="100%" width="10%" valign="center" childLayout="absolute" 
-                 backgroundColor="#44fd">  
-                <text font="aurulent-sans-16.fnt" text="Michael Speth"
-                  align="center" valign="center" color="#FFFF" 
-                  x="0" y="0" />
-                <text font="aurulent-sans-16.fnt" text="Tim-H. Heuer"
-                  align="left" valign="top" 
-                  x="0" y="30" />
-                </panel>
-        </layer>
-    </screen>
-  <screen id="start" controller="com.monkygames.st.control.MenuControl">
+    <screen id="start" controller="com.monkygames.st.control.MenuControl">
         <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
             <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
                 <panel id="top" height="35%" />
@@ -56,5 +43,23 @@
                 </panel>
             </panel>
         </layer>
-  </screen>
+    </screen>
+    <screen id="hud">
+        <layer id="background" childLayout="horizontal">
+            <panel id="transparent" width="85%" />
+            <panel id="rhsHud" childLayout="vertical">
+                <panel id="rhsTopRight" height="10%" width="100%" valign="center" childLayout="center" 
+                     backgroundColor="#000F">  
+                    <text id="scoreLabel" font="aurulent-sans-16.fnt" text="Score: 0"
+                      align="center" valign="center" color="#FFFF" />
+                </panel>
+                <panel height="80%" />
+                <panel height="10%" width="100%" valign="center" childLayout="center"
+                       backgroundColor="#000F">
+                    <text id="timeLabel" font="aurulent-sans-16.fnt" text="Time: 0.000"
+                      align="center" valign="center" />
+                </panel>
+            </panel>
+        </layer>
+    </screen>
 </nifty>

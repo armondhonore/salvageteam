@@ -23,6 +23,7 @@ import de.lessvoid.nifty.Nifty;
 public class TestCollectGUI extends SimpleApplication {
 
     private Nifty nifty;
+    private MenuControl mc;
     public static void main(String[] args) {
         TestCollectGUI app = new TestCollectGUI();
         app.start();
@@ -77,12 +78,13 @@ public class TestCollectGUI extends SimpleApplication {
 
 	// GO GO GO
         initGUI();
-        bulletAppState.setSpeed(0); // pause
+        bulletAppState.setSpeed(0); //  initially
     }
 
     @Override
     public void simpleUpdate(float tpf) {
         //TODO: add update code
+        mc.update(tpf); // this is a not beautiful hack, not sure why it's not called automatically
     }
 
     @Override
@@ -96,10 +98,11 @@ public class TestCollectGUI extends SimpleApplication {
                                                           audioRenderer,
                                                           guiViewPort);
         nifty = niftyDisplay.getNifty();
-        MenuControl mc = new MenuControl();
-        mc.initialize(stateManager, this);
+        mc = new MenuControl();
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);
+        mc.initialize(stateManager, this);
     }
+    
 }
