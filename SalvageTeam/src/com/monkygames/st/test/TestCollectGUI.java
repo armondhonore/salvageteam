@@ -4,22 +4,27 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.ChaseCamera;
 import com.jme3.math.Vector3f;
+import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Node;
 // === Monkygames imports === //
+import com.monkygames.st.control.MenuControl;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.listener.CollectableListener;
 import com.monkygames.st.map.MapObjectExtractor;
 import com.monkygames.st.objects.*;
+import de.lessvoid.nifty.Nifty;
 
 /**
- * Tests the collision detection for trash cans.
+ *
+ * @author geekdenz
  */
-public class TestCollect extends SimpleApplication {
+public class TestCollectGUI extends SimpleApplication {
 
+    private Nifty nifty;
     public static void main(String[] args) {
-        TestCollect app = new TestCollect();
+        TestCollectGUI app = new TestCollectGUI();
         app.start();
     }
 
@@ -71,6 +76,8 @@ public class TestCollect extends SimpleApplication {
 	chaseCam.setInvertVerticalAxis(true);
 
 	// GO GO GO
+        initGUI();
+        bulletAppState.setSpeed(0); // pause
     }
 
     @Override
@@ -81,5 +88,18 @@ public class TestCollect extends SimpleApplication {
     @Override
     public void simpleRender(RenderManager rm) {
         //TODO: add render code
+    }
+
+    private void initGUI() {
+        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager,
+                                                          inputManager,
+                                                          audioRenderer,
+                                                          guiViewPort);
+        nifty = niftyDisplay.getNifty();
+        MenuControl mc = new MenuControl();
+        mc.initialize(stateManager, this);
+        nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
+        //nifty.setDebugOptionPanelColors(true);
+        guiViewPort.addProcessor(niftyDisplay);
     }
 }
