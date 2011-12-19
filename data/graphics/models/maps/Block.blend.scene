@@ -1,0 +1,136 @@
+<scene exported_by="mspeth" formatVersion="1.0.1" previous_export_time="1323767940.563435" export_time="1324289614.543552" >
+	<nodes >
+		<node name="Empty" uuid="2f22bd296fb87e1cdc21207a1f44a1b7" >
+			<position y="2.500000" x="5.000000" z="-0.000000" />
+			<rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+			<scale y="1.000000" x="1.000000" z="1.000000" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<node name="Bolt" uuid="64b79ed8edf27d5153e5e664831de83c" >
+				<position y="1.860710" x="-4.317099" z="2.223738" />
+				<rotation qy="-0.500000" qx="0.500000" qz="-0.500000" qw="0.500000" />
+				<scale y="0.134885" x="0.539540" z="0.539540" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cylinder.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cylinder" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="Bolt2" uuid="11db84193a64345f1e7d4dc64d17c018" >
+				<position y="1.840529" x="4.401018" z="2.223738" />
+				<rotation qy="-0.500000" qx="0.500000" qz="-0.500000" qw="0.500000" />
+				<scale y="0.134885" x="0.539540" z="0.539540" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cylinder.001.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cylinder.001" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="Bolt3" uuid="013dccef3854e81f71767941ebeb7170" >
+				<position y="-1.872743" x="4.401018" z="2.223737" />
+				<rotation qy="-0.500000" qx="0.500000" qz="-0.500000" qw="0.500000" />
+				<scale y="0.134885" x="0.539540" z="0.539540" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cylinder.002.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cylinder.002" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="Bolt4" uuid="dc5b7010eac944fdb0e38c60287c8ecc" >
+				<position y="-1.792019" x="-4.337279" z="2.223737" />
+				<rotation qy="-0.500000" qx="0.500000" qz="-0.500000" qw="0.500000" />
+				<scale y="0.134885" x="0.539540" z="0.539540" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cylinder.003.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cylinder.003" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="Wall Section" uuid="d70f43c355c29d4971bec7cd54fdab49" >
+				<position y="0.000000" x="0.010000" z="-0.000000" />
+				<rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+				<scale y="2.500000" x="4.999998" z="1.999999" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cube.001.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cube.001" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="WallEnd1" uuid="479b8de4ddb15a59ce3aa9b6f79dfa28" >
+				<position y="2.331603" x="0.035283" z="2.001750" />
+				<rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+				<scale y="0.125000" x="4.999998" z="0.250000" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cube.002.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cube.002" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="WallEnd2" uuid="a558c9887280f0fae469c2e86c697281" >
+				<position y="-2.343677" x="0.035283" z="2.001749" />
+				<rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+				<scale y="0.125000" x="4.999998" z="0.250000" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cube.000.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cube.000" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="WallEnd3" uuid="958b49b1b7f3f085e348f1f5f6ea3c9f" >
+				<position y="-0.012764" x="-4.845172" z="2.001750" />
+				<rotation qy="0.000000" qx="-0.000000" qz="-0.707107" qw="0.707107" />
+				<scale y="0.125000" x="2.177576" z="0.250000" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cube.003.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cube.003" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+			<node name="WallEnd4" uuid="3ac2fd2263186f149c1f2907fe36a2f6" >
+				<position y="0.007417" x="4.902167" z="2.001750" />
+				<rotation qy="0.000000" qx="-0.000000" qz="-0.707107" qw="0.707107" />
+				<scale y="0.125000" x="2.177576" z="0.250000" />
+				<game >
+					<sensors />
+					<actuators />
+				</game>
+				<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Cube.004.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Cube.004" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+			</node>
+		</node>
+		<node name="Point" uuid="02969c32989cdaa3b0e37925fedf155b" >
+			<position y="2.669590" x="0.494490" z="5.014364" />
+			<rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+			<scale y="1.000000" x="1.000000" z="1.000000" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<light type="point" name="Point" powerScale="1.0" >
+				<position y="2.669590" x="0.494490" z="5.014364" />
+				<lightAttenuation range="5000" quadratic="0.0" constant="1.0" linear="0.04" />
+				<colourDiffuse r="1.0" b="1.0" g="1.0" />
+				<colourSpecular r="1.0" b="1.0" g="1.0" />
+			</light>
+		</node>
+		<node name="Camera" uuid="bd9e6bd89a2ad705b65cff3262a6ec75" >
+			<position y="0.031326" x="-5.661636" z="15.749844" />
+			<rotation qy="-0.113832" qx="0.717018" qz="0.120552" qw="0.677048" />
+			<scale y="1.000000" x="1.000000" z="1.000000" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<camera projectionType="perspective" fov="28.841546255021967" name="Camera.001" >
+				<clipping nearPlaneDist="0.10000000149011612" farPlaneDist="100.0" />
+			</camera>
+		</node>
+	</nodes>
+	<externals />
+	<environment >
+		<colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+		<colourAmbient r="0.0" b="0.0" g="0.0" />
+		<colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+	</environment>
+</scene>

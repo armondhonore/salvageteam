@@ -1,0 +1,80 @@
+
+material _missing_material_ 
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+material Wall Bolt 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.00022568521671928465 0.00022568521671928465 0.00022568521671928465 1.0
+			diffuse 0.00018054817606580516 0.00018054817606580516 0.00018054817606580516 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+			texture_unit
+			{
+				texture Bold.png
+				tex_address_mode border
+				tex_border_colour 1.0 0.0 1.0
+				scale 1.0 1.0
+				env_map planar
+				colour_op_ex blend_manual src_current src_texture 0.0
+			}
+		}
+	}
+}
+material Bar 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.018847187981009483 0.018847187981009483 0.018847187981009483 1.0
+			diffuse 0.015077750609483576 0.015077750609483576 0.015077750609483576 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+		}
+	}
+}
+material Wall Material 
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			ambient 0.4564422070980072 0.4564422070980072 0.4564422070980072 1.0
+			diffuse 0.3651537711196209 0.3651537711196209 0.3651537711196209 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0.0 0.0 0.0 1.0
+			scene_blend one zero
+			texture_unit
+			{
+				texture MetalBare0115_1_thumbhuge.jpg
+				tex_address_mode wrap
+				scale 1.0 1.0
+				colour_op_ex blend_manual src_current src_texture 0.0
+			}
+		}
+	}
+}
