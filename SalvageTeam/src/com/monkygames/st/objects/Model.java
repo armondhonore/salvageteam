@@ -7,6 +7,7 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.bounding.BoundingSphere;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.GhostControl;
@@ -16,6 +17,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.system.JmeSystem;
+import com.monkygames.st.control.ZLockControl;
 
 /**
  * The base class that loads models.
@@ -69,6 +71,7 @@ public class Model{
      * Sets the starting location of the model.
      **/
     public void setStartingPosition(float x, float y, float z){
+	//TODO might need to add ZLockControl
 	if(physicsControl instanceof RigidBodyControl){
 	    ((RigidBodyControl)physicsControl).setPhysicsLocation( new Vector3f(x,y,z) );
 	}
@@ -112,7 +115,20 @@ public class Model{
      **/
     protected void setCollisionShapeSphere(float radius, float mass){
 	collisionShape = new SphereCollisionShape(radius);
-	physicsControl = new RigidBodyControl( collisionShape, mass);
+	physicsControl = new ZLockControl( collisionShape, mass);
+	/*
+	physicsControl = new RigidBodyControl( collisionShape, mass){
+	    public void prePhysicsTick(PhysicsSpace space, float f){
+		Vector3f linearVelocityVector = getLinearVelocity();
+		Vector3f angularVelocityVector = getAngularVelocity();
+		linearVelocityVector.z = 0;
+		angularVelocityVector.x = 0;
+		angularVelocityVector.y = 0;
+		setLinearVelocity(linearVelocityVector);
+		setAngularVelocity(angularVelocityVector);
+	    }
+	};
+	*/
 	node.addControl(physicsControl);
 	// attach to physics state in order for physics to take effect.
 	stateManager.getState(BulletAppState.class).getPhysicsSpace().add(physicsControl);
