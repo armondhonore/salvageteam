@@ -1,0 +1,24 @@
+<scene exported_by="mspeth" formatVersion="1.0.1" previous_export_time="1323767940.563435" export_time="1324422920.894246" >
+	<nodes >
+		<node name="Plane" uuid="8b77f7107b41ac9321d73d3f202e24cc" >
+			<position y="0.000000" x="0.000000" z="-0.000000" />
+			<rotation qy="-0.500000" qx="0.500000" qz="-0.500000" qw="0.500000" />
+			<scale y="96.475014" x="96.475014" z="96.475014" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Plane.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Plane" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+		</node>
+	</nodes>
+	<externals >
+		<item type="material" >
+			<file name="/home/mspeth/Projects/games/salvageteam-code/SalvageTeam/assets/Models/map/background.material" />
+		</item>
+	</externals>
+	<environment >
+		<colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+		<colourAmbient r="0.0" b="0.0" g="0.0" />
+		<colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+	</environment>
+</scene>
