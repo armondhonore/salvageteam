@@ -35,7 +35,7 @@ private ParticleEmitter exhaust;
         loadNode("Models/ships/3/spaceship.j3o");
         //node.rotate(0, -FastMath.PI/2f, 0f);
         //geometry.rotate(FastMath.PI/2f, FastMath.PI/2f, 0f);
-	setCollisionShapeSphere(1.50f*0.7f,1.0f);
+	setCollisionShapeSphere(1.50f*0.5f,1.0f);
 	rigidBodyControl = (RigidBodyControl)physicsControl;
 	//setCollectableShapeSphere(0.96f);
 	rigidBodyControl.setFriction(0f);
@@ -111,7 +111,8 @@ private void setupEffects(){
     exhaust.setLowLife(0.5f);
     exhaust.setHighLife(1.0f);
     exhaust.getParticleInfluencer().setVelocityVariation(0.1f);
-    exhaust.setLocalTranslation(0, -1.66f, 0);
+    //exhaust.setLocalTranslation(0, -1.66f, 0);
+    exhaust.setLocalTranslation(0, -1.26f, 0);
     exhaust.setParticlesPerSec(0f);
     node.attachChild(exhaust);
 

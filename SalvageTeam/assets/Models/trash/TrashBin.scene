@@ -1,6 +1,6 @@
-<scene exported_by="mspeth" formatVersion="1.0.1" previous_export_time="1322123254.707053" export_time="1322123465.240325" >
+<scene exported_by="mspeth" formatVersion="1.0.1" previous_export_time="0" export_time="1324457982.45448" >
 	<nodes >
-		<node name="Mesh.002" uuid="f107d736271fd7130af69ab5e5945c4d" >
+		<node name="Mesh.002" uuid="6cc172023dd7138bad2bd62be3b78fc6" >
 			<position y="0.388191" x="0.001460" z="-0.002606" />
 			<rotation qy="0.385842" qx="0.592559" qz="-0.385842" qw="0.592559" />
 			<scale y="0.004876" x="0.004876" z="0.004876" />
@@ -10,7 +10,7 @@
 			</game>
 			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="cover.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="cover" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
 		</node>
-		<node name="Mesh.001" uuid="d63c9b6cb440ea01ef4c7bf079fa5d5a" >
+		<node name="Mesh.001" uuid="06428981e67f1c1859e31a0e55556bf1" >
 			<position y="0.415924" x="0.002541" z="-0.002499" />
 			<rotation qy="0.385842" qx="0.592559" qz="-0.385842" qw="0.592559" />
 			<scale y="0.004876" x="0.004876" z="0.004876" />
@@ -20,7 +20,7 @@
 			</game>
 			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="handle.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="handle" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
 		</node>
-		<node name="Mesh" uuid="c819b1ee9e68c3516852a41512a9a108" >
+		<node name="Mesh" uuid="265ba51733229cd566cb3efdc453cae5" >
 			<position y="0.213505" x="-0.001728" z="0.004165" />
 			<rotation qy="0.385842" qx="0.592559" qz="-0.385842" qw="0.592559" />
 			<scale y="0.004876" x="0.004876" z="0.004876" />
@@ -29,34 +29,6 @@
 				<actuators />
 			</game>
 			<entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="contener.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="contener" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
-		</node>
-		<node name="Lamp" uuid="031ec5295224624484cf5d66d2e454ef" >
-			<position y="5.903862" x="4.076245" z="-1.005454" />
-			<rotation qy="0.755880" qx="0.169076" qz="-0.272171" qw="0.570947" />
-			<scale y="1.000000" x="1.000000" z="1.000000" />
-			<game >
-				<sensors />
-				<actuators />
-			</game>
-			<light shadow="true" type="point" name="Lamp" powerScale="1.0" >
-				<position y="5.903862" x="4.076245" z="-1.005454" />
-				<lightAttenuation range="5000" quadratic="0.0" constant="1.0" linear="0.03333335240683057" />
-				<colourDiffuse r="1.0" b="1.0" g="1.0" />
-				<colourSpecular r="1.0" b="1.0" g="1.0" />
-				<colourShadow r="1.0" b="1.0" g="1.0" />
-			</light>
-		</node>
-		<node name="Camera" uuid="bcdba9bbfb1d61752ce9aaac98eda551" >
-			<position y="5.447605" x="6.462471" z="5.720502" />
-			<rotation qy="0.334251" qx="0.481707" qz="-0.212922" qw="0.781600" />
-			<scale y="1.000000" x="1.000000" z="1.000000" />
-			<game >
-				<sensors />
-				<actuators />
-			</game>
-			<camera projectionType="perspective" fov="28.841546255021967" name="Camera" >
-				<clipping nearPlaneDist="0.10000000149011612" farPlaneDist="100.0" />
-			</camera>
 		</node>
 	</nodes>
 	<externals >
