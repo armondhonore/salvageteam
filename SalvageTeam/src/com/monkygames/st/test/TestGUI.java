@@ -15,6 +15,7 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Spatial;
 //import com.monkygames.st.gui.NiftyHUD;
 import com.monkygames.st.control.MenuControl;
+import com.monkygames.st.game.Score;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.objects.Ship;
 import de.lessvoid.nifty.Nifty;
@@ -89,7 +90,7 @@ public class TestGUI extends SimpleApplication implements ScreenController {
         light.setDirection(new Vector3f(0f, 0f, -1f));
         rootNode.addLight(light);
         nifty = niftyDisplay.getNifty();
-        MenuControl mc = new MenuControl();
+        MenuControl mc = new MenuControl(new Score());
         mc.initialize(stateManager, this);
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);

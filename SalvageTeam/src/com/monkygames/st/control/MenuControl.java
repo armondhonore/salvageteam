@@ -9,6 +9,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.bullet.BulletAppState;
+import com.monkygames.st.game.Score;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
@@ -27,8 +28,11 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private long startTime = 0;
     private long pauseTime = 0;
     private TextRenderer timeElementRenderer;
+    private TextRenderer scoreElementRenderer;
+    private Score score;
 
-    public MenuControl() {
+    public MenuControl(Score score) {
+	this.score = score;
     }
 
     @Override
@@ -52,11 +56,14 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         this.app = (SimpleApplication) app;
         Element timeElement = nifty.getScreen("hud").findElementByName("timeLabel");
         timeElementRenderer = timeElement.getRenderer(TextRenderer.class);
+        Element scoreElement = nifty.getScreen("hud").findElementByName("scoreLabel");
+        scoreElementRenderer = scoreElement.getRenderer(TextRenderer.class);
     }
 
     @Override
     public void update(float tpf) {
         updateTime();
+	updateScore();
     }
 
     public void unPause() {
@@ -90,6 +97,9 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         startTime = System.currentTimeMillis();
     }
 
+    /**
+     * Updates the time in the HUD.
+     **/
     private void updateTime() {
         long time = System.currentTimeMillis() - startTime;
         String timeStr = "" + time;
@@ -98,6 +108,12 @@ public class MenuControl extends AbstractAppState implements ScreenController {
             timeStr = timeStr.substring(0, ind) + "." + timeStr.substring(ind);
         }
         timeElementRenderer.setText("Time: " + timeStr);
+    }
+    /**
+     * Updates the score in the HUD.
+     **/
+    private void updateScore(){
+        scoreElementRenderer.setText("Score: " + score.getTotal());
     }
     
 }

@@ -8,6 +8,7 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Node;
 // === Monkygames imports === //
+import com.monkygames.st.game.Score;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.listener.CollectableListener;
 import com.monkygames.st.map.MapObjectExtractor;
@@ -39,7 +40,7 @@ public class TestCollect extends SimpleApplication {
 	MapObjectExtractor mapObjectExtractor = new MapObjectExtractor(scene,stateManager,bulletAppState,rootNode);
 
 	// setup physics listener
-	CollectableListener collectableListener = new CollectableListener(mapObjectExtractor.trashV,mapObjectExtractor.collectablesNode);
+	CollectableListener collectableListener = new CollectableListener(mapObjectExtractor.trashV,mapObjectExtractor.collectablesNode,new Score());
 	bulletAppState.getPhysicsSpace().addCollisionListener(collectableListener);
 
 	// create ship

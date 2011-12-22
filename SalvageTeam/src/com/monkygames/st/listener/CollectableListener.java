@@ -6,6 +6,7 @@ package com.monkygames.st.listener;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.scene.Node;
+import com.monkygames.st.game.Score;
 import com.monkygames.st.objects.Collectable;
 import java.util.Vector;
 
@@ -18,10 +19,15 @@ public class CollectableListener implements PhysicsCollisionListener{
 // ============= Class variables ============== //
     private Vector<Collectable> collectablesV;
     private Node collectablesNode;
+    /**
+     * The score for this game.
+     **/
+    private Score score;
 // ============= Constructors ============== //
-    public CollectableListener(Vector collectablesV, Node collectablesNode){
+    public CollectableListener(Vector collectablesV, Node collectablesNode, Score score){
 	this.collectablesV = (Vector<Collectable>)collectablesV;
 	this.collectablesNode = collectablesNode;
+	this.score = score;
     }
 // ============= Public Methods ============== //
 // ============= Protected Methods ============== //
@@ -30,13 +36,13 @@ public class CollectableListener implements PhysicsCollisionListener{
 	// find collectable
 	for(int i = 0; i < collectablesV.size(); i++){
 	    Collectable collectable = collectablesV.elementAt(i);
+	    // find collectable
 	    if(node == collectable.getNode()){
-		// found node
-System.out.println("Collectable found "+collectable.getValue());
-		//TODO update score
-		//System.out.println("Score updated by "+collectable.getValue());
+		// update score
+		score.increaseScore(collectable.getValue());
+		// TODO update HUD?
 		//TODO upate effects
-		//TODO remove 
+		// remove 
 		collectablesNode.detachChild(node);
 		collectable.detach();
 		collectablesV.removeElementAt(i);
@@ -53,16 +59,6 @@ System.out.println("Collectable found "+collectable.getValue());
 	}else if(event.getNodeB().getName() != null && event.getNodeB().getName().equals("Models/trash/TrashBin.j3o")){
 	    collectableCollected((Node)event.getNodeB());
 	}
-//System.out.println("NodeA = "+event.getNodeA()+" NodeB = "+event.getNodeB());
-	// the only object that can collide with this is the ship
-	//collectables.
-	/*
-	if ( event.getNodeA().getName().equals("player") ) {
-	    final Node node = event.getNodeA();
-	} else if ( event.getNodeB().getName().equals("player") ) {
-	    final Node node = event.getNodeB();
-	}
-	*/
     }
 // ============= Internal Classes ============== //
 // ============= Static Methods ============== //
