@@ -81,6 +81,7 @@ public class TestScoring extends SimpleApplication {
     @Override
     public void simpleUpdate(float tpf) {
         //TODO: add update code
+	mc.update(tpf);
     }
 
     @Override
