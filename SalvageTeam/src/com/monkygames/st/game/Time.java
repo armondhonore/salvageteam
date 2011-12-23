@@ -19,6 +19,10 @@ public class Time{
      **/
     private long startGameTime;
     /**
+     * Used for calculating the amount of time passed.
+     **/
+    private long previousTime;
+    /**
      * The time the game ended.
      **/
     private long endGameTime;
@@ -35,6 +39,7 @@ public class Time{
     public Time(){
 	totalGameTime = 0;
 	startGameTime = 0;
+	previousTime = 0;
 	endGameTime = 0;
 	pauseTime = 0;
 	totalPausedTime = 0;
@@ -45,6 +50,7 @@ public class Time{
      **/
     public void setStartGameTime(){
 	startGameTime = System.currentTimeMillis();
+	previousTime = startGameTime;
     }
     /**
      * Sets the end game time to the current time in milliseconds from the year of 1970 and calculates the total amount of time playing the game excluding paused time.
@@ -60,7 +66,28 @@ public class Time{
 	pauseTime = System.currentTimeMillis();
     }
     public void setUnpaused(){
-	totalPausedTime += System.currentTimeMillis() - pauseTime;
+	if(pauseTime > 0){
+	    long currentTime = System.currentTimeMillis();
+	    // calculate the amount of time that was paused.
+	    long timeDifference = currentTime - pauseTime;
+	    // add to the total amount of time paused.
+	    totalPausedTime += timeDifference;
+	    // keep previous time instep 
+	    previousTime -= timeDifference;
+	}
+    }
+    /**
+     * Updates the current time and returns the string representation.
+     * @return the current amount of time passed.
+     **/
+    public String updateTime(){
+        long time = System.currentTimeMillis() - previousTime;
+        String timeStr = "" + time;
+        int ind = timeStr.length() - 3;
+        if (ind >= 0) {
+            timeStr = timeStr.substring(0, ind) + "." + timeStr.substring(ind);
+        }
+	return timeStr;
     }
     /**
      * Returns the total game time played in milliseconds.
@@ -68,6 +95,12 @@ public class Time{
      **/
     public long getTotalGameTime(){
 	return totalGameTime;
+    }
+    /**
+     * Returns the start time.
+     **/
+    public long getStartGameTime(){
+	return startGameTime;
     }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //

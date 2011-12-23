@@ -25,8 +25,6 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private Nifty nifty;
     private Screen screen;
     private SimpleApplication app;
-    private long startTime = 0;
-    private long pauseTime = 0;
     private TextRenderer timeElementRenderer;
     private TextRenderer scoreElementRenderer;
     private Score score;
@@ -69,45 +67,34 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     public void unPause() {
         //bulletAppState.setSpeed(1.0f);
         app.getStateManager().getState(BulletAppState.class).setSpeed(1.0f);
-        if (startTime == 0) {
+        if (score.getTime().getStartGameTime() == 0) {
             resetStartTime();
         }
         nifty.removeScreen("start");
         nifty.gotoScreen("hud");
-        long currentTime = System.currentTimeMillis();
-        long timeToSubtract;
-        if (pauseTime > 0) {
-            timeToSubtract = currentTime - pauseTime;
-        } else {
-            timeToSubtract = 0;
-        }
-        this.startTime -= timeToSubtract;
+	score.getTime().setUnpaused();
     }
 
     public void pause() {
         app.getStateManager().getState(BulletAppState.class).setSpeed(0f);
-        pauseTime = System.currentTimeMillis();
+	score.getTime().setPauseGameTime();
     }
 
     public void quit() {
+	//TODO move set end game to another class
+	score.getTime().setEndGameTime();
         app.stop();
     }
 
     public void resetStartTime() {
-        startTime = System.currentTimeMillis();
+	score.getTime().setStartGameTime();
     }
 
     /**
      * Updates the time in the HUD.
      **/
     private void updateTime() {
-        long time = System.currentTimeMillis() - startTime;
-        String timeStr = "" + time;
-        int ind = timeStr.length() - 3;
-        if (ind >= 0) {
-            timeStr = timeStr.substring(0, ind) + "." + timeStr.substring(ind);
-        }
-        timeElementRenderer.setText("Time: " + timeStr);
+        timeElementRenderer.setText("Time: " + score.getTime().updateTime());
     }
     /**
      * Updates the score in the HUD.
