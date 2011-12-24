@@ -2,3 +2,5 @@ SalvageTeam/build/*
 SalvageTeam/nbproject/*
 SalvageTeam/dist/
 SalvageTeam/*.so
+SalvageTeam/*.swp
+SalvageTeam/*.db4o

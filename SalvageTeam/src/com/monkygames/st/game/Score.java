@@ -27,10 +27,17 @@ public class Score{
 	this(0);
     }
     public Score(int total){
+	this(total,0);
+    }
+    /**
+     * Creates a score with the total score and amount of time remaining.
+     * @param total the total score.
+     * @param timeRemaining the amount of time remaining in milliseconds - 0 for count up otherwise count down.
+     **/
+    public Score(int total, int timeRemaining){
 	this.total = total;
 	recordedTime = 0;
-	time = new Time();
-	
+	time = new Time(timeRemaining);
     }
 // ============= Public Methods ============== //
     /**

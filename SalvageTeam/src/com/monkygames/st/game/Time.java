@@ -34,15 +34,37 @@ public class Time{
      * The total amount of time the game was paused.
      **/
     private long totalPausedTime;
+    /**
+     * The amount of time left before no bonus is awareded.
+     **/
+    private long timeRemaining;
+    /**
+     * True if timer is counting down and false if counting up.
+     **/
+    private boolean isCountingDown;
 
 // ============= Constructors ============== //
     public Time(){
+	this(0);
+    }
+    /**
+     * Creates a new time class with the specified time remaining.
+     * If the timeRemaining is set to 0, than this timer counts up, otherwise, counts down.
+     * @param timeRemaining the amount of time remaining before no bonus is awarded.
+     **/
+    public Time(long timeRemaining){
+	this.timeRemaining = timeRemaining;
 	totalGameTime = 0;
 	startGameTime = 0;
 	previousTime = 0;
 	endGameTime = 0;
 	pauseTime = 0;
 	totalPausedTime = 0;
+	if(timeRemaining == 0){
+	    isCountingDown = false;
+	}else{
+	    isCountingDown = true;
+	}
     }
 // ============= Public Methods ============== //
     /**
@@ -82,11 +104,18 @@ public class Time{
      **/
     public String updateTime(){
         long time = System.currentTimeMillis() - previousTime;
-        String timeStr = "" + time;
-        int ind = timeStr.length() - 3;
-        if (ind >= 0) {
-            timeStr = timeStr.substring(0, ind) + "." + timeStr.substring(ind);
-        }
+	String timeStr = "";
+	if(isCountingDown){
+	    time = timeRemaining - time;
+	    if(time < 0){
+		time = 0;
+	    }
+	}
+	timeStr += time;
+	int ind = timeStr.length() - 3;
+	if (ind >= 0) {
+	    timeStr = timeStr.substring(0, ind) + "." + timeStr.substring(ind);
+	}
 	return timeStr;
     }
     /**
