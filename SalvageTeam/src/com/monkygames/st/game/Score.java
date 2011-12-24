@@ -24,9 +24,13 @@ public class Score{
     private Time time;
 // ============= Constructors ============== //
     public Score(){
-	total = 0;
+	this(0);
+    }
+    public Score(int total){
+	this.total = total;
 	recordedTime = 0;
 	time = new Time();
+	
     }
 // ============= Public Methods ============== //
     /**
@@ -73,6 +77,9 @@ public class Score{
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //
 // ============= Extended Methods ============== //
+    public String toString(){
+	return "Score["+total+"]";
+    }
 // ============= Internal Classes ============== //
 // ============= Static Methods ============== //
 
