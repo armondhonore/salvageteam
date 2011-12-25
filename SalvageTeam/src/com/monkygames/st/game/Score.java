@@ -3,11 +3,13 @@
  */
 package com.monkygames.st.game;
 
+import java.io.Serializable;
+
 /**
  * Holds the score for the game.
  * @version 1.0
  */
-public class Score{
+public class Score implements Serializable, Comparable<Score> {
 
 // ============= Class variables ============== //
     /**
@@ -89,6 +91,14 @@ public class Score{
     }
 // ============= Internal Classes ============== //
 // ============= Static Methods ============== //
+
+    public int compareTo(Score t) {
+        return t.getScore() - this.getScore();
+    }
+    
+    public int getScore() {
+        return this.total;
+    }
 
 }
 /*
