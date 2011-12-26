@@ -3,6 +3,7 @@ package com.monkygames.st.test;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.ChaseCamera;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
@@ -13,6 +14,7 @@ import com.monkygames.st.control.MenuControl;
 import com.monkygames.st.game.Score;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.listener.CollectableListener;
+import com.monkygames.st.listener.InGameListener;
 import com.monkygames.st.map.MapObjectExtractor;
 import com.monkygames.st.objects.*;
 import de.lessvoid.nifty.Nifty;
@@ -25,6 +27,7 @@ public class TestTimerCountdown extends SimpleApplication {
     private Nifty nifty;
     private MenuControl mc;
     private Score score;
+    private BulletAppState bulletAppState = new BulletAppState();
 
     public static void main(String[] args) {
         TestTimerCountdown app = new TestTimerCountdown();
@@ -34,7 +37,6 @@ public class TestTimerCountdown extends SimpleApplication {
     @Override
     public void simpleInitApp() {
 	// add physics 
-	BulletAppState bulletAppState = new BulletAppState();
 	stateManager.attach(bulletAppState);
 	
 	// setup physics state
