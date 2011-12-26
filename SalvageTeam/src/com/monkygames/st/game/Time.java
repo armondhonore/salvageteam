@@ -3,11 +3,14 @@
  */
 package com.monkygames.st.game;
 
+import java.io.Serializable;
+
 /**
  * Holds the game time.
  * @version 1.0
  */
-public class Time{
+public class Time implements Serializable {
+    static final long serialVersionUID = -9017496812497237883L;
 
 // ============= Class variables ============== //
     /**

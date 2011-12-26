@@ -15,8 +15,8 @@ public class TestJavaIO {
     
     public static void main(String []args){
         ScoreStore ss = new ScoreStore();
-        for (int i = 0; ++i < 11;) {
-            Score score = new Score(i*10);
+        for (int i = 0; ++i < 201;) {
+            Score score = new Score(i);
             ss.add(score);
         }
         ss.persist();

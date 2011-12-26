@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class Score implements Serializable, Comparable<Score> {
 
 // ============= Class variables ============== //
+    static final long serialVersionUID = -5841840990492331554L;
     /**
      * The total amount scored.
      **/

@@ -19,6 +19,7 @@ import java.util.List;
  * @author geekdenz
  */
 public class ScoreStore {
+    private static final int MAX_SCORES = 100;
     private List<Score> scores;
     private File file;
     private FileInputStream fileInput;
@@ -53,14 +54,27 @@ public class ScoreStore {
                 objectOutput.reset(); // need to reset to not write 2 lists
             }
             Collections.sort(scores); // only need to sort when saved
-            // only store top 100
-            scores = scores.subList(0, 99);
+            // only store top MAX_SCORES
+            if (scores.size() > MAX_SCORES) {
+                List<Score> temp = scores;
+                scores = new ArrayList(MAX_SCORES);
+                for (int i = -1; ++i < MAX_SCORES;) {
+                    scores.add(temp.get(i));                    
+                }
+            }
             objectOutput.writeObject(scores);
             objectOutput.flush();
             objectOutput.close();
         } catch (Exception ex) {
             System.err.println("error writing to game store file");
-            System.err.println(ex);
         }
+    }
+    @Override
+    public String toString() {
+        String o = "";
+        for (Score s : scores) {
+            o += "\n"+ s;
+        }
+        return o;
     }
 }
