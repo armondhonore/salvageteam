@@ -14,6 +14,7 @@ public interface IGame{
      * Signals the game should end.
      **/
     public void endGame();
+    public void reinit();
 }
 /*
  * Local variables:

@@ -37,7 +37,7 @@ public class Score implements Serializable, Comparable<Score> {
      * @param total the total score.
      * @param timeRemaining the amount of time remaining in milliseconds - 0 for count up otherwise count down.
      **/
-    public Score(int total, int timeRemaining){
+    public Score(int total, long timeRemaining){
 	this(total,timeRemaining,null);
     }
     /**
@@ -45,7 +45,7 @@ public class Score implements Serializable, Comparable<Score> {
      * @param total the total score.
      * @param timeRemaining the amount of time remaining in milliseconds - 0 for count up otherwise count down.
      **/
-    public Score(int total, int timeRemaining, IGame game){
+    public Score(int total, long timeRemaining, IGame game){
 	this.total = total;
 	recordedTime = 0;
 	time = new Time(timeRemaining,game);
@@ -102,11 +102,7 @@ public class Score implements Serializable, Comparable<Score> {
 // ============= Static Methods ============== //
 
     public int compareTo(Score t) {
-        return t.getScore() - this.getScore();
-    }
-    
-    public int getScore() {
-        return this.total;
+        return t.getTotal() - this.getTotal();
     }
 
 }

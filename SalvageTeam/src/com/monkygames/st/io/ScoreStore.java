@@ -77,4 +77,8 @@ public class ScoreStore {
         }
         return o;
     }
+    
+    public List<Score> getList() {
+        return this.scores;
+    }
 }

@@ -94,6 +94,9 @@ private ParticleEmitter exhaust;
     public void stopThrustEffect(){
 	exhaust.setParticlesPerSec(0f);
     }
+    public void stopAllForces(){
+        rigidBodyControl.clearForces();
+    }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 private void setupEffects(){

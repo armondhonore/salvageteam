@@ -20,7 +20,7 @@
                 <panel id="panel2" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
                     backgroundColor="#fffc">
                     <control color="#000f" name="button" label="Scores" id="scoresButton" align="center" width="100%" height="100%">
-                        <interact onClick="unPause()" />
+                        <interact onClick="showScores()" />
                         <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="SCORES" align="center" />
                         <effect>
                             <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
@@ -62,4 +62,75 @@
             </panel>
         </layer>
     </screen>
+    <screen id="scores" controller="com.monkygames.st.control.MenuControl">
+        <layer childLayout="center">
+            <panel width="100%" height="100%" childLayout="vertical" valign="center">
+                <panel id="top" height="15%" />
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
+                    <text id="scoreTitle" font="aurulent-sans-16.fnt" text="Scores:" align="center" valign="center" />
+                </panel>
+                <panel id="scorePanel" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+                    <text id="score1" font="aurulent-sans-16.fnt" text="1.)" align="center" valign="center" />
+                    <text id="score2" font="aurulent-sans-16.fnt" text="2.)" align="center" valign="center" />
+                    <text id="score3" font="aurulent-sans-16.fnt" text="3.)" align="center" valign="center" />
+                    <text id="score4" font="aurulent-sans-16.fnt" text="4.)" align="center" valign="center" />
+                    <text id="score5" font="aurulent-sans-16.fnt" text="5.)" align="center" valign="center" />
+                    <text id="score6" font="aurulent-sans-16.fnt" text="6.)" align="center" valign="center" />
+                    <text id="score7" font="aurulent-sans-16.fnt" text="7.)" align="center" valign="center" />
+                    <text id="score8" font="aurulent-sans-16.fnt" text="8.)" align="center" valign="center" />
+                    <text id="score9" font="aurulent-sans-16.fnt" text="9.)" align="center" valign="center" />
+                    <text id="score10" font="aurulent-sans-16.fnt" text="10.)" align="center" valign="center" />
+                </panel>
+                <panel id="backToMenu" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
+                    backgroundColor="#000C">
+                    <control color="#FFFF" name="button" label="BACK TO MENU" id="backToMenuControl" align="center" width="100%" height="100%">
+                        <interact onClick="backToMenu()" />
+                        <text id="backButtonText" font="aurulent-sans-16.fnt" text="BACK TO MENU" align="center" valign="center" />
+                        <effect>
+                            <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+                            <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+                            <onHover name="pulsate" scaleFactor="0.008" startColor="#EEE1" endColor="#EEEE" post="true"/>
+                        </effect>
+                    </control>
+                </panel>
+            </panel>
+        </layer>
+    </screen>    
+    <screen id="scoresRank" controller="com.monkygames.st.control.MenuControl">
+        <layer childLayout="center">
+            <panel width="100%" height="100%" childLayout="vertical" valign="center">
+                <panel id="top" height="15%" />
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
+                    <text id="scoreTitle1" font="aurulent-sans-16.fnt" text="Scores:" align="center" valign="center" />
+                </panel>
+                <panel id="scorePanel1" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+                    <text id="rankscore1" font="aurulent-sans-16.fnt" text="1.)" align="center" valign="center" />
+                    <text id="rankscore2" font="aurulent-sans-16.fnt" text="2.)" align="center" valign="center" />
+                    <text id="rankscore3" font="aurulent-sans-16.fnt" text="3.)" align="center" valign="center" />
+                    <text id="rankscore4" font="aurulent-sans-16.fnt" text="4.)" align="center" valign="center" />
+                    <text id="rankscore5" font="aurulent-sans-16.fnt" text="5.)" align="center" valign="center" />
+                    <text id="rankscore6" font="aurulent-sans-16.fnt" text="6.)" align="center" valign="center" />
+                    <text id="rankscore7" font="aurulent-sans-16.fnt" text="7.)" align="center" valign="center" />
+                    <text id="rankscore8" font="aurulent-sans-16.fnt" text="8.)" align="center" valign="center" />
+                    <text id="rankscore9" font="aurulent-sans-16.fnt" text="9.)" align="center" valign="center" />
+                    <text id="rankscore10" font="aurulent-sans-16.fnt" text="10.)" align="center" valign="center" />
+                </panel>
+                <panel id="rank" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
+                    <text id="scoreRank" font="aurulent-sans-16.fnt" text="Your Score: " align="center" valign="center" />
+                </panel>
+                <panel id="backToMenu1" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
+                    backgroundColor="#000C">
+                    <control color="#FFFF" name="button" label="BACK TO MENU" id="backToMenuControl1" align="center" width="100%" height="100%">
+                        <interact onClick="restartGame()" />
+                        <text id="backButtonText1" font="aurulent-sans-16.fnt" text="BACK TO MENU" align="center" valign="center" />
+                        <effect>
+                            <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+                            <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+                            <onHover name="pulsate" scaleFactor="0.008" startColor="#EEE1" endColor="#EEEE" post="true"/>
+                        </effect>
+                    </control>
+                </panel>
+            </panel>
+        </layer>
+    </screen>    
 </nifty>

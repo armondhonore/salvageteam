@@ -12,13 +12,18 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
+import com.monkygames.st.game.IGame;
 import com.monkygames.st.game.Score;
+import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.listener.InGameListener;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.builder.ElementBuilder;
+import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import java.util.List;
 
 /**
  *
@@ -33,9 +38,16 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private TextRenderer scoreElementRenderer;
     private Score score;
     private boolean inGame = false;
+    private ScoreStore scoreStore;
+    private IGame game = null;
 
     public MenuControl(Score score) {
+        this(score, null);
+    }
+    
+    public MenuControl(Score score, ScoreStore scoreStore) {
 	this.score = score;
+        this.scoreStore = scoreStore;
     }
 
     @Override
@@ -66,6 +78,9 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         } catch (IllegalArgumentException iae) {
             // don't do anything
         }
+        if (app instanceof IGame) {
+            this.game = (IGame) app;
+        }
     }
 
     @Override
@@ -75,12 +90,15 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     public void unPause() {
+        if (nifty.getCurrentScreen().getScreenId().contains("score")) {
+            return;
+        }
         //bulletAppState.setSpeed(1.0f);
         app.getStateManager().getState(BulletAppState.class).setSpeed(1.0f);
         if (score.getTime().getStartGameTime() == 0) {
             resetStartTime();
         }
-        nifty.removeScreen("start");
+        //nifty.removeScreen("start");
         nifty.gotoScreen("hud");
 	score.getTime().setUnpaused();
         if (!inGame) {
@@ -90,6 +108,9 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     public void pause() {
+        if (nifty.getCurrentScreen().getScreenId().contains("score")) {
+            return;
+        }
         app.getStateManager().getState(BulletAppState.class).setSpeed(0f);
 	score.getTime().setPauseGameTime();
         nifty.gotoScreen("start");
@@ -131,5 +152,56 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         InGameListener inGameListener = new InGameListener(app, 
                 app.getStateManager().getState(BulletAppState.class), nifty, this);
         inputManager.addListener(inGameListener, "Pause");
+    }
+    
+    public void showScores() {
+        nifty.gotoScreen("scores");
+        displayScores();
+    }
+    
+    public void backToMenu() {
+        nifty.gotoScreen("start");
+    }
+    
+    public void restartGame() {
+        nifty.gotoScreen("start");
+        if (game != null) {
+            game.reinit();
+        }
+    }
+
+    private void displayScores() {
+        List<Score> scoreList = scoreStore.getList();
+        Screen myScreen = nifty.getScreen("scores");
+        
+        int i = 1;
+        for (Score scoreItem : scoreList) {
+            Element scoreElement = myScreen.findElementByName("score"+ i);
+            TextRenderer renderer = scoreElement.getRenderer(TextRenderer.class);
+            String scoreText = ""+ i +".) "+ scoreItem.getTotal();
+            renderer.setText(scoreText);
+            ++i;
+        }
+    }
+    
+    public void displayRank(Score yourScore) {
+        List<Score> scoreList = scoreStore.getList();
+        Screen myScreen = nifty.getScreen("scoresRank");
+        
+        int i = 1;
+        for (Score scoreItem : scoreList) {
+            if (i > 10) {
+                break;
+            }
+            Element scoreElement = myScreen.findElementByName("rankscore"+ i);
+            TextRenderer renderer = scoreElement.getRenderer(TextRenderer.class);
+            String scoreText = ""+ i +".) "+ scoreItem.getTotal();
+            renderer.setText(scoreText);
+            ++i;
+        }
+        myScreen.findElementByName("scoreRank")
+                .getRenderer(TextRenderer.class)
+                .setText("Your Score: "+ yourScore.getTotal());
+        nifty.gotoScreen("scoresRank");
     }
 }
