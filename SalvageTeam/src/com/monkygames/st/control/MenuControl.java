@@ -90,14 +90,14 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     public void unPause() {
+        if (score.getTime().getStartGameTime() == 0) {
+            resetStartTime();
+        }
         if (nifty.getCurrentScreen().getScreenId().contains("score")) {
             return;
         }
         //bulletAppState.setSpeed(1.0f);
         app.getStateManager().getState(BulletAppState.class).setSpeed(1.0f);
-        if (score.getTime().getStartGameTime() == 0) {
-            resetStartTime();
-        }
         //nifty.removeScreen("start");
         nifty.gotoScreen("hud");
 	score.getTime().setUnpaused();
