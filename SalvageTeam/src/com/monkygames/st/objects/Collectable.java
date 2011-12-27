@@ -29,6 +29,10 @@ public interface Collectable {
      * Detaches any controls of this collectable.
      **/
     public void detach();
+    /**
+     * Reattaches any controls of this collectable.
+     **/
+    public void reattach();
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //

@@ -88,6 +88,12 @@ public class Model{
     public void detach(){
 	stateManager.getState(BulletAppState.class).getPhysicsSpace().remove(physicsControl);
     }
+    /**
+     * Reattaches any controls of this collectable.
+     **/
+    public void reattach(){
+	stateManager.getState(BulletAppState.class).getPhysicsSpace().add(physicsControl);
+    }
 // ============= Protected Methods ============== //
    /**
      * Handles loading a single node from file and attaches to the root node of this model.

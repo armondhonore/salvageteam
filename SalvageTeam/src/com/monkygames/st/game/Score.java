@@ -24,7 +24,7 @@ public class Score implements Serializable, Comparable<Score> {
     /**
      * Contains the time for this game.
      **/
-    private Time time;
+    private transient Time time;
 // ============= Constructors ============== //
     public Score(){
 	this(0);
@@ -38,9 +38,17 @@ public class Score implements Serializable, Comparable<Score> {
      * @param timeRemaining the amount of time remaining in milliseconds - 0 for count up otherwise count down.
      **/
     public Score(int total, int timeRemaining){
+	this(total,timeRemaining,null);
+    }
+    /**
+     * Creates a score with the total score and amount of time remaining.
+     * @param total the total score.
+     * @param timeRemaining the amount of time remaining in milliseconds - 0 for count up otherwise count down.
+     **/
+    public Score(int total, int timeRemaining, IGame game){
 	this.total = total;
 	recordedTime = 0;
-	time = new Time(timeRemaining);
+	time = new Time(timeRemaining,game);
     }
 // ============= Public Methods ============== //
     /**

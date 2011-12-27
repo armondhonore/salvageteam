@@ -61,7 +61,11 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         timeElementRenderer = timeElement.getRenderer(TextRenderer.class);
         Element scoreElement = nifty.getScreen("hud").findElementByName("scoreLabel");
         scoreElementRenderer = scoreElement.getRenderer(TextRenderer.class);
-        app.getInputManager().deleteMapping(SimpleApplication.INPUT_MAPPING_EXIT); // removes ESC key
+        try {
+            app.getInputManager().deleteMapping(SimpleApplication.INPUT_MAPPING_EXIT); // removes ESC key
+        } catch (IllegalArgumentException iae) {
+            // don't do anything
+        }
     }
 
     @Override
@@ -101,6 +105,10 @@ public class MenuControl extends AbstractAppState implements ScreenController {
 	score.getTime().setStartGameTime();
     }
 
+    public void setScore(Score score){
+        this.score = score;
+    }
+    
     /**
      * Updates the time in the HUD.
      **/

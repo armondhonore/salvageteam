@@ -3,14 +3,12 @@
  */
 package com.monkygames.st.game;
 
-import java.io.Serializable;
-
 /**
  * Holds the game time.
  * @version 1.0
  */
-public class Time implements Serializable {
-    static final long serialVersionUID = -9017496812497237883L;
+public class Time {
+    //static final long serialVersionUID = -9017496812497237883L;
 
 // ============= Class variables ============== //
     /**
@@ -22,21 +20,21 @@ public class Time implements Serializable {
      **/
     private long startGameTime;
     /**
-     * Used for calculating the amount of time passed.
-     **/
-    private long previousTime;
-    /**
      * The time the game ended.
      **/
     private long endGameTime;
     /**
-     * The time the game was paused.
-     **/
-    private long pauseTime;
-    /**
      * The total amount of time the game was paused.
      **/
     private long totalPausedTime;
+    /**
+     * Used for calculating the amount of time passed.
+     **/
+    private long previousTime;
+    /**
+     * The time the game was paused.
+     **/
+    private long pauseTime;
     /**
      * The amount of time left before no bonus is awareded.
      **/
@@ -45,6 +43,14 @@ public class Time implements Serializable {
      * True if timer is counting down and false if counting up.
      **/
     private boolean isCountingDown;
+    /**
+     * Used for ending the game when the time expires.
+     **/
+    private IGame game;
+    /**
+     * True if the game has started and false otherwise.
+     **/
+    private boolean isStarted = false;
 
 // ============= Constructors ============== //
     public Time(){
@@ -56,7 +62,11 @@ public class Time implements Serializable {
      * @param timeRemaining the amount of time remaining before no bonus is awarded.
      **/
     public Time(long timeRemaining){
+	this(timeRemaining,null);
+    }
+    public Time(long timeRemaining, IGame game){
 	this.timeRemaining = timeRemaining;
+	this.game = game;
 	totalGameTime = 0;
 	startGameTime = 0;
 	previousTime = 0;
@@ -76,6 +86,7 @@ public class Time implements Serializable {
     public void setStartGameTime(){
 	startGameTime = System.currentTimeMillis();
 	previousTime = startGameTime;
+	isStarted = true;
     }
     /**
      * Sets the end game time to the current time in milliseconds from the year of 1970 and calculates the total amount of time playing the game excluding paused time.
@@ -112,6 +123,11 @@ public class Time implements Serializable {
 	    time = timeRemaining - time;
 	    if(time < 0){
 		time = 0;
+		// end game
+		if(game != null && isStarted){
+                    isStarted = false;
+		    game.endGame();                    
+		}
 	    }
 	}
 	timeStr += time;
