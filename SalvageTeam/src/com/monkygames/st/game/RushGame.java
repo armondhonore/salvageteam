@@ -1,7 +1,6 @@
 package com.monkygames.st.game;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.state.AppStateManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.ChaseCamera;
 import com.jme3.input.KeyInput;
@@ -13,11 +12,9 @@ import com.jme3.scene.Node;
 import com.jme3.niftygui.NiftyJmeDisplay;
 // === Monkygames imports === //
 import com.monkygames.st.control.MenuControl;
-import com.monkygames.st.game.Score;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.listener.CollectableListener;
-import com.monkygames.st.listener.InGameListener;
 import com.monkygames.st.map.MapObjectExtractor;
 import com.monkygames.st.objects.*;
 import de.lessvoid.nifty.Nifty;
@@ -36,8 +33,8 @@ public class RushGame extends SimpleApplication implements IGame{
     private MapObjectExtractor mapObjectExtractor;
     private ChaseCamera chaseCam;
     private ScoreStore scoreStore;
+    //private static final long maxTime = 60*1000;
     private static final long maxTime = 60*1000;
-    //private static final long maxTime = 3000;
     
     public static void main(String[] args) {
         RushGame app = new RushGame();
@@ -46,24 +43,7 @@ public class RushGame extends SimpleApplication implements IGame{
 
     @Override
     public void simpleInitApp() {
-	// add physics 
-	stateManager.attach(bulletAppState);
-	
-	// setup physics state
-	bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0f,-0.5f,0f));
-	bulletAppState.getPhysicsSpace().setAccuracy(0.005f);
-
-	// add scene as map.
-	Node scene = (Node)assetManager.loadModel("Scenes/BonusMap.j3o");
-	// parse map objects 
-	mapObjectExtractor = new MapObjectExtractor(scene,stateManager,bulletAppState,rootNode);
-
-	// setup score
-	score = new Score(0,maxTime,this); // 1 minute of time
-
-	// setup physics listener
-	collectableListener = new CollectableListener(mapObjectExtractor.trashV,mapObjectExtractor.collectablesNode,score,this);
-	bulletAppState.getPhysicsSpace().addCollisionListener(collectableListener);
+        initStates();
 
 	// create ship
 	ship = new Ship(stateManager);
@@ -93,6 +73,8 @@ public class RushGame extends SimpleApplication implements IGame{
     }
 
     public void reinit(){
+        //stateManager = new AppStateManager(this);        bulletAppState.cleanup();
+        initStates();
         // get new score
         score = new Score(0,maxTime,this); // 1 minute of time
         // resest collectibles
@@ -140,7 +122,7 @@ public class RushGame extends SimpleApplication implements IGame{
      **/
     public void endGame(){
 	// stop game
-        this.getStateManager().getState(BulletAppState.class).setSpeed(0f);
+        bulletAppState.setSpeed(0f);
 	// record time
         scoreStore.add(score);
         scoreStore.persist();
@@ -162,5 +144,32 @@ public class RushGame extends SimpleApplication implements IGame{
         //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);
         mc.initialize(stateManager, this);
+    }
+
+    private void initStates() {
+        Node scene = null;
+        // add scene as map.
+        scene = (Node)assetManager.loadModel("Scenes/BonusMap.j3o");
+        if (mapObjectExtractor == null) {
+            // add physics 
+            stateManager.attach(bulletAppState);
+	
+            // setup physics state
+            bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0f,-0.5f,0f));
+            bulletAppState.getPhysicsSpace().setAccuracy(0.005f);
+            // parse map objects
+            mapObjectExtractor = new MapObjectExtractor(scene,stateManager,bulletAppState,rootNode);
+        }
+
+	// setup score
+	score = new Score(0,maxTime,this); // 1 minute of time or maxTime time
+
+	// setup physics listener
+        if (collectableListener != null) {
+            collectableListener.reinit(score);
+        } else {
+            collectableListener = new CollectableListener(mapObjectExtractor.trashV,mapObjectExtractor.collectablesNode,score,this);
+            bulletAppState.getPhysicsSpace().addCollisionListener(collectableListener);
+        }
     }
 }
