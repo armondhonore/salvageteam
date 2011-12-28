@@ -36,8 +36,8 @@ public class RushGame extends SimpleApplication implements IGame{
     private MapObjectExtractor mapObjectExtractor;
     private ChaseCamera chaseCam;
     private ScoreStore scoreStore;
-    //private static final long maxTime = 60*1000;
-    private static final long maxTime = 3000;
+    private static final long maxTime = 60*1000;
+    //private static final long maxTime = 3000;
     
     public static void main(String[] args) {
         RushGame app = new RushGame();

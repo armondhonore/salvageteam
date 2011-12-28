@@ -4,6 +4,7 @@
 package com.monkygames.st.objects;
 
 import com.jme3.app.state.AppStateManager;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
@@ -28,6 +29,10 @@ private RigidBodyControl rigidBodyControl;
  * Controls the exhaust.
  **/
 private ParticleEmitter exhaust;
+/**
+ * Holds the audio for making a thrust sound.
+ **/
+private AudioNode thrustAudioNode;
 // ============= Constructors ============== //
     public Ship(AppStateManager stateManager){
 	super(stateManager);
@@ -46,6 +51,7 @@ private ParticleEmitter exhaust;
 	//physics = new Physics();
 
 	setupEffects();
+	setupAudio();
     }
 // ============= Public Methods ============== //
     /**
@@ -87,39 +93,50 @@ private ParticleEmitter exhaust;
      **/
     public void startThrustEffect(){
 	exhaust.setParticlesPerSec(20f);
+	thrustAudioNode.play();
     }
     /**
      * Stops the thrust effect.
      **/
     public void stopThrustEffect(){
 	exhaust.setParticlesPerSec(0f);
+	thrustAudioNode.stop();
     }
     public void stopAllForces(){
         rigidBodyControl.clearForces();
     }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
-private void setupEffects(){
-    exhaust = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 30);
-    Material mat_red = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
-    mat_red.setTexture("m_Texture", assetManager.loadTexture("Effects/flame.png"));
-    exhaust.setMaterial(mat_red);
-    exhaust.setImagesX(2); exhaust.setImagesY(2); // 2x2 texture animation
-    exhaust.setEndColor(  new ColorRGBA(1f, 0f, 0f, 1f));   // red
-    exhaust.setStartColor(new ColorRGBA(1f, 1f, 0f, 0.5f)); // yellow
-    exhaust.getParticleInfluencer().setInitialVelocity(new Vector3f(0,-4,0));
-    exhaust.setStartSize(1.0f);
-    exhaust.setEndSize(0.1f);
-    exhaust.setGravity(Vector3f.ZERO);
-    exhaust.setLowLife(0.5f);
-    exhaust.setHighLife(1.0f);
-    exhaust.getParticleInfluencer().setVelocityVariation(0.1f);
-    //exhaust.setLocalTranslation(0, -1.66f, 0);
-    exhaust.setLocalTranslation(0, -1.26f, 0);
-    exhaust.setParticlesPerSec(0f);
-    node.attachChild(exhaust);
+    private void setupEffects(){
+	exhaust = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 30);
+	Material mat_red = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
+	mat_red.setTexture("m_Texture", assetManager.loadTexture("Effects/flame.png"));
+	exhaust.setMaterial(mat_red);
+	exhaust.setImagesX(2); exhaust.setImagesY(2); // 2x2 texture animation
+	exhaust.setEndColor(  new ColorRGBA(1f, 0f, 0f, 1f));   // red
+	exhaust.setStartColor(new ColorRGBA(1f, 1f, 0f, 0.5f)); // yellow
+	exhaust.getParticleInfluencer().setInitialVelocity(new Vector3f(0,-4,0));
+	exhaust.setStartSize(1.0f);
+	exhaust.setEndSize(0.1f);
+	exhaust.setGravity(Vector3f.ZERO);
+	exhaust.setLowLife(0.5f);
+	exhaust.setHighLife(1.0f);
+	exhaust.getParticleInfluencer().setVelocityVariation(0.1f);
+	//exhaust.setLocalTranslation(0, -1.66f, 0);
+	exhaust.setLocalTranslation(0, -1.26f, 0);
+	exhaust.setParticlesPerSec(0f);
+	node.attachChild(exhaust);
 
-}
+    }
+    /**
+     * Sets up the sounds for this ship.
+     **/
+    private void setupAudio(){
+	thrustAudioNode = new AudioNode(assetManager, "Sound/Action/RocketThrusters.wav", false);
+	thrustAudioNode.setLooping(true);  // activate continuous playing
+	thrustAudioNode.setVolume(1);
+	node.attachChild(thrustAudioNode);
+    }
 // ============= Implemented Methods ============== //
 // ============= Extended Methods ============== //
 // ============= Internal Classes ============== //
