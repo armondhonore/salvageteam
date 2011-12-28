@@ -35,6 +35,7 @@ public class RushGame extends SimpleApplication implements IGame{
     private ScoreStore scoreStore;
     //private static final long maxTime = 60*1000;
     private static final long maxTime = 60*1000;
+    private boolean gamePaused = false;
     
     public static void main(String[] args) {
         RushGame app = new RushGame();
@@ -73,6 +74,7 @@ public class RushGame extends SimpleApplication implements IGame{
     }
 
     public void reinit(){
+        this.setPaused(true); // ensure it's paused
         //stateManager = new AppStateManager(this);        bulletAppState.cleanup();
         initStates();
         // get new score
@@ -108,8 +110,7 @@ public class RushGame extends SimpleApplication implements IGame{
 
     @Override
     public void simpleUpdate(float tpf) {
-        //TODO: add update code
-	mc.update(tpf);
+        mc.update(tpf);
     }
 
     @Override
@@ -121,15 +122,34 @@ public class RushGame extends SimpleApplication implements IGame{
      * Signals the game should end.
      **/
     public void endGame(){
+        /**
+         * The following initiates a thread that only stops the physics of
+         * the game after 500 milli seconds.
+         * This is a work around for the problem when collecting
+         * the last piece of garbage and then starting a new game and then
+         * getting +10 points because you collide with the last piece of
+         * garbage from the last game.
+         */
+        (new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500L);
+                    bulletAppState.setSpeed(0f);
+                } catch (InterruptedException ie) {
+                    
+                }
+            }
+        }).start();
 	// stop game
-        bulletAppState.setSpeed(0f);
+        
 	// record time
         scoreStore.add(score);
         scoreStore.persist();
 	// TODO get user name
 	// save score using java io
 	// return to main menu
-        mc.displayRank(score);
+        mc.displayRank(score, scoreStore);
     }
 
     private void initGUI(Score score) {
@@ -171,5 +191,13 @@ public class RushGame extends SimpleApplication implements IGame{
             collectableListener = new CollectableListener(mapObjectExtractor.trashV,mapObjectExtractor.collectablesNode,score,this);
             bulletAppState.getPhysicsSpace().addCollisionListener(collectableListener);
         }
+    }
+
+    public void setPaused(boolean on) {
+        this.gamePaused = on;
+    }
+    
+    public boolean getPaused() {
+        return gamePaused;
     }
 }

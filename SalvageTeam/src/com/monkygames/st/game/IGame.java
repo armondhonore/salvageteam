@@ -15,6 +15,8 @@ public interface IGame{
      **/
     public void endGame();
     public void reinit();
+    public void setPaused(boolean on);
+    public boolean getPaused();
 }
 /*
  * Local variables:

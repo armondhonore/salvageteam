@@ -55,6 +55,9 @@ public class CollectableListener implements PhysicsCollisionListener{
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
     private void collectableCollected(Node node){
+        if (game.getPaused()) { // hack to not do any collisions when the game is not running
+            return;
+        }
 	// find collectable
 	for(int i = 0; i < collectablesV.size(); i++){
 	    Collectable collectable = collectablesV.elementAt(i);

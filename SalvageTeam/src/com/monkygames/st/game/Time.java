@@ -28,10 +28,6 @@ public class Time {
      **/
     private long totalPausedTime;
     /**
-     * Used for calculating the amount of time passed.
-     **/
-    private long previousTime;
-    /**
      * The time the game was paused.
      **/
     private long pauseTime;
@@ -69,7 +65,6 @@ public class Time {
 	this.game = game;
 	totalGameTime = 0;
 	startGameTime = 0;
-	previousTime = 0;
 	endGameTime = 0;
 	pauseTime = 0;
 	totalPausedTime = 0;
@@ -85,7 +80,7 @@ public class Time {
      **/
     public void setStartGameTime(){
 	startGameTime = System.currentTimeMillis();
-	previousTime = startGameTime;
+	//previousTime = startGameTime;
 	isStarted = true;
     }
     /**
@@ -102,27 +97,33 @@ public class Time {
 	pauseTime = System.currentTimeMillis();
     }
     public void setUnpaused(){
-	if(pauseTime > 0){
+	if(pauseTime > 0L){
 	    long currentTime = System.currentTimeMillis();
 	    // calculate the amount of time that was paused.
 	    long timeDifference = currentTime - pauseTime;
 	    // add to the total amount of time paused.
 	    totalPausedTime += timeDifference;
 	    // keep previous time instep 
-	    previousTime -= timeDifference;
-	}
+        }
     }
     /**
      * Updates the current time and returns the string representation.
      * @return the current amount of time passed.
      **/
     public String updateTime(){
-        long time = System.currentTimeMillis() - previousTime;
+        if (game.getPaused()) {
+            return ""; // if paused, do nothing
+        }
+        long currentTime = System.currentTimeMillis();
+        long time = currentTime - startGameTime - totalPausedTime;
+        if (totalPausedTime > 0L) {
+            System.out.println("TOTALS = "+ currentTime+" - "+startGameTime+" - "+totalPausedTime);
+        }
 	String timeStr = "";
 	if(isCountingDown){
 	    time = timeRemaining - time;
-	    if(time < 0){
-		time = 0;
+	    if(time < 0L){
+		time = 0L;
 		// end game
 		if(game != null && isStarted){
                     isStarted = false;
@@ -135,6 +136,7 @@ public class Time {
 	if (ind >= 0) {
 	    timeStr = timeStr.substring(0, ind) + "." + timeStr.substring(ind);
 	}
+        totalGameTime = time;
 	return timeStr;
     }
     /**

@@ -17,8 +17,6 @@ import com.monkygames.st.game.Score;
 import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.listener.InGameListener;
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.ElementBuilder;
-import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -90,17 +88,19 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     public void unPause() {
-        if (score.getTime().getStartGameTime() == 0) {
-            resetStartTime();
-        }
         if (nifty.getCurrentScreen().getScreenId().contains("score")) {
             return;
         }
+        if (score.getTime().getStartGameTime() == 0) {
+            resetStartTime();
+        }
+        //System.out.println("TIME = "+ score.getTime().getStartGameTime());
         //bulletAppState.setSpeed(1.0f);
         app.getStateManager().getState(BulletAppState.class).setSpeed(1.0f);
         //nifty.removeScreen("start");
         nifty.gotoScreen("hud");
 	score.getTime().setUnpaused();
+        game.setPaused(false);
         if (!inGame) {
             inGame = true;
             initInGameListeners(); // when in the game we want ESC, P, and PAUSE to work to go to the menu
@@ -114,6 +114,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         app.getStateManager().getState(BulletAppState.class).setSpeed(0f);
 	score.getTime().setPauseGameTime();
         nifty.gotoScreen("start");
+        game.setPaused(true);
     }
 
     public void quit() {
@@ -149,7 +150,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
                 new KeyTrigger(KeyInput.KEY_ESCAPE), 
                 new KeyTrigger(KeyInput.KEY_P), 
                 new KeyTrigger(KeyInput.KEY_PAUSE));
-        InGameListener inGameListener = new InGameListener(app, 
+        InGameListener inGameListener = new InGameListener(game, 
                 app.getStateManager().getState(BulletAppState.class), nifty, this);
         inputManager.addListener(inGameListener, "Pause");
     }
@@ -176,6 +177,9 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         
         int i = 1;
         for (Score scoreItem : scoreList) {
+            if (i > 10) {
+                break;
+            }
             Element scoreElement = myScreen.findElementByName("score"+ i);
             TextRenderer renderer = scoreElement.getRenderer(TextRenderer.class);
             String scoreText = ""+ i +".) "+ scoreItem.getTotal();
@@ -184,8 +188,8 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         }
     }
     
-    public void displayRank(Score yourScore) {
-        List<Score> scoreList = scoreStore.getList();
+    public void displayRank(Score yourScore, ScoreStore store) {
+        List<Score> scoreList = store.getList();
         Screen myScreen = nifty.getScreen("scoresRank");
         
         int i = 1;

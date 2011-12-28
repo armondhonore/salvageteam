@@ -28,7 +28,7 @@ public class KeyBinder{
      * Actions for button presses.
      **/
     private String[] actionKeys = new String[]{
-						"Pause",
+						/*"Pause",*/
 						"Left",
 						"Right",
 						"Thrust",
@@ -57,7 +57,7 @@ public class KeyBinder{
      **/
     private void bindKeys () {
 	 // You can map one or several inputs to one named action
-    inputManager.addMapping("Pause",  new KeyTrigger(KeyInput.KEY_P));
+    //inputManager.addMapping("Pause",  new KeyTrigger(KeyInput.KEY_P));
     inputManager.addMapping("Attack",  new KeyTrigger(KeyInput.KEY_SPACE));
     inputManager.addMapping("Defend",  new KeyTrigger(KeyInput.KEY_D));
     inputManager.addMapping("Hook",  new KeyTrigger(KeyInput.KEY_F));

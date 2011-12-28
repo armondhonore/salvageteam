@@ -56,7 +56,9 @@ public class Score implements Serializable, Comparable<Score> {
      * @param add the amount to increase.
      **/
     public void increaseScore(int add){
-	total += add;
+        //if (time.getTotalGameTime() > 500) { // TODO: make this less of a hack, reason for this is that score gets increased from last collistion in last game
+            total += add;
+        //}
     }
     /**
      * Decreases the score by the specified amount.
@@ -103,6 +105,10 @@ public class Score implements Serializable, Comparable<Score> {
 
     public int compareTo(Score t) {
         return t.getTotal() - this.getTotal();
+    }
+
+    public void reset() {
+        this.total = 0;
     }
 
 }
