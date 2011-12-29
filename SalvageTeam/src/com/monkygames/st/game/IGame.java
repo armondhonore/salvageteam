@@ -17,6 +17,7 @@ public interface IGame{
     public void reinit();
     public void setPaused(boolean on);
     public boolean getPaused();
+    public void activateCollectionSound();
 }
 /*
  * Local variables:

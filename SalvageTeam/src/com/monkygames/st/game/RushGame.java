@@ -39,6 +39,7 @@ public class RushGame extends SimpleApplication implements IGame{
     private boolean gamePaused = false;
     private AudioNode lvlMusicNode;
     private AudioNode menuMusicNode;
+    private AudioNode collectionAudioNode;
     
     public static void main(String[] args) {
         RushGame app = new RushGame();
@@ -165,6 +166,7 @@ public class RushGame extends SimpleApplication implements IGame{
         nifty = niftyDisplay.getNifty();
 
 	initMusic();
+	initSoundEffects();
   
         mc = new MenuControl(score, scoreStore,lvlMusicNode,menuMusicNode);
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
@@ -183,6 +185,12 @@ public class RushGame extends SimpleApplication implements IGame{
         menuMusicNode.setLooping(true);  // activate continuous playing
         menuMusicNode.setVolume(0.5f);
         rootNode.attachChild(menuMusicNode);
+    }
+    private void initSoundEffects(){
+	collectionAudioNode = new AudioNode(assetManager,"Sound/Action/Power-Up-KP-1879176533.wav",false);
+        collectionAudioNode.setLooping(false);  // activate continuous playing
+        collectionAudioNode.setVolume(2.0f);
+        rootNode.attachChild(collectionAudioNode);
     }
 
     private void initStates() {
@@ -218,5 +226,8 @@ public class RushGame extends SimpleApplication implements IGame{
     
     public boolean getPaused() {
         return gamePaused;
+    }
+    public void activateCollectionSound(){
+	collectionAudioNode.play();
     }
 }

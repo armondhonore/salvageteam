@@ -64,6 +64,8 @@ public class CollectableListener implements PhysicsCollisionListener{
 	    Collectable collectable = collectablesV.elementAt(i);
 	    // find collectable
 	    if(node == collectable.getNode()){
+		// sound effect
+		game.activateCollectionSound();
 		// update score
 		score.increaseScore(collectable.getValue());
 		//TODO upate effects
