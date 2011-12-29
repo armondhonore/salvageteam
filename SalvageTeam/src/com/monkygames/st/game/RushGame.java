@@ -24,6 +24,8 @@ import de.lessvoid.nifty.Nifty;
  * Test the scoring mechanics.
  */
 public class RushGame extends SimpleApplication implements IGame{
+    
+    private static boolean DEBUG = false;
 
     private Nifty nifty;
     private MenuControl mc;
@@ -48,6 +50,7 @@ public class RushGame extends SimpleApplication implements IGame{
 
     @Override
     public void simpleInitApp() {
+        setDebug(DEBUG);
         initStates();
 
 	// create ship
@@ -229,5 +232,11 @@ public class RushGame extends SimpleApplication implements IGame{
     }
     public void activateCollectionSound(){
 	collectionAudioNode.play();
+    }
+
+    private void setDebug(boolean debug) {
+        setDisplayFps(debug);
+        setDisplayStatView(debug);
+        setShowSettings(debug);
     }
 }
