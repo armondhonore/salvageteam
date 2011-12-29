@@ -36,7 +36,6 @@ public class RushGame extends SimpleApplication implements IGame{
     private MapObjectExtractor mapObjectExtractor;
     private ChaseCamera chaseCam;
     private ScoreStore scoreStore;
-    //private static final long maxTime = 60*1000;
     private static final long maxTime = 60*1000;
     private boolean gamePaused = false;
     private AudioNode lvlMusicNode;
@@ -231,6 +230,7 @@ public class RushGame extends SimpleApplication implements IGame{
         return gamePaused;
     }
     public void activateCollectionSound(){
+	collectionAudioNode.stop();
 	collectionAudioNode.play();
     }
 
