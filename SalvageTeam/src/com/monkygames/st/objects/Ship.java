@@ -134,7 +134,7 @@ private AudioNode thrustAudioNode;
     private void setupAudio(){
 	thrustAudioNode = new AudioNode(assetManager, "Sound/Action/RocketThrusters.wav", false);
 	thrustAudioNode.setLooping(true);  // activate continuous playing
-	thrustAudioNode.setVolume(1);
+	thrustAudioNode.setVolume(2);
 	node.attachChild(thrustAudioNode);
     }
 // ============= Implemented Methods ============== //

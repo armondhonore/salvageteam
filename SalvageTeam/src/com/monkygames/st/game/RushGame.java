@@ -176,12 +176,12 @@ public class RushGame extends SimpleApplication implements IGame{
     private void initMusic(){
 	lvlMusicNode = new AudioNode(assetManager,"Sound/Music/faster_than_light-stephen_burns.ogg",false);
         lvlMusicNode.setLooping(true);  // activate continuous playing
-        lvlMusicNode.setVolume(1);
+        lvlMusicNode.setVolume(0.5f);
         rootNode.attachChild(lvlMusicNode);
 
 	menuMusicNode = new AudioNode(assetManager,"Sound/Music/collider-stephen_burns.ogg",false);
         menuMusicNode.setLooping(true);  // activate continuous playing
-        menuMusicNode.setVolume(1);
+        menuMusicNode.setVolume(0.5f);
         rootNode.attachChild(menuMusicNode);
     }
 
