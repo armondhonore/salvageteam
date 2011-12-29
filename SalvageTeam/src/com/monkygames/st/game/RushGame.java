@@ -1,6 +1,7 @@
 package com.monkygames.st.game;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.ChaseCamera;
 import com.jme3.input.KeyInput;
@@ -36,6 +37,8 @@ public class RushGame extends SimpleApplication implements IGame{
     //private static final long maxTime = 60*1000;
     private static final long maxTime = 60*1000;
     private boolean gamePaused = false;
+    private AudioNode lvlMusicNode;
+    private AudioNode menuMusicNode;
     
     public static void main(String[] args) {
         RushGame app = new RushGame();
@@ -160,12 +163,26 @@ public class RushGame extends SimpleApplication implements IGame{
                                                           audioRenderer,
                                                           guiViewPort);
         nifty = niftyDisplay.getNifty();
+
+	initMusic();
   
-        mc = new MenuControl(score, scoreStore);
+        mc = new MenuControl(score, scoreStore,lvlMusicNode,menuMusicNode);
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);
         mc.initialize(stateManager, this);
+    }
+
+    private void initMusic(){
+	lvlMusicNode = new AudioNode(assetManager,"Sound/Music/faster_than_light-stephen_burns.ogg",false);
+        lvlMusicNode.setLooping(true);  // activate continuous playing
+        lvlMusicNode.setVolume(1);
+        rootNode.attachChild(lvlMusicNode);
+
+	menuMusicNode = new AudioNode(assetManager,"Sound/Music/collider-stephen_burns.ogg",false);
+        menuMusicNode.setLooping(true);  // activate continuous playing
+        menuMusicNode.setVolume(1);
+        rootNode.attachChild(menuMusicNode);
     }
 
     private void initStates() {

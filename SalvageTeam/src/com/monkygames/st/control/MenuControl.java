@@ -8,6 +8,7 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
@@ -38,14 +39,22 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private boolean inGame = false;
     private ScoreStore scoreStore;
     private IGame game = null;
+    private AudioNode lvlMusicNode;
+    private AudioNode menuMusicNode;
 
     public MenuControl(Score score) {
         this(score, null);
     }
     
     public MenuControl(Score score, ScoreStore scoreStore) {
+	this(score,scoreStore,null,null);
+    }
+    public MenuControl(Score score, ScoreStore scoreStore, AudioNode lvlMusicNode, AudioNode menuMusicNode) {
 	this.score = score;
         this.scoreStore = scoreStore;
+	this.lvlMusicNode = lvlMusicNode;
+	this.menuMusicNode = menuMusicNode;
+	menuMusicNode.play();
     }
 
     @Override
@@ -88,6 +97,8 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     public void unPause() {
+	toggleLvlMusic();
+
         if (nifty.getCurrentScreen().getScreenId().contains("score")) {
             return;
         }
@@ -108,6 +119,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     public void pause() {
+	toggleMenuMusic();
         if (nifty.getCurrentScreen().getScreenId().contains("score")) {
             return;
         }
@@ -118,6 +130,8 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     public void quit() {
+        lvlMusicNode.stop();
+        menuMusicNode.stop();
 	//TODO move set end game to another class
 	score.getTime().setEndGameTime();
         app.stop();
@@ -156,15 +170,18 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
     
     public void showScores() {
+	toggleMenuMusic();
         nifty.gotoScreen("scores");
         displayScores();
     }
     
     public void backToMenu() {
+	toggleMenuMusic();
         nifty.gotoScreen("start");
     }
     
     public void restartGame() {
+	toggleMenuMusic();
         nifty.gotoScreen("start");
         if (game != null) {
             game.reinit();
@@ -172,6 +189,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
 
     private void displayScores() {
+	toggleMenuMusic();
         List<Score> scoreList = scoreStore.getList();
         Screen myScreen = nifty.getScreen("scores");
         
@@ -189,6 +207,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     }
     
     public void displayRank(Score yourScore, ScoreStore store) {
+	toggleMenuMusic();
         List<Score> scoreList = store.getList();
         Screen myScreen = nifty.getScreen("scoresRank");
         
@@ -207,5 +226,19 @@ public class MenuControl extends AbstractAppState implements ScreenController {
                 .getRenderer(TextRenderer.class)
                 .setText("Your Score: "+ yourScore.getTotal());
         nifty.gotoScreen("scoresRank");
+    }
+    /**
+     * Toggles the lvl music on.
+     **/
+    private void toggleLvlMusic(){
+	menuMusicNode.stop();
+	lvlMusicNode.play();
+    }
+    /**
+     * Toggles the menu music on.
+     **/
+    private void toggleMenuMusic(){
+	lvlMusicNode.stop();
+	menuMusicNode.play();
     }
 }
