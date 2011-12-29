@@ -135,21 +135,23 @@ public class RushGame extends SimpleApplication implements IGame{
             public void run() {
                 try {
                     Thread.sleep(500L);
-                    bulletAppState.setSpeed(0f);
                 } catch (InterruptedException ie) {
-                    
+                } finally {
+                    bulletAppState.setSpeed(0f);
                 }
             }
         }).start();
 	// stop game
+        score.getTime().stop();
         
 	// record time
         scoreStore.add(score);
-        scoreStore.persist();
+        scoreStore.sort();
 	// TODO get user name
 	// save score using java io
 	// return to main menu
         mc.displayRank(score, scoreStore);
+        scoreStore.persist();
     }
 
     private void initGUI(Score score) {

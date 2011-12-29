@@ -152,6 +152,9 @@ public class Time {
     public long getStartGameTime(){
 	return startGameTime;
     }
+    public void stop() {
+        isStarted = false;
+    }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //

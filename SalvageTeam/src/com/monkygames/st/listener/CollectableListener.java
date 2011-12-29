@@ -12,6 +12,7 @@ import com.monkygames.st.objects.Collectable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import org.omg.CORBA.TIMEOUT;
 
 /**
  * Handles Collisions between a ship and a collectable.
@@ -75,6 +76,10 @@ public class CollectableListener implements PhysicsCollisionListener{
 		if(collectablesV.size() == 0){
 		    // End game.
 		    if(game != null){
+                        long timeLeft = score.getTime().getTotalGameTime();
+                        if (timeLeft > 0L) {
+                            score.increaseScore((int) (timeLeft / 1000));
+                        }
 			game.endGame();
 		    }
 		}

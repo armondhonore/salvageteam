@@ -81,4 +81,9 @@ public class ScoreStore {
     public List<Score> getList() {
         return this.scores;
     }
+    
+    public List<Score> sort() {
+        Collections.sort(scores);
+        return scores;
+    }
 }
