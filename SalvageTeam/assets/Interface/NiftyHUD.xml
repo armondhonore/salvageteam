@@ -5,7 +5,7 @@
         <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
             <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
                 <panel id="top" height="35%" childLayout="center" align="center">
-                    <image filename="Interface/SalvageTeamRush2.png" width="70%" height="60%" align="center"/>
+                    <image filename="Interface/SalvageTeamRush3.png" width="70%" height="60%" align="center"/>
                 </panel>
                 <panel id="panel1" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
                     backgroundColor="#fffd">
