@@ -4,17 +4,8 @@
 package com.monkygames.st.objects;
 
 import com.jme3.app.state.AppStateManager;
-import com.jme3.effect.ParticleEmitter;
-import com.jme3.effect.ParticleMesh;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
-import com.monkygames.st.control.CollectableControl;
-import com.monkygames.st.control.TrashControl;
 
 /**
  * A trash model.
@@ -24,30 +15,32 @@ import com.monkygames.st.control.TrashControl;
 public class Trash extends Model implements Collectable{
 
 // ============= Class variables ============== //
-/**
- * Controls the exhaust.
- **/
-private ParticleEmitter exhaust;
 
 // ============= Constructors ============== //
     public Trash(AppStateManager stateManager,Node node){
 	super(stateManager);
 	setNode(node);
-	// create control
-	//setCollisionShapeSphere(0.298f/2f,0);
-	//setCollisionShapeSphere(0.298f,0);
 	setCollectableShapeSphere(0.298f*1.5f);
-	//setCollisionShapeSphere(0.298f,0);
-	//loadNode("Models/trash/TrashBin.j3o");
-	//setBoundingSphere(0.298f/2f);	
-	//physicsControl.setFriction(0f);
-	//physicsControl.setKinematic(false);
 
     }
 // ============= Public Methods ============== //
-
+    public Vector3f getLocation(){
+        return node.getLocalTranslation();
+    }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
+        /*
+        debris = new ParticleEmitter("Debris", ParticleMesh.Type.Triangle, 10);
+        Material debris_mat = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
+        debris_mat.setTexture("Texture", assetManager.loadTexture("Effects/Shockwave.png"));
+        debris.setMaterial(debris_mat);
+        debris.getParticleInfluencer().setInitialVelocity(new Vector3f(0, 4, 0));
+        debris.setStartColor(ColorRGBA.White);
+        debris.setGravity(0, 0, 0);
+        debris.getParticleInfluencer().setVelocityVariation(.60f);
+        node.attachChild(debris);
+        //debris.emitAllParticles();
+        */
 // ============= Implemented Methods ============== //
     /**
      * Returns the value of this collectable.

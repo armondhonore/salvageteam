@@ -66,9 +66,10 @@ public class CollectableListener implements PhysicsCollisionListener{
 	    if(node == collectable.getNode()){
 		// sound effect
 		game.activateCollectionSound();
+                // upate effects
+                game.startCollectEffect(collectable.getLocation());
 		// update score
 		score.increaseScore(collectable.getValue());
-		//TODO upate effects
 		// remove 
 		collectablesNode.detachChild(node);
 		collectable.detach();

@@ -13,6 +13,7 @@ import com.jme3.scene.Node;
 import com.jme3.niftygui.NiftyJmeDisplay;
 // === Monkygames imports === //
 import com.monkygames.st.control.MenuControl;
+import com.monkygames.st.effects.TrashCollectionEffect;
 import com.monkygames.st.input.KeyBinder;
 import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.listener.CollectableListener;
@@ -219,6 +220,15 @@ public class RushGame extends SimpleApplication implements IGame{
     public void activateCollectionSound(){
 	collectionAudioNode.stop();
 	collectionAudioNode.play();
+    }
+    /**
+     * Starts a new collection effect.
+     * @param location the location of the effect.
+     **/
+    public void startCollectEffect(Vector3f location){
+        TrashCollectionEffect effect = new TrashCollectionEffect(assetManager,location);
+        rootNode.attachChild(effect.getNode());
+        effect.startEffect();
     }
 
     private void setDebug(boolean debug) {

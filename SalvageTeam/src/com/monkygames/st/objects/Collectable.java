@@ -4,6 +4,7 @@
 package com.monkygames.st.objects;
 
 // === jme imports === //
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 
 /**
@@ -33,6 +34,11 @@ public interface Collectable {
      * Reattaches any controls of this collectable.
      **/
     public void reattach();
+    /**
+     * Gets the location of this collection.
+     * @return the location.
+     */
+    public Vector3f getLocation();
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //

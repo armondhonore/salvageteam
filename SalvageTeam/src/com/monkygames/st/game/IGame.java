@@ -3,6 +3,8 @@
  */
 package com.monkygames.st.game;
 
+import com.jme3.math.Vector3f;
+
 /**
  * Methods used for game functions like ending the game.
  * @version 1.0
@@ -18,6 +20,11 @@ public interface IGame{
     public void setPaused(boolean on);
     public boolean getPaused();
     public void activateCollectionSound();
+    /**
+     * Starts a new collection effect.
+     * @param location the location of the effect.
+     **/
+    public void startCollectEffect(Vector3f location);
 }
 /*
  * Local variables:
