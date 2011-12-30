@@ -14,6 +14,7 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.monkygames.st.control.CollectableControl;
+import com.monkygames.st.control.TrashControl;
 
 /**
  * A trash model.
@@ -27,6 +28,7 @@ public class Trash extends Model implements Collectable{
  * Controls the exhaust.
  **/
 private ParticleEmitter exhaust;
+
 // ============= Constructors ============== //
     public Trash(AppStateManager stateManager,Node node){
 	super(stateManager);
@@ -40,6 +42,7 @@ private ParticleEmitter exhaust;
 	//setBoundingSphere(0.298f/2f);	
 	//physicsControl.setFriction(0f);
 	//physicsControl.setKinematic(false);
+
     }
 // ============= Public Methods ============== //
 
