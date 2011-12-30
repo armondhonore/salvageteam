@@ -10,8 +10,10 @@ import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Matrix3f;
 import com.jme3.math.Vector3f;
 import com.monkygames.st.control.ShipControl;
+import com.monkygames.st.control.ZLockControl;
 
 /**
  * A ship model.
@@ -104,6 +106,8 @@ private AudioNode thrustAudioNode;
     }
     public void stopAllForces(){
         rigidBodyControl.clearForces();
+        ZLockControl zlock = node.getControl(ZLockControl.class);
+        zlock.setLinearVelocity(Vector3f.ZERO);        
     }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
@@ -141,6 +145,15 @@ private AudioNode thrustAudioNode;
 // ============= Extended Methods ============== //
 // ============= Internal Classes ============== //
 // ============= Static Methods ============== //
+
+    /**
+     * reset the ship to not move and rotate back to normal position
+     * note: this does not set its position!
+     */
+    public void reset() {
+        stopAllForces();
+        rigidBodyControl.setPhysicsRotation(Matrix3f.IDENTITY);
+    }
 
 }
 /*

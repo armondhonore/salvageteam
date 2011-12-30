@@ -93,7 +93,10 @@ public class RushGame extends SimpleApplication implements IGame{
         //ship.detach();
         // create new ship
         //stateManager = new AppStateManager(this); // TODO: make this work
-        ship = new Ship(stateManager);
+        if (ship == null) {
+            ship = new Ship(stateManager);
+        }
+        
         //ship.stopAllForces();
 	Vector3f loc = mapObjectExtractor.warp.getNode().getLocalTranslation();
 	ship.setStartingPosition(loc.x,loc.y,0f);
@@ -128,27 +131,11 @@ public class RushGame extends SimpleApplication implements IGame{
      * Signals the game should end.
      **/
     public void endGame(){
-        /**
-         * The following initiates a thread that only stops the physics of
-         * the game after 500 milli seconds.
-         * This is a work around for the problem when collecting
-         * the last piece of garbage and then starting a new game and then
-         * getting +10 points because you collide with the last piece of
-         * garbage from the last game.
-         */
-        (new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(500L);
-                } catch (InterruptedException ie) {
-                } finally {
-                    bulletAppState.setSpeed(0f);
-                }
-            }
-        }).start();
+        bulletAppState.setSpeed(0f);
 	// stop game
         score.getTime().stop();
+        //ship.stopZLock(); // ensure we cannot collide with anything any more
+        ship.reset();
         
 	// record time
         scoreStore.add(score);
