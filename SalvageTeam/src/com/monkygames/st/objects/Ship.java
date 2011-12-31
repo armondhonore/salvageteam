@@ -26,7 +26,7 @@ public class Ship extends Model{
      * Initially this was 3f but is optimized to 13f because the
      * game gets faster paced.
      */
-    private static float forwardForce = 13f;
+    private static float forwardForce = 6f;
 
 // ============= Class variables ============== //
 /**
