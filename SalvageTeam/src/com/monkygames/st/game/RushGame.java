@@ -41,6 +41,7 @@ public class RushGame extends SimpleApplication implements IGame{
     private AudioNode lvlMusicNode;
     private AudioNode menuMusicNode;
     private AudioNode collectionAudioNode;
+    //private long count = 0l; // debug var to count frames
     
     public static void main(String[] args) {
         RushGame app = new RushGame();
@@ -116,7 +117,7 @@ public class RushGame extends SimpleApplication implements IGame{
         ship.stopAllForces();
         bulletAppState.setSpeed(0);
     }
-
+    
     @Override
     public void simpleUpdate(float tpf) {
         mc.update(tpf);
@@ -134,8 +135,7 @@ public class RushGame extends SimpleApplication implements IGame{
         bulletAppState.setSpeed(0f);
 	// stop game
         score.getTime().stop();
-        //ship.stopZLock(); // ensure we cannot collide with anything any more
-        ship.reset();
+        ship.reset(); // ensure we cannot collide with anything any more
         
 	// record time
         scoreStore.add(score);

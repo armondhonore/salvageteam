@@ -20,6 +20,13 @@ import com.monkygames.st.control.ZLockControl;
  * @version 1.0
  */
 public class Ship extends Model{
+    
+    /**
+     * This is the thrust forward force when pressing the UP key.
+     * Initially this was 3f but is optimized to 13f because the
+     * game gets faster paced.
+     */
+    private static float forwardForce = 13f;
 
 // ============= Class variables ============== //
 /**
@@ -81,11 +88,16 @@ private AudioNode thrustAudioNode;
 	forwardDir.normalize();
 	forwardDir.mult( new Vector3f(-1f,-1f,-1f) );
 	//float force = physics.calcThrustForce(isThrusting,tpf);
-	float force = 3f;
-	forwardDir.mult(force,forwardDir);
+        forwardDir.mult(forwardForce,forwardDir);
 	if(isThrusting){
 	    rigidBodyControl.applyCentralForce(forwardDir);
 	}
+        Vector3f trans = node.getLocalTranslation();
+        if (trans.z != 0) {
+            trans.z = 0;
+            //node.setLocalTranslation(trans);
+            this.setLocation(trans);
+        }
     }
     public void stopThrust(){
 	//rigidBodyControl.clearForces();

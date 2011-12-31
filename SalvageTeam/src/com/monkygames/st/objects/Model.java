@@ -71,9 +71,13 @@ public class Model{
      * Sets the starting location of the model.
      **/
     public void setStartingPosition(float x, float y, float z){
+        this.setLocation(new Vector3f(x,y,z));
+    }
+    
+    public void setLocation(Vector3f pos) {
 	//TODO might need to add ZLockControl
 	if(physicsControl instanceof RigidBodyControl){
-	    ((RigidBodyControl)physicsControl).setPhysicsLocation( new Vector3f(x,y,z) );
+	    ((RigidBodyControl)physicsControl).setPhysicsLocation(pos);
 	}
     }
     /**
