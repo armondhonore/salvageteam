@@ -3,6 +3,7 @@
  */
 package com.monkygames.st.objects;
 
+// === jme imports === //
 import com.jme3.app.state.AppStateManager;
 import com.jme3.audio.AudioNode;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -20,45 +21,43 @@ import com.monkygames.st.control.ZLockControl;
  * @version 1.0
  */
 public class Ship extends Model{
-    
-    /**
-     * This is the thrust forward force when pressing the UP key.
-     * Initially this was 3f but is optimized to 13f because the
-     * game gets faster paced.
-     */
-    private static float forwardForce = 6f;
 
 // ============= Class variables ============== //
-/**
- * Controls the ship behaviour except for phys.
- **/
-public ShipControl shipControl;
-private RigidBodyControl rigidBodyControl;
-/**
- * Controls the exhaust.
- **/
-private ParticleEmitter exhaust;
-/**
- * Holds the audio for making a thrust sound.
- **/
-private AudioNode thrustAudioNode;
+    /**
+     * The default speed for the ship.
+     */
+    private static float speedForce = 3f;
+    /**
+     * This is the turbo force which is added ontop of the normal force.
+     */
+    private static float turboForce = 3f;
+    /**
+     * Controls the ship behaviour except for phys.
+     **/
+    public ShipControl shipControl;
+    /**
+     * Controls the physics of the ship.
+     **/
+    private RigidBodyControl rigidBodyControl;
+    /**
+     * Controls the exhaust.
+     **/
+    private ParticleEmitter exhaust;
+    /**
+     * Holds the audio for making a thrust sound.
+     **/
+    private AudioNode thrustAudioNode;
+    /**
+     * This is the thrust forward force when pressing the UP key.
+     **/
+    private float forwardForce = speedForce;
 // ============= Constructors ============== //
     public Ship(AppStateManager stateManager){
 	super(stateManager);
-	//loadNode("Models/ships/default.j3o");
+	// load 3d model
         loadNode("Models/ships/3/spaceship.j3o");
-        //node.rotate(0, -FastMath.PI/2f, 0f);
-        //geometry.rotate(FastMath.PI/2f, FastMath.PI/2f, 0f);
-	setCollisionShapeSphere(1.50f*0.5f,1.0f);
-	rigidBodyControl = (RigidBodyControl)physicsControl;
-	//setCollectableShapeSphere(0.96f);
-	rigidBodyControl.setFriction(0f);
-	rigidBodyControl.setKinematic(false);
-	
-	shipControl = new ShipControl(this);
-	node.addControl(shipControl);
-	//physics = new Physics();
-
+	setupPhysics();
+	setupControllers();
 	setupEffects();
 	setupAudio();
     }
@@ -83,19 +82,28 @@ private AudioNode thrustAudioNode;
     public void rotateStop(){
 	rigidBodyControl.setAngularVelocity( new Vector3f(0f,0f,0.0f));
     }
-    public void thrust(boolean isThrusting, float tpf){
-	Vector3f forwardDir = node.getLocalRotation().getRotationColumn(1);
-	forwardDir.normalize();
-	forwardDir.mult( new Vector3f(-1f,-1f,-1f) );
-	//float force = physics.calcThrustForce(isThrusting,tpf);
-        forwardDir.mult(forwardForce,forwardDir);
+    /**
+     * Applie a thrust force to the ship.
+     * @param isThrusting true if thrusting and false otherwise.
+     * @param isTurbo true if turbo is to be applied and false otherwise.
+     * @param tpf times per frame
+     */
+    public void thrust(boolean isThrusting, boolean isTurbo, float tpf){
 	if(isThrusting){
+	    Vector3f forwardDir = node.getLocalRotation().getRotationColumn(1);
+	    forwardDir.normalize();
+	    forwardDir.mult( new Vector3f(-1f,-1f,-1f) );
+	    if(isTurbo){
+		forwardForce = speedForce + turboForce;
+	    }else{
+		forwardForce = speedForce;
+	    }
+	    forwardDir.mult(forwardForce,forwardDir);
 	    rigidBodyControl.applyCentralForce(forwardDir);
 	}
         Vector3f trans = node.getLocalTranslation();
         if (trans.z != 0) {
             trans.z = 0;
-            //node.setLocalTranslation(trans);
             this.setLocation(trans);
         }
     }
@@ -123,6 +131,22 @@ private AudioNode thrustAudioNode;
     }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
+    /**
+     * Sets up the physics for this ship.
+     **/ 
+    private void setupPhysics(){
+	setCollisionShapeSphere(1.50f*0.5f,1.0f);
+	rigidBodyControl = (RigidBodyControl)physicsControl;
+	rigidBodyControl.setFriction(0f);
+	rigidBodyControl.setKinematic(false);
+    }
+    /**
+     * Sets up the controllers that control this ship.
+     **/
+    private void setupControllers(){
+	shipControl = new ShipControl(this);
+	node.addControl(shipControl);
+    }
     private void setupEffects(){
 	exhaust = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 30);
 	Material mat_red = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");

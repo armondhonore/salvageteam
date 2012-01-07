@@ -32,6 +32,7 @@ public class KeyBinder{
 						"Left",
 						"Right",
 						"Thrust",
+						"Turbo",
 						"Attack",
 						"Defend",
 						"Hook"
@@ -64,6 +65,7 @@ public class KeyBinder{
     inputManager.addMapping("Left",   new KeyTrigger(KeyInput.KEY_LEFT));
     inputManager.addMapping("Right",  new KeyTrigger(KeyInput.KEY_RIGHT));
     inputManager.addMapping("Thrust",  new KeyTrigger(KeyInput.KEY_UP));
+    inputManager.addMapping("Turbo",  new KeyTrigger(KeyInput.KEY_LSHIFT));
     //inputManager.addMapping("Rotate", new KeyTrigger(KeyInput.KEY_SPACE),
                                       //new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
     }

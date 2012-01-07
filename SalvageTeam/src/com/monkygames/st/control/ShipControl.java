@@ -25,6 +25,10 @@ private Ship ship;
  * True if the ship is thrusting and false otherwise.
  **/
 private boolean isThrusting;
+/**
+ * True if the ship is in turbo mode and false otherwise.
+ **/
+private boolean isTurboing;
 
 // ============= Constructors ============== //
 /**
@@ -49,6 +53,18 @@ public void stopThrust(){
     isThrusting = false;
     ship.stopThrustEffect();
 }
+/**
+ * Starts the turbo on the ship.
+ **/
+public void startTurbo(){
+    isTurboing = true;
+}
+/**
+ * Stops the turbo on the ship.
+ **/
+public void stopTurbo(){
+    isTurboing = false;
+}
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //
@@ -57,7 +73,7 @@ public void stopThrust(){
 	// do the work here
 	//PhysicsControl = spatial.getControl(CharacterControl.class);
 	// TODO add acceleration
-	ship.thrust(isThrusting, tpf);
+	ship.thrust(isThrusting, isTurboing, tpf);
     }
 
     @Override

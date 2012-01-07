@@ -45,6 +45,12 @@ public class ShipActionListener extends BaseInput implements ActionListener{
 	    } else{
 		ship.shipControl.stopThrust();
 	    }
+	} else if (name.equals("Turbo") && !isPaused ) {
+	    if(keyPressed){
+		ship.shipControl.startTurbo();
+	    } else{
+		ship.shipControl.stopTurbo();
+	    }
 	} else if (name.equals("Attack") && keyPressed && !isPaused) {
 	} else if (name.equals("Defend") && keyPressed && !isPaused) {
 	} else if (name.equals("Hook") && keyPressed && !isPaused) {
