@@ -58,12 +58,14 @@ public void stopThrust(){
  **/
 public void startTurbo(){
     isTurboing = true;
+    ship.startTurboEffect();
 }
 /**
  * Stops the turbo on the ship.
  **/
 public void stopTurbo(){
     isTurboing = false;
+    ship.stopTurboEffect();
 }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //

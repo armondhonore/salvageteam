@@ -124,6 +124,12 @@ public class Ship extends Model{
 	exhaust.setParticlesPerSec(0f);
 	thrustAudioNode.stop();
     }
+    public void startTurboEffect(){
+	exhaust.setStartSize(1.5f);
+    }
+    public void stopTurboEffect(){
+	exhaust.setStartSize(1.0f);
+    }
     public void stopAllForces(){
         rigidBodyControl.clearForces();
         ZLockControl zlock = node.getControl(ZLockControl.class);
