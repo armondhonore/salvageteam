@@ -67,14 +67,12 @@ public class Ship extends Model{
      **/
     public void rotateRight(){
 	rigidBodyControl.setAngularVelocity( new Vector3f(0f,0f,-4f));
-	//rigidBodyControl.setAngularVelocity( new Vector3f(-4f,-4f,0f));
     }
     /**
      * Rotates the object counter-clockwise.
      **/
     public void rotateLeft(){
 	rigidBodyControl.setAngularVelocity( new Vector3f(0f,0f,4f));
-	//rigidBodyControl.setAngularVelocity( new Vector3f(4f,4f,0f));
     }
     /**
      * Stops rotating regardless the direction of rotation.
@@ -124,9 +122,15 @@ public class Ship extends Model{
 	exhaust.setParticlesPerSec(0f);
 	thrustAudioNode.stop();
     }
+    /**
+     * Starts the turbo effect.
+     **/
     public void startTurboEffect(){
 	exhaust.setStartSize(1.5f);
     }
+    /**
+     * Stops the turbo effect.
+     **/
     public void stopTurboEffect(){
 	exhaust.setStartSize(1.0f);
     }
@@ -168,11 +172,9 @@ public class Ship extends Model{
 	exhaust.setLowLife(0.5f);
 	exhaust.setHighLife(1.0f);
 	exhaust.getParticleInfluencer().setVelocityVariation(0.1f);
-	//exhaust.setLocalTranslation(0, -1.66f, 0);
 	exhaust.setLocalTranslation(0, -1.26f, 0);
 	exhaust.setParticlesPerSec(0f);
 	node.attachChild(exhaust);
-
     }
     /**
      * Sets up the sounds for this ship.

@@ -3,18 +3,22 @@
  */
 package com.monkygames.st.control;
 
+// === jme imports === //
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
+// === st imports === //
 import com.monkygames.st.objects.Ship;
+import com.monkygames.st.utils.EffectTimer;
+import com.monkygames.st.utils.IEffectTimer;
 
 /**
  * Controls the ship's behaviour.
  * @version 1.0
  */
-public class ShipControl extends AbstractControl{
+public class ShipControl extends AbstractControl implements IEffectTimer{
 
 // ============= Class variables ============== //
 /**
@@ -29,6 +33,10 @@ private boolean isThrusting;
  * True if the ship is in turbo mode and false otherwise.
  **/
 private boolean isTurboing;
+/**
+ * The timer information for the turbo effect.
+ **/
+private EffectTimer effectTimer;
 
 // ============= Constructors ============== //
 /**
@@ -37,6 +45,7 @@ private boolean isTurboing;
  **/
 public ShipControl(Ship ship){
     this.ship = ship;
+    effectTimer = new EffectTimer(2*1000,0.5f,this);
 }
 // ============= Public Methods ============== //
 /**
@@ -59,6 +68,7 @@ public void stopThrust(){
 public void startTurbo(){
     isTurboing = true;
     ship.startTurboEffect();
+    effectTimer.activate();
 }
 /**
  * Stops the turbo on the ship.
@@ -66,15 +76,15 @@ public void startTurbo(){
 public void stopTurbo(){
     isTurboing = false;
     ship.stopTurboEffect();
+    effectTimer.deactivate();
 }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //
     @Override
     protected void controlUpdate(float tpf) {
-	// do the work here
-	//PhysicsControl = spatial.getControl(CharacterControl.class);
 	// TODO add acceleration
+	effectTimer.updateTime();
 	ship.thrust(isThrusting, isTurboing, tpf);
     }
 
@@ -85,9 +95,15 @@ public void stopTurbo(){
     public Control cloneForSpatial(Spatial spatial) {
 	throw new UnsupportedOperationException("Not supported yet.");
     }
+    public void timeOut() {
+	//TODO turn off turbo effect
+	stopTurbo();
+	System.out.println("ShipControl isTimeOut");
+    }
 // ============= Extended Methods ============== //
 // ============= Internal Classes ============== //
 // ============= Static Methods ============== //
+
 }
 /*
  * Local variables:
