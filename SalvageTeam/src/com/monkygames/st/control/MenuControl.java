@@ -17,11 +17,13 @@ import com.monkygames.st.game.IGame;
 import com.monkygames.st.game.Score;
 import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.listener.InGameListener;
+import com.monkygames.st.utils.EffectTimer;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import de.lessvoid.nifty.tools.SizeValue;
 import java.util.List;
 
 /**
@@ -41,19 +43,28 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private IGame game = null;
     private AudioNode lvlMusicNode;
     private AudioNode menuMusicNode;
+    /**
+     * Used for updating the progress bar for thrust.
+     */
+    private EffectTimer thrustTimer;
+    /**
+     * Contains the progress bar.
+     */
+    private Element thrustProgressBarElement;
 
     public MenuControl(Score score) {
         this(score, null);
     }
     
     public MenuControl(Score score, ScoreStore scoreStore) {
-	this(score,scoreStore,null,null);
+	this(score,scoreStore,null,null,null);
     }
-    public MenuControl(Score score, ScoreStore scoreStore, AudioNode lvlMusicNode, AudioNode menuMusicNode) {
+    public MenuControl(Score score, ScoreStore scoreStore, AudioNode lvlMusicNode, AudioNode menuMusicNode, EffectTimer thrustTimer) {
 	this.score = score;
         this.scoreStore = scoreStore;
 	this.lvlMusicNode = lvlMusicNode;
 	this.menuMusicNode = menuMusicNode;
+	this.thrustTimer = thrustTimer;
 	menuMusicNode.play();
     }
 
@@ -61,6 +72,8 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     public void bind(Nifty nifty, Screen screen) {
         this.nifty = nifty;
         this.screen = screen;
+        thrustProgressBarElement = nifty.getScreen("hud").findElementByName("progressbar");
+
     }
 
     public void onStartScreen() {
@@ -94,6 +107,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     public void update(float tpf) {
         updateTime();
 	updateScore();
+	updateThrustProgressBar();
     }
 
     public void unPause() {
@@ -156,6 +170,12 @@ public class MenuControl extends AbstractAppState implements ScreenController {
      **/
     private void updateScore(){
         scoreElementRenderer.setText("Score: " + score.getTotal());
+    }
+    /**
+     * Updates the thrust progress bar in the HUD.
+     */
+    private void updateThrustProgressBar(){
+    	setThrustProgress(thrustTimer.timeLeft(), "");
     }
 
     private void initInGameListeners() {
@@ -240,5 +260,11 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private void toggleMenuMusic(){
 	lvlMusicNode.stop();
 	menuMusicNode.play();
+    }
+    private void setThrustProgress(final float progress, String loadingText) {
+	final int MIN_WIDTH = 32;
+	int pixelWidth = (int) (MIN_WIDTH + (thrustProgressBarElement.getParent().getWidth() - MIN_WIDTH) * progress);
+	thrustProgressBarElement.setConstraintWidth(new SizeValue(pixelWidth + "px"));
+	thrustProgressBarElement.getParent().layoutElements();
     }
 }

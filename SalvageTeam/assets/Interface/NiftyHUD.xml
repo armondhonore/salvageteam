@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+    <controlDefinition name = "loadingbar" controller = "com.monkygames.st.control.MenuControl">
+        <image filename="Interface/turbo_border.png" childLayout="absolute" 
+               imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15">
+            <image id="progressbar" x="0" y="0" filename="Interface/turbo_inner.png" width="32px" height="100%"
+                   imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15"/>
+        </image>
+    </controlDefinition>
     <screen id="start" controller="com.monkygames.st.control.MenuControl">
         <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
             <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
@@ -63,6 +70,13 @@
                 </panel>
             </panel>
         </layer>
+	<layer id="effects" childLayout="horizontal">
+		<panel id="lhsHud" childLayout="vertical">
+			<panel id = "loadingpanel" childLayout="vertical" align="left" valign="bottom" height="6%" width="30%">	
+				<control name="loadingbar" width="100%" height="100%" />
+			</panel>
+		</panel>	
+	</layer>
     </screen>
     <screen id="scores" controller="com.monkygames.st.control.MenuControl">
         <layer childLayout="center">

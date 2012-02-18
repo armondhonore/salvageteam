@@ -158,7 +158,7 @@ public class RushGame extends SimpleApplication implements IGame{
 	initMusic();
 	initSoundEffects();
   
-        mc = new MenuControl(score, scoreStore,lvlMusicNode,menuMusicNode);
+        mc = new MenuControl(score, scoreStore,lvlMusicNode,menuMusicNode,ship.shipControl.effectTimer);
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);

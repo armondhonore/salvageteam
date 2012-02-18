@@ -36,7 +36,7 @@ private boolean isTurboing;
 /**
  * The timer information for the turbo effect.
  **/
-private EffectTimer effectTimer;
+public EffectTimer effectTimer;
 
 // ============= Constructors ============== //
 /**
@@ -45,7 +45,7 @@ private EffectTimer effectTimer;
  **/
 public ShipControl(Ship ship){
     this.ship = ship;
-    effectTimer = new EffectTimer(2*1000,0.5f,this);
+    effectTimer = new EffectTimer(1*1000,0.5f,this);
 }
 // ============= Public Methods ============== //
 /**
@@ -61,6 +61,7 @@ public void startThrust(){
 public void stopThrust(){
     isThrusting = false;
     ship.stopThrustEffect();
+    stopTurbo();
 }
 /**
  * Starts the turbo on the ship.
