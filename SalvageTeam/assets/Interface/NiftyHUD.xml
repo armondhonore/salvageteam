@@ -72,7 +72,8 @@
         </layer>
 	<layer id="effects" childLayout="horizontal">
 		<panel id="lhsHud" childLayout="vertical">
-			<panel id = "loadingpanel" childLayout="vertical" align="left" valign="bottom" height="6%" width="30%">	
+			<panel height="95%" />
+			<panel id = "loadingpanel" childLayout="vertical" align="center" valign="bottom" height="5%" width="20%">	
 				<control name="loadingbar" width="100%" height="100%" />
 			</panel>
 		</panel>	

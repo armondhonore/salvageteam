@@ -119,7 +119,6 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         if (score.getTime().getStartGameTime() == 0) {
             resetStartTime();
         }
-        //System.out.println("TIME = "+ score.getTime().getStartGameTime());
         //bulletAppState.setSpeed(1.0f);
         app.getStateManager().getState(BulletAppState.class).setSpeed(1.0f);
         //nifty.removeScreen("start");

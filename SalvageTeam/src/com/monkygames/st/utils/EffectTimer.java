@@ -69,7 +69,6 @@ public class EffectTimer{
      * @return the percentage of time left.
      */
     public float timeLeft(){
-	System.out.println("timeLeft = "+(float)timeLeft/(float)time);
 	return (float)timeLeft/(float)time;
     }
     public void updateTime(){
@@ -87,7 +86,6 @@ public class EffectTimer{
 	    }
 	}
 	prevTime = curTime;
-	//System.out.println("EffectTimer "+timeLeft);
     }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
