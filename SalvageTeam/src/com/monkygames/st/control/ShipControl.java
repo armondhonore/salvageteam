@@ -99,7 +99,6 @@ public void stopTurbo(){
     public void timeOut() {
 	//TODO turn off turbo effect
 	stopTurbo();
-	System.out.println("ShipControl isTimeOut");
     }
 // ============= Extended Methods ============== //
 // ============= Internal Classes ============== //

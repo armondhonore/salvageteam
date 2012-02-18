@@ -26,7 +26,7 @@ public class Ship extends Model{
     /**
      * The default speed for the ship.
      */
-    private static float speedForce = 3f;
+    private static float speedForce = 4f;
     /**
      * This is the turbo force which is added ontop of the normal force.
      */
