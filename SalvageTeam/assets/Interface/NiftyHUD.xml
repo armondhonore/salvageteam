@@ -8,6 +8,8 @@
                    imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15"/>
         </image>
     </controlDefinition>
+    <useControls filename="nifty-default-controls.xml" />
+    <useStyles filename="nifty-default-styles.xml" />
     <screen id="start" controller="com.monkygames.st.control.MenuControl">
         <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
             <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
@@ -86,18 +88,46 @@
                 <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
                     <text id="scoreTitle" font="aurulent-sans-16.fnt" text="Scores:" align="center" valign="center" />
                 </panel>
-                <panel id="scorePanel" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
-                    <text id="score1" font="aurulent-sans-16.fnt" text="1.)" align="center" valign="center" />
-                    <text id="score2" font="aurulent-sans-16.fnt" text="2.)" align="center" valign="center" />
-                    <text id="score3" font="aurulent-sans-16.fnt" text="3.)" align="center" valign="center" />
-                    <text id="score4" font="aurulent-sans-16.fnt" text="4.)" align="center" valign="center" />
-                    <text id="score5" font="aurulent-sans-16.fnt" text="5.)" align="center" valign="center" />
-                    <text id="score6" font="aurulent-sans-16.fnt" text="6.)" align="center" valign="center" />
-                    <text id="score7" font="aurulent-sans-16.fnt" text="7.)" align="center" valign="center" />
-                    <text id="score8" font="aurulent-sans-16.fnt" text="8.)" align="center" valign="center" />
-                    <text id="score9" font="aurulent-sans-16.fnt" text="9.)" align="center" valign="center" />
-                    <text id="score10" font="aurulent-sans-16.fnt" text="10.)" align="center" valign="center" />
-                </panel>
+		<panel childLayout="horizontal" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+			<!--<panel id="scorePanel1" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+			-->
+			<panel childLayout="vertical" width="10%" height="100%" backgroundColor="#000C" align="center" valign="top">
+			    <text font="aurulent-sans-16.fnt" text="1.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="2.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="3.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="4.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="5.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="6.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="7.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="8.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="9.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="10.)" align="center" valign="center" />
+			</panel>
+			<panel id="scorePanel.1" childLayout="vertical" width="50%" height="100%" backgroundColor="#000C" align="center" valign="top">
+			    <text id="scorename1" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename2" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename3" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename4" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename5" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename6" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename7" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename8" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename9" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="scorename10" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			</panel>
+			<panel id="scorePanel.2" childLayout="vertical" width="40%" height="100%" backgroundColor="#000C" align="center" valign="top">
+			    <text id="score1" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score2" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score3" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score4" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score5" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score6" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score7" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score8" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score9" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="score10" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			</panel>
+		</panel>
                 <panel id="backToMenu" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
                     backgroundColor="#000C">
                     <control color="#FFFF" name="button" label="BACK TO MENU" id="backToMenuControl" align="center" width="100%" height="100%">
@@ -120,18 +150,46 @@
                 <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
                     <text id="scoreTitle1" font="aurulent-sans-16.fnt" text="Scores:" align="center" valign="center" />
                 </panel>
-                <panel id="scorePanel1" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
-                    <text id="rankscore1" font="aurulent-sans-16.fnt" text="1.)" align="center" valign="center" />
-                    <text id="rankscore2" font="aurulent-sans-16.fnt" text="2.)" align="center" valign="center" />
-                    <text id="rankscore3" font="aurulent-sans-16.fnt" text="3.)" align="center" valign="center" />
-                    <text id="rankscore4" font="aurulent-sans-16.fnt" text="4.)" align="center" valign="center" />
-                    <text id="rankscore5" font="aurulent-sans-16.fnt" text="5.)" align="center" valign="center" />
-                    <text id="rankscore6" font="aurulent-sans-16.fnt" text="6.)" align="center" valign="center" />
-                    <text id="rankscore7" font="aurulent-sans-16.fnt" text="7.)" align="center" valign="center" />
-                    <text id="rankscore8" font="aurulent-sans-16.fnt" text="8.)" align="center" valign="center" />
-                    <text id="rankscore9" font="aurulent-sans-16.fnt" text="9.)" align="center" valign="center" />
-                    <text id="rankscore10" font="aurulent-sans-16.fnt" text="10.)" align="center" valign="center" />
-                </panel>
+		<panel childLayout="horizontal" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+			<!--<panel id="scorePanel1" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+			-->
+			<panel childLayout="vertical" width="10%" height="100%" backgroundColor="#000C" align="center" valign="top">
+			    <text font="aurulent-sans-16.fnt" text="1.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="2.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="3.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="4.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="5.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="6.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="7.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="8.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="9.)" align="center" valign="center" />
+			    <text font="aurulent-sans-16.fnt" text="10.)" align="center" valign="center" />
+			</panel>
+			<panel id="scorePanel1.1" childLayout="vertical" width="50%" height="100%" backgroundColor="#000C" align="center" valign="top">
+			    <text id="rankscorename1" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename2" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename3" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename4" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename5" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename6" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename7" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename8" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename9" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscorename10" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			</panel>
+			<panel id="scorePanel1.2" childLayout="vertical" width="40%" height="100%" backgroundColor="#000C" align="center" valign="top">
+			    <text id="rankscore1" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore2" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore3" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore4" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore5" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore6" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore7" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore8" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore9" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			    <text id="rankscore10" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
+			</panel>
+		</panel>
                 <panel id="rank" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
                     <text id="scoreRank" font="aurulent-sans-16.fnt" text="Your Score: " align="center" valign="center" />
                 </panel>
@@ -150,4 +208,26 @@
             </panel>
         </layer>
     </screen>    
+    <screen id="playerInput" controller="com.monkygames.st.control.MenuControl">
+        <layer childLayout="center">
+            <panel width="100%" height="100%" childLayout="vertical" valign="center">
+                <panel id="top" height="15%" />
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
+                    <text id="scoreTitle" font="aurulent-sans-16.fnt" text="Score: " align="center" valign="center" />
+                </panel>
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000C">
+                    <text id="playerTitle" font="aurulent-sans-16.fnt" text="Enter Name" align="center" valign="center" />
+                </panel>
+                <panel width="20%" height="5%" childLayout="horizontal" valign="top" align="center" backgroundColor="#000C">
+		    <control name="textfield" id="playerTextField" width="100%" height="100%" align="center"/>
+                </panel>
+                <panel height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
+                    <control color="#ffff" name="button" label="Enter" id="enterNameButton" align="center" width="100%" height="100%">
+                        <interact onClick="enterPlayerName()" />
+                        <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
+                    </control>
+                </panel>
+	    </panel>
+	</layer>
+    </screen>
 </nifty>

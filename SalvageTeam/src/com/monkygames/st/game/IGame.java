@@ -25,6 +25,11 @@ public interface IGame{
      * @param location the location of the effect.
      **/
     public void startCollectEffect(Vector3f location);
+    /**
+     * Saves the current score with the specified player name.
+     * @param name the name of the player.
+     **/
+    public void saveScore(String name);
 }
 /*
  * Local variables:

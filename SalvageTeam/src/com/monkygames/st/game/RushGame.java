@@ -20,6 +20,8 @@ import com.monkygames.st.listener.CollectableListener;
 import com.monkygames.st.map.MapObjectExtractor;
 import com.monkygames.st.objects.*;
 import de.lessvoid.nifty.Nifty;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Test the scoring mechanics.
@@ -51,7 +53,9 @@ public class RushGame extends SimpleApplication implements IGame{
 
     @Override
     public void simpleInitApp() {
-        setDebug(DEBUG);
+        //setDebug(DEBUG);
+	// disables logging
+	Logger.getLogger("").setLevel(Level.SEVERE);
         initStates();
 
 	// create ship
@@ -138,13 +142,23 @@ public class RushGame extends SimpleApplication implements IGame{
         score.getTime().stop();
         ship.reset(); // ensure we cannot collide with anything any more
         
-	// record time
-        scoreStore.add(score);
-        scoreStore.sort();
 	// TODO get user name
 	// save score using java io
 	// return to main menu
-        mc.displayRank(score, scoreStore);
+        //mc.displayRank(score, scoreStore);
+        //mc.displayRank();
+	mc.displayPlayerInput();
+    }
+
+    /**
+     * Saves the score with the specified name.
+     * @param name the name of the player.
+     */
+    public void saveScore(String name){
+	score.setPlayer(new Player(name));
+	// record time
+        scoreStore.add(score);
+        scoreStore.sort();
         scoreStore.persist();
     }
 
@@ -154,6 +168,9 @@ public class RushGame extends SimpleApplication implements IGame{
                                                           audioRenderer,
                                                           guiViewPort);
         nifty = niftyDisplay.getNifty();
+	// disables nifty logging
+	Logger.getLogger("de.lessvoid.nifty").setLevel(Level.SEVERE); 
+	Logger.getLogger("NiftyInputEventHandlingLog").setLevel(Level.SEVERE); 
 
 	initMusic();
 	initSoundEffects();

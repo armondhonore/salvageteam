@@ -3,6 +3,7 @@
  */
 package com.monkygames.st.game;
 
+// === java imports === //
 import java.io.Serializable;
 
 /**
@@ -25,6 +26,10 @@ public class Score implements Serializable, Comparable<Score> {
      * Contains the time for this game.
      **/
     private transient Time time;
+    /**
+     * The name of the player associated with this score.
+     */
+    private Player player;
 // ============= Constructors ============== //
     public Score(){
 	this(0);
@@ -93,12 +98,18 @@ public class Score implements Serializable, Comparable<Score> {
     public Time getTime(){
 	return time;
     }
+    public void setPlayer(Player player){
+	this.player = player;
+    }
+    public Player getPlayer(){
+	return player;
+    }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
 // ============= Implemented Methods ============== //
 // ============= Extended Methods ============== //
     public String toString(){
-	return "Score["+total+"]";
+	return "Score["+player+","+total+"]";
     }
 // ============= Internal Classes ============== //
 // ============= Static Methods ============== //
