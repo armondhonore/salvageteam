@@ -53,7 +53,7 @@ public class RushGame extends SimpleApplication implements IGame{
 
     @Override
     public void simpleInitApp() {
-        //setDebug(DEBUG);
+        setDebug(DEBUG);
 	// disables logging
 	Logger.getLogger("").setLevel(Level.SEVERE);
         initStates();
@@ -141,12 +141,7 @@ public class RushGame extends SimpleApplication implements IGame{
 	// stop game
         score.getTime().stop();
         ship.reset(); // ensure we cannot collide with anything any more
-        
-	// TODO get user name
-	// save score using java io
-	// return to main menu
-        //mc.displayRank(score, scoreStore);
-        //mc.displayRank();
+       	// get user's name 
 	mc.displayPlayerInput();
     }
 

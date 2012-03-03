@@ -19,6 +19,7 @@ import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.listener.InGameListener;
 import com.monkygames.st.utils.EffectTimer;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.controls.TextField;
 import de.lessvoid.nifty.controls.textfield.TextFieldControl;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
@@ -234,7 +235,6 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     
     //public void displayRank(Score yourScore, ScoreStore store) {
     public void displayRank() {
-System.out.println("[DisplayRank]");
 	toggleMenuMusic();
         List<Score> scoreList = scoreStore.getList();
         Screen myScreen = nifty.getScreen("scoresRank");
@@ -244,7 +244,6 @@ System.out.println("[DisplayRank]");
             if (i > 10) {
                 break;
             }
-System.out.println("[DisplayRank] processing i = "+i);
             Element scoreElement = myScreen.findElementByName("rankscore"+ i);
             TextRenderer renderer = scoreElement.getRenderer(TextRenderer.class);
             String scoreText = ""+ scoreItem.getTotal();
@@ -258,7 +257,6 @@ System.out.println("[DisplayRank] processing i = "+i);
         myScreen.findElementByName("scoreRank")
                 .getRenderer(TextRenderer.class)
                 .setText("Your Score: "+ score.getTotal());
-System.out.println("[DisplayRank] goto ");
         nifty.gotoScreen("scoresRank");
     }
     public void displayPlayerInput(){
@@ -273,17 +271,12 @@ System.out.println("[DisplayRank] goto ");
      * From the menu, a player enters their name.
      */
     public void enterPlayerName(){
-System.out.println("[enterPlayerName] ");
         Screen myScreen = nifty.getScreen("playerInput");
-System.out.println("[enterPlayerName] my Screen = "+myScreen);
-System.out.println("[enterPlayerName] control = "+screen.findControl("playerTextField",TextFieldControl.class));
-	String name = screen.findControl("playerTextField", TextFieldControl.class).getText();
-System.out.println("[enterPlayerName] name = "+name);
+	//String name = screen.findControl("playerTextField", TextFieldControl.class).getText();
+	String name = screen.findNiftyControl("playerTextField", TextField.class).getText();
 	game.saveScore(name);
-System.out.println("[enterPlayerName] saving ");
 	// reset text field
-	screen.findControl("playerTextField", TextFieldControl.class).setText("");
-System.out.println("[enterPlayerName] reset ");
+	screen.findNiftyControl("playerTextField", TextField.class).setText("");
 	displayRank();
     }
     /**
