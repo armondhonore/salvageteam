@@ -17,10 +17,8 @@ import com.monkygames.st.game.IGame;
 import com.monkygames.st.game.Score;
 import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.listener.InGameListener;
-import com.monkygames.st.utils.EffectTimer;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.TextField;
-import de.lessvoid.nifty.controls.textfield.TextFieldControl;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -34,11 +32,12 @@ import java.util.List;
  */
 public class MenuControl extends AbstractAppState implements ScreenController {
 
+    // === class variables === //
     private Nifty nifty;
     private Screen screen;
     private SimpleApplication app;
-    private TextRenderer timeElementRenderer;
-    private TextRenderer scoreElementRenderer;
+    private TextRenderer loadingTextRenderer;
+    private TextField nameTextField;
     private Score score;
     private boolean inGame = false;
     private ScoreStore scoreStore;
@@ -46,35 +45,26 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     private AudioNode lvlMusicNode;
     private AudioNode menuMusicNode;
     /**
-     * Used for updating the progress bar for thrust.
+     * Contains the progress bar for loading maps.
      */
-    private EffectTimer thrustTimer;
-    /**
-     * Contains the progress bar.
-     */
-    private Element thrustProgressBarElement;
+    private Element mapLoadingProgressBarElement;
 
-    public MenuControl(Score score) {
-        this(score, null);
-    }
-    
-    public MenuControl(Score score, ScoreStore scoreStore) {
-	this(score,scoreStore,null,null,null);
-    }
-    public MenuControl(Score score, ScoreStore scoreStore, AudioNode lvlMusicNode, AudioNode menuMusicNode, EffectTimer thrustTimer) {
-	this.score = score;
+    public MenuControl(ScoreStore scoreStore, AudioNode menuMusicNode){
         this.scoreStore = scoreStore;
-	this.lvlMusicNode = lvlMusicNode;
 	this.menuMusicNode = menuMusicNode;
-	this.thrustTimer = thrustTimer;
 	menuMusicNode.play();
     }
 
+    public void setLvlMusic(AudioNode lvlMusicNode){
+    	this.lvlMusicNode = lvlMusicNode;
+    }
+
+    // === public methods === //
     @Override
     public void bind(Nifty nifty, Screen screen) {
         this.nifty = nifty;
         this.screen = screen;
-        thrustProgressBarElement = nifty.getScreen("hud").findElementByName("progressbar");
+        mapLoadingProgressBarElement = nifty.getScreen("loading").findElementByName("mapprogressbar");
 
     }
 
@@ -91,10 +81,8 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
         this.app = (SimpleApplication) app;
-        Element timeElement = nifty.getScreen("hud").findElementByName("timeLabel");
-        timeElementRenderer = timeElement.getRenderer(TextRenderer.class);
-        Element scoreElement = nifty.getScreen("hud").findElementByName("scoreLabel");
-        scoreElementRenderer = scoreElement.getRenderer(TextRenderer.class);
+        Element loadingElement = nifty.getScreen("loading").findElementByName("loadingText");
+        loadingTextRenderer = loadingElement.getRenderer(TextRenderer.class);
         try {
             app.getInputManager().deleteMapping(SimpleApplication.INPUT_MAPPING_EXIT); // removes ESC key
         } catch (IllegalArgumentException iae) {
@@ -103,21 +91,28 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         if (app instanceof IGame) {
             this.game = (IGame) app;
         }
+        Screen myScreen = nifty.getScreen("playerInput");
+	nameTextField = myScreen.findNiftyControl("playerTextField", TextField.class);
     }
 
     @Override
     public void update(float tpf) {
-        updateTime();
-	updateScore();
-	updateThrustProgressBar();
+    }
+
+    public void play(){
+	nifty.gotoScreen("loading");
+	game.initMap();
+	game.setCursorVisible(false);
     }
 
     public void unPause() {
 	toggleLvlMusic();
 
+	/*
         if (nifty.getCurrentScreen().getScreenId().contains("score")) {
             return;
         }
+	*/
         if (score.getTime().getStartGameTime() == 0) {
             resetStartTime();
         }
@@ -131,24 +126,38 @@ public class MenuControl extends AbstractAppState implements ScreenController {
             inGame = true;
             initInGameListeners(); // when in the game we want ESC, P, and PAUSE to work to go to the menu
         }
+	game.setCursorVisible(false);
     }
 
     public void pause() {
 	toggleMenuMusic();
-        if (nifty.getCurrentScreen().getScreenId().contains("score")) {
+        if (nifty.getCurrentScreen().getScreenId().contains("pause")) {
             return;
         }
         app.getStateManager().getState(BulletAppState.class).setSpeed(0f);
 	score.getTime().setPauseGameTime();
-        nifty.gotoScreen("start");
+        nifty.gotoScreen("pause");
         game.setPaused(true);
+	game.setCursorVisible(true);
+    }
+
+    /**
+     * Handles exiting the current game.
+     **/ 
+    public void quitInProgressGame(){
+	game.abortGame();
+	backToMenu();
     }
 
     public void quit() {
-        lvlMusicNode.stop();
+	if(lvlMusicNode != null){
+            lvlMusicNode.stop();
+	}
         menuMusicNode.stop();
 	//TODO move set end game to another class
-	score.getTime().setEndGameTime();
+	if(score != null){
+	    score.getTime().setEndGameTime();
+	}
         app.stop();
     }
 
@@ -159,37 +168,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     public void setScore(Score score){
         this.score = score;
     }
-    
-    /**
-     * Updates the time in the HUD.
-     **/
-    private void updateTime() {
-        timeElementRenderer.setText("Time: " + score.getTime().updateTime());
-    }
-    /**
-     * Updates the score in the HUD.
-     **/
-    private void updateScore(){
-        scoreElementRenderer.setText("Score: " + score.getTotal());
-    }
-    /**
-     * Updates the thrust progress bar in the HUD.
-     */
-    private void updateThrustProgressBar(){
-    	setThrustProgress(thrustTimer.timeLeft(), "");
-    }
 
-    private void initInGameListeners() {
-        InputManager inputManager = app.getInputManager();
-        inputManager.addMapping("Pause", 
-                new KeyTrigger(KeyInput.KEY_ESCAPE), 
-                new KeyTrigger(KeyInput.KEY_P), 
-                new KeyTrigger(KeyInput.KEY_PAUSE));
-        InGameListener inGameListener = new InGameListener(game, 
-                app.getStateManager().getState(BulletAppState.class), nifty, this);
-        inputManager.addListener(inGameListener, "Pause");
-    }
-    
     public void showScores() {
 	toggleMenuMusic();
         nifty.gotoScreen("scores");
@@ -199,6 +178,7 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     public void backToMenu() {
 	toggleMenuMusic();
         nifty.gotoScreen("start");
+	game.setCursorVisible(true);
     }
     
     public void restartGame() {
@@ -209,30 +189,6 @@ public class MenuControl extends AbstractAppState implements ScreenController {
         }
     }
 
-    private void displayScores() {
-	toggleMenuMusic();
-        List<Score> scoreList = scoreStore.getList();
-        Screen myScreen = nifty.getScreen("scores");
-        
-        int i = 1;
-        for (Score scoreItem : scoreList) {
-            if (i > 10) {
-                break;
-            }
-
-            Element scoreElement = myScreen.findElementByName("score"+ i);
-            TextRenderer renderer = scoreElement.getRenderer(TextRenderer.class);
-            String scoreText = ""+ scoreItem.getTotal();
-            renderer.setText(scoreText);
-
-            Element scoreName = myScreen.findElementByName("scorename"+ i);
-            renderer = scoreName.getRenderer(TextRenderer.class);
-            renderer.setText(scoreItem.getPlayer().getName());
-
-            ++i;
-        }
-    }
-    
     //public void displayRank(Score yourScore, ScoreStore store) {
     public void displayRank() {
 	toggleMenuMusic();
@@ -266,19 +222,80 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     	TextRenderer renderer = scoreElement.getRenderer(TextRenderer.class);
     	renderer.setText("Your Score: "+score.getTotal());
 	nifty.gotoScreen("playerInput");
+	game.setCursorVisible(true);
     }
     /**
      * From the menu, a player enters their name.
      */
     public void enterPlayerName(){
+	/*
+	System.out.println("[MC:enterPlayerName ");
         Screen myScreen = nifty.getScreen("playerInput");
 	//String name = screen.findControl("playerTextField", TextFieldControl.class).getText();
+	System.out.println("[MC:enterPlayerName myScreen "+myScreen);
 	String name = screen.findNiftyControl("playerTextField", TextField.class).getText();
+	
+	System.out.println("[MC:enterPlayerName name = "+name);
 	game.saveScore(name);
+	System.out.println("[MC:enterPlayerName save game");
 	// reset text field
 	screen.findNiftyControl("playerTextField", TextField.class).setText("");
+	System.out.println("[MC:enterPlayerName display rank");
+	displayRank();
+     	*/
+	String name = nameTextField.getText();
+	game.saveScore(name);
+	nameTextField.setText("");
 	displayRank();
     }
+
+    /**
+     * Updates the progress bar with the specified progress.
+     * @param mapProgress the percentage that the map is done loading
+     * @param description what the system is loading
+     */
+    public void updateMapProgress(float mapProgress, String description){
+	setMapLoadingProgress(mapProgress,description);
+    }
+    
+    // === private methods === //
+
+    private void initInGameListeners() {
+        InputManager inputManager = app.getInputManager();
+        inputManager.addMapping("Pause", 
+                new KeyTrigger(KeyInput.KEY_ESCAPE), 
+                new KeyTrigger(KeyInput.KEY_P), 
+                new KeyTrigger(KeyInput.KEY_PAUSE));
+        InGameListener inGameListener = new InGameListener(game, 
+                app.getStateManager().getState(BulletAppState.class), nifty, this);
+        inputManager.addListener(inGameListener, "Pause");
+    }
+    
+
+    private void displayScores() {
+	toggleMenuMusic();
+        List<Score> scoreList = scoreStore.getList();
+        Screen myScreen = nifty.getScreen("scores");
+        
+        int i = 1;
+        for (Score scoreItem : scoreList) {
+            if (i > 10) {
+                break;
+            }
+
+            Element scoreElement = myScreen.findElementByName("score"+ i);
+            TextRenderer renderer = scoreElement.getRenderer(TextRenderer.class);
+            String scoreText = ""+ scoreItem.getTotal();
+            renderer.setText(scoreText);
+
+            Element scoreName = myScreen.findElementByName("scorename"+ i);
+            renderer = scoreName.getRenderer(TextRenderer.class);
+            renderer.setText(scoreItem.getPlayer().getName());
+
+            ++i;
+        }
+    }
+    
     /**
      * Toggles the lvl music on.
      **/
@@ -290,13 +307,17 @@ public class MenuControl extends AbstractAppState implements ScreenController {
      * Toggles the menu music on.
      **/
     private void toggleMenuMusic(){
-	lvlMusicNode.stop();
+	if(lvlMusicNode != null){
+	    lvlMusicNode.stop();
+	}
 	menuMusicNode.play();
     }
-    private void setThrustProgress(final float progress, String loadingText) {
+    private void setMapLoadingProgress(final float progress, String loadingText){
 	final int MIN_WIDTH = 32;
-	int pixelWidth = (int) (MIN_WIDTH + (thrustProgressBarElement.getParent().getWidth() - MIN_WIDTH) * progress);
-	thrustProgressBarElement.setConstraintWidth(new SizeValue(pixelWidth + "px"));
-	thrustProgressBarElement.getParent().layoutElements();
+	int pixelWidth = (int) (MIN_WIDTH + (mapLoadingProgressBarElement.getParent().getWidth() - MIN_WIDTH) * progress);
+	mapLoadingProgressBarElement.setConstraintWidth(new SizeValue(pixelWidth + "px"));
+	mapLoadingProgressBarElement.getParent().layoutElements();
+	loadingTextRenderer.setText(loadingText);
+
     }
 }

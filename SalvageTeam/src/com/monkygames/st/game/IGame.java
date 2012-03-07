@@ -30,6 +30,19 @@ public interface IGame{
      * @param name the name of the player.
      **/
     public void saveScore(String name);
+    /**
+     * Initializes the map.
+     */
+    public void initMap();
+    /**
+     * Aborts the in progress game.
+     */
+    public void abortGame();
+    /**
+     * Sets the mouse cursor visible or invisible.
+     * @param visible true for visible and false for invisible.
+     */
+    public void setCursorVisible(boolean visible);
 }
 /*
  * Local variables:

@@ -96,10 +96,12 @@ public class TestTimerCountdown extends SimpleApplication {
                                                           audioRenderer,
                                                           guiViewPort);
         nifty = niftyDisplay.getNifty();
+	/*
         mc = new MenuControl(score);
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);
         mc.initialize(stateManager, this);
+	*/
     }
 }

@@ -99,11 +99,13 @@ public class TestCollectGUI extends SimpleApplication {
                                                           audioRenderer,
                                                           guiViewPort);
         nifty = niftyDisplay.getNifty();
+	/*
         mc = new MenuControl(new Score());
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);
         mc.initialize(stateManager, this);
+	*/
     }
     
 }

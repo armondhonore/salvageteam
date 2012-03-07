@@ -3,6 +3,7 @@ package com.monkygames.st.test;
 //import com.bulletphysics.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.app.SimpleApplication;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -15,8 +16,10 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Spatial;
 //import com.monkygames.st.gui.NiftyHUD;
 import com.monkygames.st.control.MenuControl;
+import com.monkygames.st.game.DummyGame;
 import com.monkygames.st.game.Score;
 import com.monkygames.st.input.KeyBinder;
+import com.monkygames.st.io.ScoreStore;
 import com.monkygames.st.objects.Ship;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
@@ -35,6 +38,8 @@ public class TestGUI extends SimpleApplication implements ScreenController {
         TestGUI app = new TestGUI();
         app.start();
     }
+	private AudioNode lvlMusicNode;
+	private AudioNode menuMusicNode;
 
     @Override
     public void simpleInitApp() {
@@ -86,16 +91,19 @@ public class TestGUI extends SimpleApplication implements ScreenController {
 	chaseCam.setInvertHorizontalAxis(true);
 	chaseCam.setInvertVerticalAxis(true);
 
+	this.initMenuMusic();
+	/*
         DirectionalLight light = new DirectionalLight();
         light.setDirection(new Vector3f(0f, 0f, -1f));
         rootNode.addLight(light);
         nifty = niftyDisplay.getNifty();
-        MenuControl mc = new MenuControl(new Score());
+        MenuControl mc = new MenuControl(new Score(),new ScoreStore(),new DummyGame(),menuMusicNode);
         mc.initialize(stateManager, this);
         nifty.fromXml("Interface/NiftyHUD.xml", "start", mc);
         //nifty.setDebugOptionPanelColors(true);
         guiViewPort.addProcessor(niftyDisplay);
         bulletAppState.setSpeed(0);
+	*/
     }
     
     public BulletAppState getBulletAppState() {
@@ -122,5 +130,17 @@ public class TestGUI extends SimpleApplication implements ScreenController {
 
     public void onEndScreen() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+        private void initGameMusic(){
+	lvlMusicNode = new AudioNode(assetManager,"Sound/Music/faster_than_light-stephen_burns.ogg",false);
+        lvlMusicNode.setLooping(true);  // activate continuous playing
+        lvlMusicNode.setVolume(0.5f);
+        rootNode.attachChild(lvlMusicNode);
+    }
+    private void initMenuMusic(){
+	menuMusicNode = new AudioNode(assetManager,"Sound/Music/collider-stephen_burns.ogg",false);
+        menuMusicNode.setLooping(true);  // activate continuous playing
+        menuMusicNode.setVolume(0.5f);
+        rootNode.attachChild(menuMusicNode);
     }
 }

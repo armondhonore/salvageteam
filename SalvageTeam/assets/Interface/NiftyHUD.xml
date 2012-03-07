@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
-    <controlDefinition name = "loadingbar" controller = "com.monkygames.st.control.MenuControl">
+    <controlDefinition name = "loadingbar" controller = "com.monkygames.st.control.HudControl">
         <image filename="Interface/turbo_border.png" childLayout="absolute" 
                imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15">
             <image id="progressbar" x="0" y="0" filename="Interface/turbo_inner.png" width="32px" height="100%"
+                   imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15"/>
+        </image>
+    </controlDefinition>
+    <controlDefinition name = "loadingmapbar" controller = "com.monkygames.st.control.MenuControl">
+        <image filename="Interface/loading_border.png" childLayout="absolute" 
+               imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15">
+            <image id="mapprogressbar" x="0" y="0" filename="Interface/loading_inner.png" width="32px" height="100%"
                    imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15"/>
         </image>
     </controlDefinition>
@@ -16,79 +23,81 @@
                 <panel id="top" height="35%" childLayout="center" align="center">
                     <image filename="Interface/SalvageTeamRush3.png" width="70%" height="60%" align="center"/>
                 </panel>
-                <panel id="panel1" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
-                    backgroundColor="#fffd">
-                    <control color="#000f" name="button" label="PLAY" id="playButton" align="center" width="100%" height="100%">
-                        <interact onClick="unPause()" />
-                        <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="PLAY" align="center" />
-                        <effect>
-                            <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
-                            <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
-                            <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
-                        </effect>
-                    </control>
-                </panel>
-                <panel id="panel2" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
-                    backgroundColor="#fffc">
-                    <control color="#000f" name="button" label="Scores" id="scoresButton" align="center" width="100%" height="100%">
-                        <interact onClick="showScores()" />
-                        <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="SCORES" align="center" />
-                        <effect>
-                            <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
-                            <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
-                            <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
-                        </effect>
-                    </control>
-                </panel>
-                <panel id="panel3" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
-                    backgroundColor="#fffb">
-                    <control color="#000f" name="button" label="Exit" id="exitButton" align="center" width="100%" height="100%">
-                        <interact onClick="quit()" />
-                        <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="EXIT" align="center" />
-                        <effect>
-                            <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
-                            <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
-                            <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
-                        </effect>
-                    </control>
+                <panel height="30%" width="20%" childLayout="vertical" align="center" style="nifty-panel-simple">
+			<panel id="panel1" height="36%" width="100%" align="center" childLayout="center" visibleToMouse="true"
+			    backgroundColor="#fffd">
+			    <control color="#000f" name="button" label="PLAY" id="playButton" align="center" width="100%" height="100%">
+				<interact onClick="play()" />
+				<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="PLAY" align="center" />
+				<effect>
+				    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+				    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+				    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
+				</effect>
+			    </control>
+			</panel>
+			<panel id="panel2" height="32%" width="100%" align="center" childLayout="center" visibleToMouse="true"
+			    backgroundColor="#fffc">
+			    <control color="#000f" name="button" label="Scores" id="scoresButton" align="center" width="100%" height="100%">
+				<interact onClick="showScores()" />
+				<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="SCORES" align="center" />
+				<effect>
+				    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+				    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+				    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
+				</effect>
+			    </control>
+			</panel>
+			<panel id="panel3" height="32%" width="100%" align="center" childLayout="center" visibleToMouse="true"
+			    backgroundColor="#fffb">
+			    <control color="#000f" name="button" label="Exit" id="exitButton" align="center" width="100%" height="100%">
+				<interact onClick="quit()" />
+				<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="EXIT" align="center" />
+				<effect>
+				    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+				    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+				    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
+				</effect>
+			    </control>
+			</panel>
                 </panel>
             </panel>
         </layer>
     </screen>
-    <screen id="hud">
-        <layer id="background" childLayout="horizontal">
-            <panel id="transparent" width="85%" />
-            <panel id="rhsHud" childLayout="vertical">
-                <panel id="rhsTopRight" height="10%" width="100%" valign="center" childLayout="center" 
-                     backgroundColor="#000F">  
-                    <text id="scoreLabel" font="aurulent-sans-16.fnt" text="Score: 0"
-                      align="center" valign="center" color="#FFFF" />
+
+<screen id="loading" controller="com.monkygames.st.control.MenuControl">
+        <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
+            <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
+                <panel id="top" height="35%" childLayout="center" align="center">
+                    <image filename="Interface/SalvageTeamRush3.png" width="70%" height="60%" align="center"/>
                 </panel>
-                <panel height="80%" />
-                <panel height="10%" width="100%" valign="center" childLayout="center"
-                       backgroundColor="#000F">
-                    <text id="timeLabel" font="aurulent-sans-16.fnt" text="Time: 0.000"
-                      align="center" valign="center" />
+                <panel id="panel1" height="5%" width="40%" align="center" childLayout="center" visibleToMouse="true">
+                   <text id="loadingText" font="aurulent-sans-16.fnt" color="#ffff" text="Loading" align="center" />
                 </panel>
             </panel>
         </layer>
-	<layer id="effects" childLayout="horizontal">
-		<panel id="lhsHud" childLayout="vertical">
-			<panel height="95%" />
-			<panel id = "loadingpanel" childLayout="vertical" align="center" valign="bottom" height="5%" width="20%">	
-				<control name="loadingbar" width="100%" height="100%" />
+	<layer childLayout="horizontal">
+		<panel id="mapLoadingPanel" childLayout="vertical">
+			<panel height="40%" />
+			<panel childLayout="vertical" align="center" valign="bottom" height="5%" width="40%">	
+				<control name="loadingmapbar" width="100%" height="100%" />
 			</panel>
 		</panel>	
 	</layer>
     </screen>
+
     <screen id="scores" controller="com.monkygames.st.control.MenuControl">
-        <layer childLayout="center">
-            <panel width="100%" height="100%" childLayout="vertical" valign="center">
+ 	<layer backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
+            <panel width="100%" height="100%" childLayout="vertical" valign="center" >
+		    <!--
+				<attributes
+    backgroundImage="dialog.png"
+    imageMode="resize:32,32,32,32,32,32,32,168,32,32,32,32" /> -->
                 <panel id="top" height="15%" />
-                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" style="nifty-panel">
                     <text id="scoreTitle" font="aurulent-sans-16.fnt" text="Scores:" align="center" valign="center" />
                 </panel>
-		<panel childLayout="horizontal" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+		<panel childLayout="horizontal" width="20%" height="50%" style="nifty-panel-no-shadow" align="center" valign="top">
 			<!--<panel id="scorePanel1" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
 			-->
 			<panel childLayout="vertical" width="10%" height="100%" backgroundColor="#000C" align="center" valign="top">
@@ -147,10 +156,10 @@
         <layer childLayout="center">
             <panel width="100%" height="100%" childLayout="vertical" valign="center">
                 <panel id="top" height="15%" />
-                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" style="nifty-panel">
                     <text id="scoreTitle1" font="aurulent-sans-16.fnt" text="Scores:" align="center" valign="center" />
                 </panel>
-		<panel childLayout="horizontal" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
+		<panel childLayout="horizontal" width="20%" height="50%" style="nifty-panel-no-shadow" align="center" valign="top">
 			<!--<panel id="scorePanel1" childLayout="vertical" width="20%" height="50%" backgroundColor="#000C" align="center" valign="top">
 			-->
 			<panel childLayout="vertical" width="10%" height="100%" backgroundColor="#000C" align="center" valign="top">
@@ -190,7 +199,7 @@
 			    <text id="rankscore10" font="aurulent-sans-16.fnt" text="" align="center" valign="center" />
 			</panel>
 		</panel>
-                <panel id="rank" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
+                <panel id="rank" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true" style="nifty-panel-no-shadow">
                     <text id="scoreRank" font="aurulent-sans-16.fnt" text="Your Score: " align="center" valign="center" />
                 </panel>
                 <panel id="backToMenu1" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
@@ -212,22 +221,74 @@
         <layer childLayout="center">
             <panel width="100%" height="100%" childLayout="vertical" valign="center">
                 <panel id="top" height="15%" />
-                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000F">
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" style="nifty-panel" >
                     <text id="scoreTitle" font="aurulent-sans-16.fnt" text="Score: " align="center" valign="center" />
                 </panel>
-                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" backgroundColor="#000C">
-                    <text id="playerTitle" font="aurulent-sans-16.fnt" text="Enter Name" align="center" valign="center" />
+                <panel width="20%" height="25%" childLayout="vertical" valign="top" align="center" style="nifty-panel-no-shadow">
+                    <panel width="100%" height="35%" childLayout="center" valign="top" align="center" backgroundColor="#000C">
+                        <text id="playerTitle" font="aurulent-sans-16.fnt" text="Enter Name" align="center" valign="center" />
+                    </panel>
+                    <panel width="100%" height="20%" childLayout="horizontal" valign="top" align="center" backgroundColor="#000C">
+		        <control name="textfield" id="playerTextField" width="100%" height="100%" align="center"/>
+                    </panel>
+                    <panel width="100%" height="45%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
+                        <control color="#ffff" name="button" label="Enter" id="enterNameButton" align="center" width="100%" height="100%">
+                            <interact onClick="enterPlayerName()" />
+                            <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
+                        </control>
+                    </panel>
+		</panel>
+	    </panel>
+	</layer>
+    </screen>
+    <screen id="pause" controller="com.monkygames.st.control.MenuControl">
+        <layer childLayout="center">
+            <panel width="100%" height="100%" childLayout="vertical" valign="center">
+                <panel id="top" height="15%" />
+                <panel width="20%" height="10%" childLayout="center" valign="top" align="center" style="nifty-panel">
+                    <text font="aurulent-sans-16.fnt" text="Paused" align="center" valign="center" />
                 </panel>
-                <panel width="20%" height="5%" childLayout="horizontal" valign="top" align="center" backgroundColor="#000C">
-		    <control name="textfield" id="playerTextField" width="100%" height="100%" align="center"/>
-                </panel>
-                <panel height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
-                    <control color="#ffff" name="button" label="Enter" id="enterNameButton" align="center" width="100%" height="100%">
-                        <interact onClick="enterPlayerName()" />
-                        <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
-                    </control>
+                <panel height="20%" width="20%" align="center" childLayout="vertical" visibleToMouse="true" style="nifty-panel-no-shadow">
+                    <panel height="50%" width="100%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
+                        <control color="#ffff" name="button" label="Continue" align="center" width="100%" height="100%">
+                            <interact onClick="unPause()" />
+                            <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
+                        </control>
+		    </panel>
+                    <panel height="50%" width="100%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
+                        <control color="#ffff" name="button" label="Quit" align="center" width="100%" height="100%">
+                            <interact onClick="quitInProgressGame()" />
+                            <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
+                        </control>
+                    </panel>
                 </panel>
 	    </panel>
+	</layer>
+    </screen>
+    <screen id="hud" controller="com.monkygames.st.control.HudControl">
+        <layer id="background" childLayout="horizontal">
+            <panel id="transparent" width="85%" />
+            <panel id="rhsHud" childLayout="vertical">
+                <panel id="rhsTopRight" height="10%" width="100%" valign="center" childLayout="center" 
+                     style="nifty-panel-simple" backgroundColor="#000F">  
+                    <text id="scoreLabel" font="aurulent-sans-16.fnt" text="Score: 0"
+                      align="center" valign="center" color="#FFFF" />
+                </panel>
+                <panel height="80%" />
+                <panel height="10%" width="100%" valign="center" childLayout="center"
+                       style="nifty-panel-simple" backgroundColor="#000F">
+                    <text id="timeLabel" font="aurulent-sans-16.fnt" text="Time: 0.000"
+                      align="center" valign="center" />
+                </panel>
+            </panel>
+        </layer>
+	<layer id="effects" childLayout="horizontal">
+		<panel id="lhsHud" childLayout="vertical">
+			<panel height="95%" />
+			<panel id = "loadingpanel" childLayout="vertical" align="center" valign="bottom" height="5%" width="20%">	
+				<control name="loadingbar" width="100%" height="100%" />
+			</panel>
+		</panel>	
 	</layer>
     </screen>
 </nifty>
