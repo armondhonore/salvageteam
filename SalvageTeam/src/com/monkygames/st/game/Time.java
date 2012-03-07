@@ -116,9 +116,11 @@ public class Time {
         }
         long currentTime = System.currentTimeMillis();
         long time = currentTime - startGameTime - totalPausedTime;
+/*
         if (totalPausedTime > 0L) {
             System.out.println("TOTALS = "+ currentTime+" - "+startGameTime+" - "+totalPausedTime);
         }
+*/
 	String timeStr = "";
 	if(isCountingDown){
 	    time = timeRemaining - time;

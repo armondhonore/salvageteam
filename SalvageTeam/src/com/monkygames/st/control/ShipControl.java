@@ -67,9 +67,11 @@ public void stopThrust(){
  * Starts the turbo on the ship.
  **/
 public void startTurbo(){
-    isTurboing = true;
-    ship.startTurboEffect();
-    effectTimer.activate();
+    if(isThrusting){
+	isTurboing = true;
+	ship.startTurboEffect();
+	effectTimer.activate();
+    }
 }
 /**
  * Stops the turbo on the ship.
