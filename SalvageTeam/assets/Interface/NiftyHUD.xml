@@ -61,6 +61,10 @@
 			</effect>
 		    </control>
                 </panel>
+		<panel id="top" height="5%" childLayout="center" align="center"/>
+		<panel id="top" height="10%" childLayout="center" align="center">
+                   <text font="aurulent-sans-16.fnt" color="#ffff" text="Version 1.2" align="right" />
+                </panel>
             </panel>
         </layer>
     </screen>
