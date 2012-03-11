@@ -54,6 +54,7 @@ public class RushGame extends SimpleApplication implements IGame{
     private boolean waitForScreenUpdate;
     private int waitCounter;
     private boolean isMapLoaded = false;
+    private KeyBinder keyBinder;
     //private long count = 0l; // debug var to count frames
     
 // ============= Constructors ============== //
@@ -113,7 +114,7 @@ public class RushGame extends SimpleApplication implements IGame{
 	    case 4:
 
 		// create keybinder
-		KeyBinder keyBinder = new KeyBinder(inputManager,ship);
+		keyBinder = new KeyBinder(inputManager,ship);
 
 		updateMapProgress(0.05f, "Setup Camera");
 		break;
@@ -278,6 +279,7 @@ public class RushGame extends SimpleApplication implements IGame{
 
     public void setPaused(boolean on) {
         this.gamePaused = on;
+        keyBinder.setPaused(on);
     }
     
     public boolean getPaused() {

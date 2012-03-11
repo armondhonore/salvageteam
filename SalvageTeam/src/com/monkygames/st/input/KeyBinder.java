@@ -51,6 +51,13 @@ public class KeyBinder{
 	inputManager.addListener(shipActionListener, actionKeys);
     }
 // ============= Public Methods ============== //
+    /**
+     * Sets the keyboard input to paused or unpaused.
+     * @param paused true if paused and false for unpaused.
+     */
+    public void setPaused(boolean paused){
+	shipActionListener.setPaused(paused);
+    }
 // ============= Protected Methods ============== //
 // ============= Private Methods ============== //
     /**

@@ -23,43 +23,43 @@
                 <panel id="top" height="35%" childLayout="center" align="center">
                     <image filename="Interface/SalvageTeamRush3.png" width="70%" height="60%" align="center"/>
                 </panel>
-                <panel height="30%" width="20%" childLayout="vertical" align="center" style="nifty-panel-simple">
-			<panel id="panel1" height="36%" width="100%" align="center" childLayout="center" visibleToMouse="true"
-			    backgroundColor="#fffd">
-			    <control color="#000f" name="button" label="PLAY" id="playButton" align="center" width="100%" height="100%">
-				<interact onClick="play()" />
-				<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="PLAY" align="center" />
-				<effect>
-				    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
-				    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
-				    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
-				</effect>
-			    </control>
-			</panel>
-			<panel id="panel2" height="32%" width="100%" align="center" childLayout="center" visibleToMouse="true"
-			    backgroundColor="#fffc">
-			    <control color="#000f" name="button" label="Scores" id="scoresButton" align="center" width="100%" height="100%">
-				<interact onClick="showScores()" />
-				<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="SCORES" align="center" />
-				<effect>
-				    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
-				    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
-				    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
-				</effect>
-			    </control>
-			</panel>
-			<panel id="panel3" height="32%" width="100%" align="center" childLayout="center" visibleToMouse="true"
-			    backgroundColor="#fffb">
-			    <control color="#000f" name="button" label="Exit" id="exitButton" align="center" width="100%" height="100%">
-				<interact onClick="quit()" />
-				<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="EXIT" align="center" />
-				<effect>
-				    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
-				    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
-				    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
-				</effect>
-			    </control>
-			</panel>
+                <panel height="40%" width="20%" childLayout="vertical" align="center" style="nifty-panel-simple">
+		    <control color="#000f" name="button" label="PLAY" id="playButton" align="center" width="100%" height="25%">
+			<interact onRelease="play()" />
+			<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="PLAY" align="center" />
+			<effect>
+			    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+			    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+			    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
+			</effect>
+		    </control>
+		    <control color="#000f" name="button" label="Scores" id="scoresButton" align="center" width="100%" height="25%">
+			<interact onRelease="showScores()" />
+			<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="SCORES" align="center" />
+			<effect>
+			    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+			    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+			    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
+			</effect>
+		    </control>
+		    <control color="#000f" name="button" label="Instructions" align="center" width="100%" height="25%">
+			<interact onRelease="instructionPage1()" />
+			<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="SCORES" align="center" />
+			<effect>
+			    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+			    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+			    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
+			</effect>
+		    </control>
+		    <control color="#000f" name="button" label="Exit" id="exitButton" align="center" width="100%" height="25%">
+			<interact onRelease="quit()" />
+			<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="EXIT" align="center" />
+			<effect>
+			    <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
+			    <onEndScreen name="move" mode="out" direction="bottom" length="300" startDelay="0" inherit="true"/>
+			    <onHover name="pulsate" scaleFactor="0.008" startColor="#9991" endColor="#aaae" post="true"/>
+			</effect>
+		    </control>
                 </panel>
             </panel>
         </layer>
@@ -140,7 +140,7 @@
                 <panel id="backToMenu" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
                     backgroundColor="#000C">
                     <control color="#FFFF" name="button" label="BACK TO MENU" id="backToMenuControl" align="center" width="100%" height="100%">
-                        <interact onClick="backToMenu()" />
+                        <interact onRelease="backToMenu()" />
                         <text id="backButtonText" font="aurulent-sans-16.fnt" text="BACK TO MENU" align="center" valign="center" />
                         <effect>
                             <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
@@ -205,7 +205,7 @@
                 <panel id="backToMenu1" height="10%" width="20%" align="center" childLayout="center" visibleToMouse="true"
                     backgroundColor="#000C">
                     <control color="#FFFF" name="button" label="BACK TO MENU" id="backToMenuControl1" align="center" width="100%" height="100%">
-                        <interact onClick="restartGame()" />
+                        <interact onRelease="restartGame()" />
                         <text id="backButtonText1" font="aurulent-sans-16.fnt" text="BACK TO MENU" align="center" valign="center" />
                         <effect>
                             <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
@@ -233,7 +233,7 @@
                     </panel>
                     <panel width="100%" height="45%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
                         <control color="#ffff" name="button" label="Enter" id="enterNameButton" align="center" width="100%" height="100%">
-                            <interact onClick="enterPlayerName()" />
+                            <interact onRelease="enterPlayerName()" />
                             <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
                         </control>
                     </panel>
@@ -251,13 +251,13 @@
                 <panel height="20%" width="20%" align="center" childLayout="vertical" visibleToMouse="true" style="nifty-panel-no-shadow">
                     <panel height="50%" width="100%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
                         <control color="#ffff" name="button" label="Continue" align="center" width="100%" height="100%">
-                            <interact onClick="unPause()" />
+                            <interact onRelease="unPause()" />
                             <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
                         </control>
 		    </panel>
                     <panel height="50%" width="100%" align="center" childLayout="center" visibleToMouse="true" backgroundColor="#000C">
                         <control color="#ffff" name="button" label="Quit" align="center" width="100%" height="100%">
-                            <interact onClick="quitInProgressGame()" />
+                            <interact onRelease="quitInProgressGame()" />
                             <text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Enter" align="center" />
                         </control>
                     </panel>
@@ -265,18 +265,106 @@
 	    </panel>
 	</layer>
     </screen>
+    <screen id="instructions_p1" controller="com.monkygames.st.control.MenuControl">
+        <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
+            <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
+		<panel height="10%" childLayout="vertical" width="50%" align="center">
+		</panel>
+                <panel id="top" width="50%" height="50%" childLayout="center" align="center" style="nifty-panel">
+                    <image filename="Interface/instructions/hudOverview.png" width="100%" height="100%" align="center"/>
+                </panel>
+		<panel height="1%"/>
+		<panel height="25%" childLayout="vertical" width="50%" align="center" style="nifty-panel-simple">
+		    	<text font="aurulent-sans-16.fnt" text="You will be entered into the game." align="left" color="#000000" /> 
+		    	<text font="aurulent-sans-16.fnt" text="The top right of the screen is your score." color="#000000"/>
+			<text font="aurulent-sans-16.fnt" text="The bottom right of the screen your time limit." align="left" color="#000000"/>
+		    	<text font="aurulent-sans-16.fnt" text="The bottom middle is your turbo boost guage." align="left" color="#000000"/> 
+		    	<text font="aurulent-sans-16.fnt" text="Turbo boost allows for a quick burst of speed." align="left" color="#000000"/> 
+		</panel>
+		<panel height="3%"/>
+		<panel height="10%" childLayout="horizontal" width="50%" align="center" style="nifty-panel-simple">
+		    <control color="#ffff" name="button" label="Back" align="center" width="50%" height="100%">
+		    	<interact onRelease="backToMenu()" />
+		    	<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Next" align="center" />
+		    </control>
+		    <control color="#ffff" name="button" label="Next" align="center" width="50%" height="100%">
+		    	<interact onRelease="instructionPage2()" />
+		    	<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Next" align="center" />
+		    </control>
+		</panel>
+	    </panel>
+	</layer>
+    </screen>
+    <screen id="instructions_p2" controller="com.monkygames.st.control.MenuControl">
+        <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
+            <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
+		<panel height="10%" childLayout="vertical" width="50%" align="center"/>
+                <panel id="top" width="50%" height="50%" childLayout="center" align="center" style="nifty-panel">
+                    <image filename="Interface/instructions/controls.png" width="100%" height="100%" align="center"/>
+                </panel>
+		<panel height="1%"/>
+		<panel height="25%" childLayout="vertical" width="50%" align="center" style="nifty-panel-simple">
+		    	<text font="aurulent-sans-16.fnt" text="To control your ship, use the arrow keys on the keyboard." align="left" color="#000000" /> 
+		    	<text font="aurulent-sans-16.fnt" text="The UP arrow key applies thrust to the ship." color="#000000"/>
+			<text font="aurulent-sans-16.fnt" text="The LEFT and RIGHT arrow keys rotate the ship"  align="left" color="#000000"/>
+			<text font="aurulent-sans-16.fnt" text="counter-clockwise and clockwise respectively." align="left" color="#000000"/>
+		    	<text font="aurulent-sans-16.fnt" text="Hold down the space bar to use the turbo boost." align="left" color="#000000"/> 
+		    	<text font="aurulent-sans-16.fnt" text="The turbo boost has a charge so only last" align="left" color="#000000"/>
+			<text font="aurulent-sans-16.fnt" text="1 second and requires time to charge up after use." align="left" color="#000000"/> 
+
+		</panel>
+		<panel height="3%"/>
+		<panel height="10%" childLayout="horizontal" width="50%" align="center" style="nifty-panel-simple">
+		    <control color="#ffff" name="button" label="Back" align="center" width="50%" height="100%">
+		    	<interact onRelease="instructionPage1()" />
+		    	<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Next" align="center" />
+		    </control>
+		    <control color="#ffff" name="button" label="Next" align="center" width="50%" height="100%">
+		    	<interact onRelease="instructionPage3()" />
+		    	<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Next" align="center" />
+		    </control>
+		</panel>
+	    </panel>
+	</layer>
+    </screen>
+    <screen id="instructions_p3" controller="com.monkygames.st.control.MenuControl">
+        <layer id="layer" backgroundImage="Interface/Galaxy_Planets_013.jpg" childLayout="center" >
+            <panel id="panel" height="100%" width="100%" align="center" visibleToMouse="true" childLayout="vertical">
+		<panel height="10%" childLayout="vertical" width="50%" align="center"/>
+                <panel id="top" width="50%" height="50%" childLayout="center" align="center" style="nifty-panel">
+                    <image filename="Interface/instructions/trash.png" width="100%" height="100%" align="center"/>
+                </panel>
+		<panel height="1%"/>
+		<panel height="25%" childLayout="vertical" width="50%" align="center" style="nifty-panel-simple">
+		    	<text font="aurulent-sans-16.fnt" text="The goal of the game is to collec trash cans." align="left" color="#000000" /> 
+		    	<text font="aurulent-sans-16.fnt" text="Your ship needs to touch the trash can to pick it up." color="#000000"/>
+		</panel>
+		<panel height="3%"/>
+		<panel height="10%" childLayout="horizontal" width="50%" align="center" style="nifty-panel-simple">
+		    <control color="#ffff" name="button" label="Back" align="center" width="50%" height="100%">
+		    	<interact onRelease="instructionPage2()" />
+		    	<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Next" align="center" />
+		    </control>
+		    <control color="#ffff" name="button" label="Next" align="center" width="50%" height="100%">
+		    	<interact onRelease="backToMenu()" />
+		    	<text id="text" font="aurulent-sans-16.fnt" color="#ffff" text="Next" align="center" />
+		    </control>
+		</panel>
+	    </panel>
+	</layer>
+    </screen>
     <screen id="hud" controller="com.monkygames.st.control.HudControl">
         <layer id="background" childLayout="horizontal">
             <panel id="transparent" width="85%" />
             <panel id="rhsHud" childLayout="vertical">
-                <panel id="rhsTopRight" height="10%" width="100%" valign="center" childLayout="center" 
-                     style="nifty-panel-simple" backgroundColor="#000F">  
+                <panel id="rhsTopRight" height="8%" width="100%" valign="center" childLayout="center" 
+                     style="nifty-panel-no-shadow">  
                     <text id="scoreLabel" font="aurulent-sans-16.fnt" text="Score: 0"
                       align="center" valign="center" color="#FFFF" />
                 </panel>
-                <panel height="80%" />
-                <panel height="10%" width="100%" valign="center" childLayout="center"
-                       style="nifty-panel-simple" backgroundColor="#000F">
+                <panel height="84%" />
+                <panel height="8%" width="100%" valign="center" childLayout="center"
+                     style="nifty-panel-no-shadow">  
                     <text id="timeLabel" font="aurulent-sans-16.fnt" text="Time: 0.000"
                       align="center" valign="center" />
                 </panel>

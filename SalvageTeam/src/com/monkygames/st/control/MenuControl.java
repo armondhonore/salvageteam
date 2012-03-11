@@ -257,6 +257,16 @@ public class MenuControl extends AbstractAppState implements ScreenController {
     public void updateMapProgress(float mapProgress, String description){
 	setMapLoadingProgress(mapProgress,description);
     }
+
+    public void instructionPage1(){
+        nifty.gotoScreen("instructions_p1");
+    }
+    public void instructionPage2(){
+        nifty.gotoScreen("instructions_p2");
+    }
+    public void instructionPage3(){
+        nifty.gotoScreen("instructions_p3");
+    }
     
     // === private methods === //
 
