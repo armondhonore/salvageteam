@@ -281,7 +281,7 @@
 		<panel height="25%" childLayout="vertical" width="50%" align="center" style="nifty-panel-simple">
 		    	<text font="aurulent-sans-16.fnt" text="You will be entered into the game." align="left" color="#000000" /> 
 		    	<text font="aurulent-sans-16.fnt" text="The top right of the screen is your score." color="#000000"/>
-			<text font="aurulent-sans-16.fnt" text="The bottom right of the screen your time limit." align="left" color="#000000"/>
+			<text font="aurulent-sans-16.fnt" text="The bottom right of the screen is your time limit." align="left" color="#000000"/>
 		    	<text font="aurulent-sans-16.fnt" text="The bottom middle is your turbo boost guage." align="left" color="#000000"/> 
 		    	<text font="aurulent-sans-16.fnt" text="Turbo boost allows for a quick burst of speed." align="left" color="#000000"/> 
 		</panel>
@@ -313,7 +313,7 @@
 			<text font="aurulent-sans-16.fnt" text="The LEFT and RIGHT arrow keys rotate the ship"  align="left" color="#000000"/>
 			<text font="aurulent-sans-16.fnt" text="counter-clockwise and clockwise respectively." align="left" color="#000000"/>
 		    	<text font="aurulent-sans-16.fnt" text="Hold down the space bar to use the turbo boost." align="left" color="#000000"/> 
-		    	<text font="aurulent-sans-16.fnt" text="The turbo boost has a charge so only last" align="left" color="#000000"/>
+		    	<text font="aurulent-sans-16.fnt" text="The turbo boost has a charge so it only lasts" align="left" color="#000000"/>
 			<text font="aurulent-sans-16.fnt" text="1 second and requires time to charge up after use." align="left" color="#000000"/> 
 
 		</panel>
@@ -342,6 +342,8 @@
 		<panel height="25%" childLayout="vertical" width="50%" align="center" style="nifty-panel-simple">
 		    	<text font="aurulent-sans-16.fnt" text="The goal of the game is to collec trash cans." align="left" color="#000000" /> 
 		    	<text font="aurulent-sans-16.fnt" text="Your ship needs to touch the trash can to pick it up." color="#000000"/>
+		    	<text font="aurulent-sans-16.fnt" text="There is a time limit so you need to pick up all" color="#000000"/>
+		    	<text font="aurulent-sans-16.fnt" text="of the trash cans before the time runs out." color="#000000"/>
 		</panel>
 		<panel height="3%"/>
 		<panel height="10%" childLayout="horizontal" width="50%" align="center" style="nifty-panel-simple">
