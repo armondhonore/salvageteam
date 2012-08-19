@@ -21,6 +21,7 @@ import com.monkygames.st.listener.CollectableListener;
 import com.monkygames.st.map.MapObjectExtractor;
 import com.monkygames.st.objects.*;
 import de.lessvoid.nifty.Nifty;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,9 +70,18 @@ public class RushGame extends SimpleApplication implements IGame{
         setDebug(DEBUG);
 	// disables logging
 	Logger.getLogger("").setLevel(Level.SEVERE);
-
+        // store in user directory in order
+        // to make this work with packages like playdeb
+        String home = System.getProperty("user.home");
+        home += File.separator+".config"+File.separator+"salvageteam";
+        // create directory if it doesn't exist
+        File dir = new File(home);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        home += File.separator+"scores.jio";
 	// create a new score
-        scoreStore = new ScoreStore();
+        scoreStore = new ScoreStore(home);
         initGUI(score);
         bulletAppState.setSpeed(0); //  initially
     }
