@@ -160,7 +160,7 @@ public class Ship extends Model{
     private void setupEffects(){
 	exhaust = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 30);
 	Material mat_red = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
-	mat_red.setTexture("m_Texture", assetManager.loadTexture("Effects/flame.png"));
+	mat_red.setTexture("Texture", assetManager.loadTexture("Effects/flame.png"));
 	exhaust.setMaterial(mat_red);
 	exhaust.setImagesX(2); exhaust.setImagesY(2); // 2x2 texture animation
 	exhaust.setEndColor(  new ColorRGBA(1f, 0f, 0f, 1f));   // red

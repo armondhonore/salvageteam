@@ -70,6 +70,7 @@ public class RushGame extends SimpleApplication implements IGame{
         setDebug(DEBUG);
 	// disables logging
 	Logger.getLogger("").setLevel(Level.SEVERE);
+
         // store in user directory in order
         // to make this work with packages like playdeb
         String home = System.getProperty("user.home");
